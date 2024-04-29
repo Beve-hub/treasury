@@ -1,9 +1,18 @@
-import React from 'react';
+import Footer from "../Home/Footer"
+import Sales from "./screen/Sales"
+import Scale from "./screen/Scale"
+import { Solve } from "./screen/Solve"
+import { Wealth } from "./screen/Wealth"
+
 
 const Solution= () => {
     return (
         <div>
-            <p>solution</p>
+            <Solve/>
+            <Wealth/>
+            <Scale/>
+            <Sales/>
+            <Footer/>    
         </div>
     )
 }

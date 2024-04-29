@@ -22,7 +22,13 @@ const Navbar = () => {
                 <div onClick={handleNav} className='block md:hidden ml-4 '>
                  {!nav ? <img src={cancel}  className='bg-[#fff] p-1' /> : <img src={menu}  className='bg-[#fff] p-1' /> }
                  </div>
-                    <img src={Logo} alt='' className='w-[9rem] hover:scale-105'/>
+                 <div>
+                 <a href='/'>
+                  <img src={Logo} alt='' className='w-[9rem] hover:scale-105'/>
+                  </a>
+                 </div>
+                  
+                    
                 </div> 
                 
                 <div className='item-center justify-between sm:flex hidden'>                

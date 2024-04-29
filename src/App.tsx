@@ -6,10 +6,15 @@ import Solution from "./page/LandingPage/Solution/Solution";
 import Contact from "./page/LandingPage/contact/Contact";
 import Register from "./page/auth/signup/Register";
 import Login from "./page/auth/login/Login";
+import NavbarWrapper from "./context/NavbarWrapper";
 function App() {
   return (
     <Router>
+      
+      <NavbarWrapper>
       <Navbar />
+      </NavbarWrapper>
+      
       <Routes>
         <Route index element={<LandingPage />} />
         <Route path='/about' element={<About />} />

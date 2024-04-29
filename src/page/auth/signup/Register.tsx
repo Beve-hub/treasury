@@ -1,10 +1,10 @@
-import React from 'react'
+
 
 interface Props {
     
 }
 
-const Register: React.FC<Props> = () => {
+const Register = ({}:Props) => {
     return (
         <div>
             

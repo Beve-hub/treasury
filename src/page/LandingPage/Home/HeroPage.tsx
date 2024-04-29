@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import  {useEffect} from 'react'
 import image from '../../../assets/image_background.png'
 import image2 from '../../../assets/image_hero.png'
 import AOS from 'aos'
@@ -13,8 +13,8 @@ const HeroPage= () => {
       }, []);
 
     return (
-        <section id="home" className="min-h-screen w-screen overflow-hidden relative">
-            <div className='relative h-screen'>
+        <section id="home" className="relative h-screen w-screen overflow-hidden relative">
+            <div className=''>
                 <div className={`absolute w-screen h-full bg-cover bg-center  overlap-hidden`}
             style={{
                 

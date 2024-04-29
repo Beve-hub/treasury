@@ -15,17 +15,14 @@ const Guide = () => {
     return (
         <section  className="min-h-[30rem]  py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
         <div>
-          <div className='max-w-[1100px] flex gap-2 md:grid-cols-2 '>
-           
-             
+          <div className='max-w-[1100px] flex gap-2 md:grid-cols-2 '> 
                 <div className='p-6 ' >     
                   <div className=' grid justify-center items-center'>   
                    
-                   <p className='  py-1 w-[10rem] ml-20 flex justify-center font-medium bg-[--button-color]'> Our Values</p>
-                   
-
-                                             
-                      <p className='font-bold py-4 text-2xl text-[#121212]'>Financial guidance and support</p>                    
+                  <div className='max-w-[80rem] flex justify-center'>
+                  <p className='  py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]'> Our Values</p>
+                  </div>                 
+                      <p className='font-bold py-4 text-2xl text-[#121212] text-center'>Financial guidance and support</p>                    
                     </div>             
                 
                     <div className='max-w-[90rem] mx-auto grid md:grid-cols-3 gap-4 px-8 py-10'>
@@ -88,15 +85,7 @@ const Guide = () => {
                     </div>
 
                     
-                </div>
-                  
-                  
-                    
-               
-             
-    
-       
-            
+                </div> 
           </div>
         </div>
       </section>
