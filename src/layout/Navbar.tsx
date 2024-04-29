@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { BiMenu, BiWorld } from 'react-icons/bi';
-import { AiOutlineClose } from "react-icons/ai";
+import menu from '../assets/menu.svg'
+import cancel from '../assets/cancel.svg'
 import Logo from '../assets/logo1.png'
 import { NavLink } from 'react-router-dom';
  
@@ -20,32 +20,32 @@ const Navbar = () => {
 
                 <div className='flex items-center'>
                 <div onClick={handleNav} className='block md:hidden ml-4 '>
-                 {!nav ? <AiOutlineClose size={30} color='white'  className='bg-[#12121220]' /> : <BiMenu color='white' size={30}  className='bg-bg-[#ffff]' /> }
+                 {!nav ? <img src={cancel}  className='bg-[#fff] p-1' /> : <img src={menu}  className='bg-[#fff] p-1' /> }
                  </div>
-                    <img src={Logo} alt='' className='w-[8rem]'/>
+                    <img src={Logo} alt='' className='w-[9rem] hover:scale-105'/>
                 </div> 
                 
                 <div className='item-center justify-between sm:flex hidden'>                
 
                     <ul className={`${flexBetween} mx-[8rem] w-[25rem] `}>
-                        <li className='text-[--text-extra]'>
+                        <li className='text-[--text-extra] transition duration-500 hover:scale-110 cursor-pointer'>
                             <NavLink to="/" >
                                 Home
                             </NavLink>
                         </li>
-                        <li className='text-[--text-extra]'>
+                        <li className='text-[--text-extra] transition duration-500 hover:scale-110 cursor-pointer'>
                             <NavLink to="/about"  >
                                 About Us
                                 
                             </NavLink>
                         </li>
-                        <li className='text-[--text-extra]'>
+                        <li className='text-[--text-extra] transition duration-500 hover:scale-110 cursor-pointer'>
                             <NavLink to="/solution">
                                 Solution
                                
                             </NavLink>
                         </li>
-                        <li className='text-[--text-extra]'>
+                        <li className='text-[--text-extra] transition duration-500 hover:scale-110 cursor-pointer'>
                             <NavLink to="/contact" >
                                 Contact
                             </NavLink>
@@ -53,7 +53,7 @@ const Navbar = () => {
                     </ul>    
                 </div>
                 <div className='sm:flex hidden '>
-                   <button  className='font-bold bg-[--button-color] h-10 mt-3 ml-20 px-4 rounded-md '>
+                   <button  className='font-bold bg-[--button-color] h-10 mt-3 ml-20 px-4 rounded-md  transition duration-500 hover:scale-110 hover:bg-blue-600 hover:text-white cursor-pointer'>
                     <a href="/register">
                     Join Us
                     </a>                     
@@ -65,28 +65,28 @@ const Navbar = () => {
                               
 
 <ul className=' grid justify-center gap-6 font-medium mt-20'>
-    <li className='text-[--text-extra] text-white'>
+    <li className='text-[--text-extra] text-white transition duration-500 hover:scale-110 cursor-pointer'>
         <NavLink to="/" >
             Home
         </NavLink>
     </li>
-    <li className='text-[--text-extra] text-white'>
+    <li className='text-[--text-extra] text-white transition duration-500 hover:scale-110 cursor-pointer'>
         <NavLink to="/about"  >
             About Us            
         </NavLink>
     </li>
-    <li className='text-[--text-extra] text-white'>
+    <li className='text-[--text-extra] text-white transition duration-500 hover:scale-110 cursor-pointer'>
         <NavLink to="/solution" >
             Solution           
         </NavLink>
     </li>
-    <li className='text-[--text-extra] text-white'>
+    <li className='text-[--text-extra] text-white transition duration-500 hover:scale-110 cursor-pointer'>
         <NavLink to="/contact" >
             Contact
         </NavLink>
     </li>
 
-    <li className='text-[--text-extra] text-white'>
+    <li className='text-[--text-extra] text-white transition duration-500 hover:scale-110 cursor-pointer'>
         <NavLink to="/register" >
             Join Us
         </NavLink>
