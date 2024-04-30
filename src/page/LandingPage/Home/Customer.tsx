@@ -32,17 +32,22 @@ const Customer = () => {
             </div>
             
             <div className='mt-4 grid gap-2'>
-                <div className='grid gap-2 md:grid-cols-2'>
-                <input type='text' placeholder='Full Name' className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <input type='text' placeholder='Email' className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                    <div className='grid gap-2 md:grid-cols-2'>
+                    <input type='text' placeholder='Full Name' className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                    <input type='text' placeholder='Email' className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                    </div>
+    
+                    <input  placeholder='Subject'
+                     className="shadow appearance-none border rounded 
+                     py-2 px-3 text-gray-700 leading-tight
+                      focus:outline-none focus:shadow-outline"/>
+                    <textarea  placeholder='Message'
+                     className="shadow appearance-none border rounded 
+                     py-2 px-3 text-gray-700 leading-tight
+                      focus:outline-none focus:shadow-outline"/>
+                  
+                    
                 </div>
-
-               
-                <textarea placeholder='' placeholder='Message' className="shadow appearance-none border rounded 
-                 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-              
-                
-            </div>
             </div>
               
               <div className='flex justify-start ml-6 items-center' data-aos="fade-up-right">

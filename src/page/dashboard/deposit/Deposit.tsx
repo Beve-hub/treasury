@@ -4,12 +4,12 @@ interface Props {
     
 }
 
-const Sidebar: React.FC<Props> = () => {
+const Deposit: React.FC<Props> = () => {
     return (
         <div>
-            <p>sidebar</p>
+            
         </div>
     )
 }
 
-export default Sidebar
+export default Deposit
