@@ -18,6 +18,7 @@ const NavbarWrapper = ({ children }: Props) => {
             location.pathname === '/login' ||
             location.pathname === '/register' ||
             location.pathname === '/reg' ||
+            location.pathname === '/admin' ||
             location.pathname === '/amount'
         ) {
             setShowNavbar(false);
@@ -33,6 +34,11 @@ const NavbarWrapper = ({ children }: Props) => {
             location.pathname === '/pin' ||
             location.pathname === '/transfer' ||
             location.pathname === '/withdraw' ||
+            location.pathname === '/card' ||
+            location.pathname === '/address' ||
+            location.pathname === '/investment' ||
+            location.pathname === '/exchange' ||
+            location.pathname === '/loan' ||
             location.pathname === '/deposit'
         ) {
             setShowNavbar(false);

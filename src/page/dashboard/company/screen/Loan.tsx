@@ -4,7 +4,7 @@ interface Props {
     
 }
 
-const Dashboard: React.FC<Props> = () => {
+const Loan: React.FC<Props> = () => {
     return (
         <div>
             
@@ -12,4 +12,4 @@ const Dashboard: React.FC<Props> = () => {
     )
 }
 
-export default Dashboard
+export default Loan

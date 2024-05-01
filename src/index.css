@@ -37,6 +37,7 @@ html{
   --bg-color: #121212;
   --button-color: #56E980;
   --hover-color: #56E98070;
+  
 }
 
 
@@ -48,5 +49,10 @@ body {
 }
 
 .active {
-  @apply text-[#56E980]  font-bold text-lg ;
+  @apply text-[#2631fc]  font-bold  ;
+}
+
+.active img {
+  filter: invert(33%) sepia(81%) saturate(5091%) hue-rotate(215deg) brightness(103%) contrast(97%);
+ 
 }

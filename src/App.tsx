@@ -22,6 +22,12 @@ import Transfer from "./page/dashboard/transfer/Transfer";
 import Withdraw from "./page/dashboard/withdraw/Withdraw";
 import Deposit from "./page/dashboard/deposit/Deposit";
 import Sidebar from "./layout/Sidebar";
+import Loan from "./page/dashboard/company/screen/Loan";
+import Exchange from "./page/dashboard/company/screen/Exchange";
+import Investment from "./page/dashboard/company/screen/Investment";
+import WalletAddress from "./page/dashboard/wallet/screen/WalletAddress";
+import Card from "./page/dashboard/wallet/screen/Card";
+import Admin from "./page/admin/Admin";
 function App() {
   return (
     <Router>
@@ -52,6 +58,12 @@ function App() {
         <Route path='/transfer' element={<Transfer/>}/>
         <Route path='/withdraw' element={<Withdraw/>}/>
         <Route path='/deposit' element={<Deposit/>}/>
+        <Route path='/card' element={<Card/>}/>
+        <Route path='/address' element={<WalletAddress/>}/>
+        <Route path='/investment' element={<Investment/>}/>
+        <Route path='/exchange' element={<Exchange/>}/>
+        <Route path='/loan' element={<Loan/>}/>
+        <Route path='/admin' element={<Admin/>}/>
       </Routes>
     </Router>
   );

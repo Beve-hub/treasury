@@ -1,13 +1,94 @@
-import React from 'react'
+import {useState} from 'react'
+import Logo from '../assets/logo3.png'
+import cancel from '../assets/cancel.svg'
+import menu from '../assets/menu.svg'
+import left from '../assets/left.svg'
+import right from '../assets/right.svg'
+import down from '../assets/down.svg'
+import user from '../assets/user.svg'
+import { NavLink } from 'react-router-dom'
+import { sidebar } from '../utils/data'
 
-interface Props {
+
+const Sidebar = () => {
+    const [open, setOpen] = useState<boolean>(true);
+    const [nav, setNav] = useState<boolean>(true);
+    const [icon, setIcon] = useState<boolean>(true);
     
-}
+    const handleBar = (): void => {
+        setNav(!nav)
+    }
+    
+    const toggleBar = (): void => {
+        setOpen(!open)
+    }
 
-const Sidebar: React.FC<Props> = () => {
+    const toggleIcon = (): void => {
+        setIcon(!icon)
+    }
     return (
         <div>
-            <p>sidebar</p>
+
+          <div className='flex items-center'>
+            <div onClick={handleBar} className='block md:hidden '>
+             {!nav ? <img src={cancel} alt=''  className='bg-[--text-extra] p-2 rounded-md' /> : <img src={menu} alt=''  className='bg-[--text-extra] rounded-md p-2' /> }
+            </div>     
+            <div>
+              <img src={Logo} alt='' className='w-[5rem] block md:hidden '/>
+            </div> 
+                                    
+                </div>
+            <div style={{width: open ? "200px" : "100px"}} className='w-[400px] h-screen bg-[#F2F2F2] p-8 fixed z-99 sm:block hidden'>
+                
+                
+                <div className='flex items-center'>                       
+                    <div>
+                        <img src={Logo} alt='' className='w-[5rem]'/>
+                    </div> 
+                    <div onClick={toggleBar} className='absolute right-[-20px] '>
+                    {!open ? <img src={left} alt=''  className='bg-[--text-extra] rounded-2xl p-2 w-[35px]' /> : <img src={right} alt=''  className='bg-[--text-extra] rounded-2xl p-2 w-[35px]' /> }
+                    </div>                  
+                </div>
+
+
+                <div>
+                    <div className='mt-14'>
+                        {
+                           sidebar.map((item, index) => (
+                            <NavLink to={item.path} key={index}  className=' flex items-center gap-2 py-5 '>
+                                <img src={item.icon} alt='' className='w-[30px]'/>
+                                <div style={{display: open ? "block" : "none"}}>{item.name}</div>
+                            </NavLink>
+                           )) 
+                        }
+                    </div>
+                </div>    
+                
+            </div>
+            <div className={!nav ? 'fixed right-0 top-0 w-[60%] h-full  border-r-gray-900 bg-[--button-color] z-10 ease-in-out duration-500': 'fixed left-[-400%]'}>
+
+            
+        <ul className=' text-color grid items-center justify-center uppercase pt-24'>
+           <div onClick={toggleIcon} className='flex items-center gap-2'>
+                <img src={user} alt='' className='w-[40px]'/>
+                <p className=''>Victor</p>
+                {!icon ? <img src={down} alt=''  className='w-[24px]' /> : <img src={right} alt=''  className='w-[24px]' /> }
+                        <div className={!icon ? 'fixed  top-[8.5rem] right-[3.6rem] w-[30%] p-2 bg-[#ffff] z-10 ease-in-out duration-500': 'fixed right-[-30%]'}>
+              <p className='pb-2 hover:bg-[var(--button-color)]'><a href='/setting'>Settings</a></p> 
+               <p><a>log Out</a></p>              
+            </div>
+            </div>
+
+            
+
+          {sidebar.map((item, index) => (
+            <NavLink to={item.path} key={index}  className=' flex items-center gap-2 py-5 '>
+            <img src={item.icon} alt='' className='w-[30px]'/>
+            <div style={{display: open ? "block" : "none"}}>{item.name}</div>
+        </NavLink>
+          ))}
+        </ul>
+      </div>
         </div>
     )
 }
