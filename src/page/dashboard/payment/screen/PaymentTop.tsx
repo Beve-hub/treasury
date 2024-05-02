@@ -2,27 +2,19 @@ import {useState} from 'react'
 import notification from '../../../../assets/notification.svg';
 import user from '../../../../assets/user.svg';
 import down from '../../../../assets/down.svg';
-import arrow from '../../../../assets/leftarrow.svg';
 import right from '../../../../assets/right.svg';
-import { useNavigate } from 'react-router-dom';
 
-const DepositTop = () => {
-    const navigate = useNavigate();
+
+const PaymentTop = () => {
     const [icon, setIcon] = useState<boolean>(false);
 
     const toggleIcon = (): void => {
         setIcon(!icon)
     }
     return (
-
-        <div  className=' flex justify-between pb-[7rem] '>
-            <div className='flex gap-2 items-center'>
-
-                <button onClick={() => navigate('/overview')}>
-                    <img src={arrow} alt='' className='w-[24px]'/>
-                </button>   
-                      
-            
+        <div className='flex justify-between pb-[3rem] max-w-screen'>
+            <div className='flex gap-2'>
+            <p className='text-2xl font-bold'>Payment</p>            
             </div>  
 
             <div className=' items-center gap-6 md:flex hidden'>
@@ -49,8 +41,8 @@ const DepositTop = () => {
             </div>
 
             </div>            
-        </div>       
+        </div>
     )
 }
 
-export default DepositTop
+export default PaymentTop

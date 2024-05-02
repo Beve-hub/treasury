@@ -1,14 +1,22 @@
 import React from 'react'
+import CompanyCard from './screen/CompanyCard'
+import CompanySearch from './screen/CompanySearch'
+import CompanyTop from './screen/CompanyTop'
 
-interface Props {
-    
-}
 
-const Company: React.FC<Props> = () => {
+
+const Company  = () => {
     return (
-        <div>
-            
-        </div>
+    <section className="relative  min-h-[30rem] w-screen flex md:flex-row  grid-cols-2 items-center justify-center">
+        <div className=" grid justify-between ">
+          <div className="max-w-[120rem] grid justify-between py-10 gap-6 mx-4">
+            <CompanyTop/>    
+            <CompanySearch/>
+            <CompanyCard/>                      
+          </div>
+        </div>               
+
+    </section>
     )
 }
 
