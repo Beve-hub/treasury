@@ -47,7 +47,6 @@ function App() {
         <Route path='/login' element={<Login/>} /> 
         <Route path='/amount' element={<Amount/>} />  
         <Route path='/overview' element={<Overview/>} />    
-        <Route path='/overview' element={<Overview/>}/>
         <Route path='/payment' element={<Payment/>}/>
         <Route path='/wallet' element={<Wallet/>}/>
         <Route path='/company' element={<Company/>}/>

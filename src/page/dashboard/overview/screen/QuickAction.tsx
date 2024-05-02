@@ -1,20 +1,30 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const QuickAction = () => {
+    const navigate = useNavigate();
     return (
-        <div className='grid gap-2 '>
-            <p className='font-bold text-lg'>Quick Action</p>
-            <div className='max-w-[28rem] grid items-center justify-between gap-2 md:grid-cols-2'>
+        <div className='max-w-[80rem] grid pb-4 bg-[--layer-color] item-center px-2 rounded-lg'>
+            <div >
+                <p className='font-semibold text-lg my-4'>Quick Action</p>
+            <div className='max-w-[60rem] grid items-center justify-around gap-3 md:grid-cols-3'>
             
-            <div className='grid justify-center p-2 rounded-2xl gap-8 bg-[--bg-color] w-[13rem]'>
-            <h2 className='text-lg text-[--text-extra] '>Deposit</h2> 
-            </div>
+            <button onClick={() => navigate('/deposit')} className='grid justify-center p-1 rounded-2xl  bg-[--text-extra] w-[17rem]'>
+            <h2 className='text-lg '>Deposit</h2> 
+            </button>
 
-            <div className='grid justify-center p-2 rounded-2xl gap-8 bg-[#EEF1EF] w-[13rem]'>
+            <button onClick={() => navigate('/withdraw')} className='grid justify-center p-1 rounded-2xl  bg-[--text-extra] w-[17rem]'>
             <h2 className='text-lg '>Withdrawal</h2> 
-            </div>
+            </button>
+
+            <button onClick={() => navigate('/transfer')} className='grid justify-center p-1 rounded-2xl  bg-[--text-extra] w-[17rem]'>
+            <h2 className='text-lg '>Transfer</h2> 
+            </button>
            
         </div>
+            </div>
+
+        
         </div>
         
     )

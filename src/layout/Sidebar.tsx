@@ -8,9 +8,10 @@ import down from '../assets/down.svg'
 import user from '../assets/user.svg'
 import { NavLink } from 'react-router-dom'
 import { sidebar } from '../utils/data'
-
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
     const [open, setOpen] = useState<boolean>(true);
     const [nav, setNav] = useState<boolean>(true);
     const [icon, setIcon] = useState<boolean>(true);
@@ -29,22 +30,22 @@ const Sidebar = () => {
     return (
         <div>
 
-          <div className='flex items-center'>
+          <div className=' w-screen flex items-center'>
             <div onClick={handleBar} className='block md:hidden '>
              {!nav ? <img src={cancel} alt=''  className='bg-[--text-extra] p-2 rounded-md' /> : <img src={menu} alt=''  className='bg-[--text-extra] rounded-md p-2' /> }
             </div>     
-            <div>
+            <div onClick={() => navigate('/overview')}>
               <img src={Logo} alt='' className='w-[5rem] block md:hidden '/>
             </div> 
                                     
-                </div>
+          </div>
             <div style={{width: open ? "200px" : "100px"}} className='w-[400px] h-screen bg-[#F2F2F2] p-8 fixed z-99 sm:block hidden'>
                 
                 
                 <div className='flex items-center'>                       
-                    <div>
+                    <button onClick={() => navigate('/overview')} className='cursor-pointer'>
                         <img src={Logo} alt='' className='w-[5rem]'/>
-                    </div> 
+                    </button> 
                     <div onClick={toggleBar} className='absolute right-[-20px] '>
                     {!open ? <img src={left} alt=''  className='bg-[--text-extra] rounded-2xl p-2 w-[35px]' /> : <img src={right} alt=''  className='bg-[--text-extra] rounded-2xl p-2 w-[35px]' /> }
                     </div>                  
@@ -69,14 +70,22 @@ const Sidebar = () => {
 
             
         <ul className=' text-color grid items-center justify-center uppercase pt-24'>
-           <div onClick={toggleIcon} className='flex items-center gap-2'>
+        <div onClick={toggleIcon} className='flex items-center gap-2'>
                 <img src={user} alt='' className='w-[40px]'/>
                 <p className=''>Victor</p>
-                {!icon ? <img src={down} alt=''  className='w-[24px]' /> : <img src={right} alt=''  className='w-[24px]' /> }
-                        <div className={!icon ? 'fixed  top-[8.5rem] right-[3.6rem] w-[30%] p-2 bg-[#ffff] z-10 ease-in-out duration-500': 'fixed right-[-30%]'}>
-              <p className='pb-2 hover:bg-[var(--button-color)]'><a href='/setting'>Settings</a></p> 
-               <p><a>log Out</a></p>              
-            </div>
+                {!icon ? <img src={right} alt=''  className='w-[24px]' /> : <img src={down} alt=''  className='w-[24px]' /> }
+                {icon && (
+                     <div className="absolute top-[8rem] right-[2rem] z-99 rounded-lg bg-[#ededed] grid items-center justify-center  w-[7rem]">
+                      <ul className='grid p-2 items-center cursor-pointer'>
+                        <li className="flex items-center gap-2  p-1 hover:bg-[--button-color] rounded-lg">
+                            <a href='/settings'>Settings</a>
+                        </li>
+                        <li className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
+                            <a href='/setting'>Log out</a>
+                        </li>
+                      </ul>   
+                    </div>
+                )}      
             </div>
 
             
