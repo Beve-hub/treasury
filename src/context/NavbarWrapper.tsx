@@ -4,11 +4,9 @@ import Navbar from '../layout/Navbar';
 import Sidebar from '../layout/Sidebar';
 
 
-interface Props {
-    children: React.ReactNode;
-}
 
-const NavbarWrapper: React.FC<Props> = ({children}) => {
+
+const NavbarWrapper = () => {
     const location = useLocation();
     const [showNavbar, setShowNavbar] = useState<boolean>(false);
     const [showSidebar, setShowSidebar] = useState<boolean>(false);
@@ -28,8 +26,7 @@ const NavbarWrapper: React.FC<Props> = ({children}) => {
             location.pathname === '/overview' ||
             location.pathname === '/payment' ||
             location.pathname === '/wallet' ||
-            location.pathname === '/company' ||
-                    
+            location.pathname === '/company' ||                    
             location.pathname === '/pin' ||
             location.pathname === '/transfer' ||
             location.pathname === '/withdraw' ||
@@ -53,7 +50,7 @@ const NavbarWrapper: React.FC<Props> = ({children}) => {
         <div>
             {showNavbar && <Navbar /> }
             {showSidebar && <Sidebar /> }
-            {!(showNavbar || showSidebar) && children}
+            
         </div>
     );
 };
