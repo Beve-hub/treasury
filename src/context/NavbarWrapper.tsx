@@ -4,11 +4,9 @@ import Navbar from '../layout/Navbar';
 import Sidebar from '../layout/Sidebar';
 
 
-interface Props {
-    children: React.ReactNode;
-}
 
-const NavbarWrapper: React.FC<Props> = () => {
+
+const NavbarWrapper = () => {
     const location = useLocation();
     const [showNavbar, setShowNavbar] = useState<boolean>(false);
     const [showSidebar, setShowSidebar] = useState<boolean>(false);
