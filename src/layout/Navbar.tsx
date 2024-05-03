@@ -3,10 +3,12 @@ import menu from '../assets/menu.svg'
 import cancel from '../assets/cancel.svg'
 import Logo from '../assets/logo1.png'
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
  
 const Navbar = () => {
     const [nav, setNav ] = useState<boolean>(true);
     const flexBetween = 'flex items-center justify-between';
+    const navigate = useNavigate();
 
     const handleNav = (): void => {
         setNav(!nav)
@@ -20,7 +22,7 @@ const Navbar = () => {
 
                 <div className='flex items-center'>
                 <div onClick={handleNav} className='block md:hidden ml-4 '>
-                 {!nav ? <img src={cancel}  className='bg-[#fff] p-1' /> : <img src={menu}  className='bg-[#fff] p-1' /> }
+                 {!nav ? <img src={cancel} alt=''  className='bg-[#fff] p-1' /> : <img src={menu} alt=''  className='bg-[#fff] p-1' /> }
                  </div>
                  <div>
                  <a href='/'>
