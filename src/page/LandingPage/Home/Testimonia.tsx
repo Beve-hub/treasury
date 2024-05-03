@@ -1,8 +1,7 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import img from '../../../assets/image_test1.png'
 import img2 from '../../../assets/image_test2.png'
 import img3 from '../../../assets/image_test3.png'
-import arrow from '../../../assets/Arrow 1.svg'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import star from '../../../assets/star.svg'
@@ -25,7 +24,7 @@ const Testimonia = () => {
                   <p className='  py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]'> TESTIMONIAL</p>  
                   </div>
                                           
-                   <p className='font-bold py-4 text-center text-2xl text-[#121212] max-w-[30rem] te'>The Journey Of Building A Financial Plan That Is Both Successful</p>                    
+                   <p className='font-bold py-4 text-center text-2xl text-[#121212] max-w-[30rem] te'>The Journey Of Building A Financial Plan That Is Both Successful</p>                    
                     </div>             
                 
                     <div className='max-w-[90rem] mx-auto grid md:grid-cols-3 gap-4 px-8 py-10'>
