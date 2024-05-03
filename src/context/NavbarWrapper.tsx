@@ -42,7 +42,7 @@ const NavbarWrapper = ({ children }: Props) => {
             setShowNavbar(false);
             setShowSidebar(false);
         } else if (showNavbarPaths.includes(location.pathname)) {
-            setShowNavbar(true);
+            setShowNavbar(false);
             setShowSidebar(true);
         } else {
             setShowNavbar(true);
