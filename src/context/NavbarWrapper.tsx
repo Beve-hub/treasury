@@ -3,44 +3,48 @@ import { useLocation } from 'react-router-dom';
 import Navbar from '../layout/Navbar';
 import Sidebar from '../layout/Sidebar';
 
+interface Props {
+    children: React.ReactNode;
+}
 
-
-
-const NavbarWrapper = () => {
+const NavbarWrapper = ({ children }: Props) => {
     const location = useLocation();
-    const [showNavbar, setShowNavbar] = useState<boolean>(false);
-    const [showSidebar, setShowSidebar] = useState<boolean>(false);
+    const [showNavbar, setShowNavbar] = useState<boolean>(true);
+    const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
     useEffect(() => {
-        if (
-            location.pathname === '/login' ||
-            location.pathname === '/register' ||
-            location.pathname === '/reg' ||
-            location.pathname === '/admin' ||
-            location.pathname === '/settings' ||
-            location.pathname === '/amount'
-        ) {
+        const restrictedPaths = [
+            '/login',
+            '/register',
+            '/reg',
+            '/admin',
+            '/settings',
+            '/amount'
+        ];
+
+        const showNavbarPaths = [
+            '/overview',
+            '/payment',
+            '/wallet',
+            '/company',
+            '/pin',
+            '/transfer',
+            '/withdraw',
+            '/card',
+            '/address',
+            '/investment',
+            '/exchange',
+            '/loan',
+            '/deposit'
+        ];
+
+        if (restrictedPaths.includes(location.pathname)) {
             setShowNavbar(false);
             setShowSidebar(false);
-        } else if (
-            location.pathname === '/overview' ||
-            location.pathname === '/payment' ||
-            location.pathname === '/wallet' ||
-            location.pathname === '/company' ||                    
-            location.pathname === '/pin' ||
-            location.pathname === '/transfer' ||
-            location.pathname === '/withdraw' ||
-            location.pathname === '/card' ||
-            location.pathname === '/address' ||
-            location.pathname === '/investment' ||
-            location.pathname === '/exchange' ||
-            location.pathname === '/loan' ||
-            location.pathname === '/deposit'
-        ) {
-            setShowNavbar(false);
+        } else if (showNavbarPaths.includes(location.pathname)) {
+            setShowNavbar(true);
             setShowSidebar(true);
         } else {
-            
             setShowNavbar(true);
             setShowSidebar(false);
         }
@@ -48,9 +52,9 @@ const NavbarWrapper = () => {
 
     return (
         <div>
-            {showNavbar && <Navbar /> }
-            {showSidebar && <Sidebar /> }
-            
+            {showNavbar && <Navbar />}
+            {showSidebar && <Sidebar />}
+            {!(!showNavbar || !showSidebar) && children}
         </div>
     );
 };
