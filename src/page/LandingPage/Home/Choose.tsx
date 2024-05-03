@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import  {useEffect} from 'react'
 import img from '../../../assets/image_1.png'
 import check from '../../../assets/icons_check-fill.svg'
 import AOS from 'aos'

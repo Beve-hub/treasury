@@ -4,7 +4,7 @@ import x from '../../../assets/x.svg'
 import tube from '../../../assets/tube.svg'
 import google from '../../../assets/google.svg'
 import mail from '../../../assets/mail.svg'
-import { useNavigate } from 'react-router-dom';
+
 
 const Footer = () => {
     return (
