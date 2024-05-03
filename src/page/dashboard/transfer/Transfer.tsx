@@ -42,29 +42,25 @@ const Transfer = () => {
     };
 
     return (
-        <section className="relative  min-h-[30rem] mt-[2rem] w-screen flex md:flex-row  grid-cols-2 items-center justify-center">
-            <div className=" grid justify-between ">
-                <div className="max-w-[120rem] grid justify-between py-10 gap-6 mx-4">                  
-                    <div>           
-                        <div className="grid items-center justify-center ">
-                            <div className="">
-                                <h2 className="mb-6 text-start text-2xl font-semibold text-gray-900">Transfer</h2>
-                                <form className="space-y-6" onSubmit={handleSubmit}>
-                                    <input type="hidden" name="remember" defaultValue="true" />
-                                    <div className="grid gap-4">
-                                        <div>
-                                            <label htmlFor="amount">Amount</label>
-                                            <div className="relative">
-                                                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">$</span>
-                                                <input
-                                                    id="amount"
-                                                    name="amount"
-                                                    type="number"
-                                                    className="pl-10 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                    placeholder="0.00"
-                                                    value={formData.amount}
-                                                    onChange={handleInputChange}
-                                                />
+        <section   className='md:mt-20  min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
+        <div className="grid justify-center items-center">
+           <h2 className="mb-6 text-start text-2xl font-semibold text-gray-900">Transfer</h2>
+            <form className="space-y-6" onSubmit={handleSubmit}>
+                <input type="hidden" name="remember" defaultValue="true" />
+                    <div className="grid gap-4">
+                        <div>
+                        <label htmlFor="amount">Amount</label>
+                        <div className="relative">
+                        <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">$</span>
+                        <input
+                           id="amount"
+                            name="amount"
+                            type="number"
+                             className="pl-10 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                            placeholder="0.00"
+                            value={formData.amount}
+                            onChange={handleInputChange}
+                            />
                                             </div>
                                         </div>
 
@@ -133,11 +129,7 @@ const Transfer = () => {
                                         </button>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>                        
-                </div>
-            </div>               
+                            </div>               
         </section>
     );
 }

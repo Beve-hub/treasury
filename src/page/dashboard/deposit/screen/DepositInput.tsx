@@ -82,10 +82,8 @@ const DepositInput = () => {
         alert('Copied to clipboard');
     };
     return (
-        <div>           
-
-            <div className="grid items-center justify-center ">
-                <div className="">
+        <section   className='md:pl-[16rem] mt-10  min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
+             <div className="grid justify-center items-center">
                 <h2 className="mb-6 text-start text-2xl font-semibold text-gray-900">Deposit</h2>
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <input type="hidden" name="remember" defaultValue="true" />
@@ -214,21 +212,22 @@ const DepositInput = () => {
                                     )}
                                     {walletAddress && (
                                         <div className="grid py-2 items-center">
-                                            <label>Wallet Address:</label>
+                                            <label htmlFor='address'>Wallet Address:</label>
                                             <div className='flex items-center space-x-2 py-1'>
                                                 <input
                                                     type="text"
+                                                    id='address'
                                                     value={walletAddress}
                                                     readOnly
                                                     className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                                 />
-                                                <button
-                                                    type="button"
+                                                <div
+                                                    
                                                     className="flex items-center justify-center"
                                                     onClick={handleCopyAddress}
                                                 >
                                                     <img src={copy} alt='' className='w-[24px]'/>
-                                                </button>     
+                                                </div>     
                                             </div>
                                         </div>
                                     )}
@@ -246,8 +245,8 @@ const DepositInput = () => {
                         </div>
                     </form>
                 </div>
-            </div>
-        </div> 
+        </section>
+       
     )
 }
 

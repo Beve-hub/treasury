@@ -4,7 +4,7 @@ import React from 'react'
 
 const PaymentRecent = () => {
     return (
-        <div className='h-[20rem]  bg-[#ededed] my-8 overflow-x-auto rounded-lg p-4' >                     
+        <div className='h-[20rem]  bg-[--layer-color] my-8 overflow-x-auto rounded-lg p-4' >                     
             <p className='font-bold text-lg'>Recent Transaction</p>    
       <table className="table-auto  items-center w-[1000px] mt-2">
         <thead className='border-b-2'>

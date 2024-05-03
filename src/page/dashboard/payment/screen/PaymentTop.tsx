@@ -30,7 +30,7 @@ const PaymentTop = () => {
                      <div className="absolute top-[6rem] rounded-lg bg-[#ededed] grid items-center justify-center  w-[8rem]">
                       <ul className='grid p-2 items-center cursor-pointer'>
                         <li className="flex items-center gap-2  p-1 hover:bg-[--button-color] rounded-lg">
-                            <a href='/setting'>Settings</a>
+                         <a href='/settings'>Settings</a>
                         </li>
                         <li className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
                             <a href='/setting'>Log out</a>

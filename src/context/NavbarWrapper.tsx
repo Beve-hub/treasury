@@ -8,7 +8,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const NavbarWrapper = ({ children }: Props) => {
+const NavbarWrapper: React.FC<Props> = () => {
     const location = useLocation();
     const [showNavbar, setShowNavbar] = useState<boolean>(false);
     const [showSidebar, setShowSidebar] = useState<boolean>(false);
@@ -19,6 +19,7 @@ const NavbarWrapper = ({ children }: Props) => {
             location.pathname === '/register' ||
             location.pathname === '/reg' ||
             location.pathname === '/admin' ||
+            location.pathname === '/settings' ||
             location.pathname === '/amount'
         ) {
             setShowNavbar(false);
@@ -28,9 +29,7 @@ const NavbarWrapper = ({ children }: Props) => {
             location.pathname === '/payment' ||
             location.pathname === '/wallet' ||
             location.pathname === '/company' ||
-            location.pathname === '/settings' ||
-            location.pathname === '/personal' ||
-            location.pathname === '/security' ||
+                    
             location.pathname === '/pin' ||
             location.pathname === '/transfer' ||
             location.pathname === '/withdraw' ||
@@ -54,6 +53,7 @@ const NavbarWrapper = ({ children }: Props) => {
         <div>
             {showNavbar && <Navbar />}
             {showSidebar && <Sidebar />}
+            
         </div>
     );
 };

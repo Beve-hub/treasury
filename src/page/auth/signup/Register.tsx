@@ -161,8 +161,7 @@ const Register  = () => {
           <div className=''>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color] "
-            >
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color] " >
               Submit
             </button>
             <div className="text-sm flex justify-center py-2">

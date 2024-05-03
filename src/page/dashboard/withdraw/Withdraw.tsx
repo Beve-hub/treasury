@@ -51,12 +51,8 @@ const Withdraw = () => {
     };
 
     return (
-        <section className="relative  min-h-[30rem] w-screen flex md:flex-row  grid-cols-2 items-center justify-center">
-            <div className=" grid justify-between ">
-                <div className="max-w-[120rem] grid justify-between py-10 gap-6 mx-4">
-                    <div>
-                        <div className="grid items-center justify-center ">
-                            <div className="">
+        <section   className='md:mt-20  min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
+        <div className="grid justify-center items-center">
                                 <h2 className="mb-6 text-start text-2xl font-semibold text-gray-900">Withdraw</h2>
                                 <form className="space-y-6" onSubmit={handleSubmit}>
                                     <input type="hidden" name="remember" defaultValue="true" />
@@ -189,10 +185,6 @@ const Withdraw = () => {
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     );
 }

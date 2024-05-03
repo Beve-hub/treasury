@@ -223,21 +223,21 @@ const Amount: React.FC = () => {
                                     )}
                                     {walletAddress && (
                                         <div className="grid py-2 items-center">
-                                            <label>Wallet Address:</label>
+                                            <label htmlFor='address'>Wallet Address:</label>
                                             <div className='flex items-center space-x-2 py-1'>
                                                 <input
                                                     type="text"
+                                                    id='address'
                                                     value={walletAddress}
                                                     readOnly
                                                     className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                                 />
-                                                <button
-                                                    type="button"
-                                                    className="flex items-center justify-center"
+                                                <div
+                                                                                                      className="flex items-center justify-center"
                                                     onClick={handleCopyAddress}
                                                 >
                                                     <img src={copy} alt='' className='w-[24px]'/>
-                                                </button>     
+                                                </div>     
                                             </div>
                                         </div>
                                     )}
