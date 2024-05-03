@@ -59,10 +59,10 @@ const Navbar = () => {
                     </ul>    
                 </div>
                 <div className='sm:flex hidden '>
-                   <button  className='font-bold bg-[--button-color] h-10 mt-3 ml-20 px-4 rounded-md  transition duration-500 hover:scale-110 hover:bg-blue-600 hover:text-white cursor-pointer'>
-                    <a href="/register">
+                   <button onClick={() => navigate('/register')}  className='font-bold bg-[--button-color] h-10 mt-3 ml-20 px-4 rounded-md  transition duration-500 hover:scale-110 hover:bg-blue-600 hover:text-white cursor-pointer'>
+                    
                     Join Us
-                    </a>                     
+                                     
                    </button>
                 </div>
                 
