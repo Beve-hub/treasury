@@ -1,4 +1,4 @@
-import React from 'react'
+
 import CompanyCard from './screen/CompanyCard'
 import CompanySearch from './screen/CompanySearch'
 import CompanyTop from './screen/CompanyTop'

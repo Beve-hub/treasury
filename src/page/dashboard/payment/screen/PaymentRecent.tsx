@@ -1,7 +1,3 @@
-import React from 'react'
-
-
-
 const PaymentRecent = () => {
     return (
         <div className='h-[20rem]  bg-[--layer-color] my-8 overflow-x-auto rounded-lg p-4' >                     

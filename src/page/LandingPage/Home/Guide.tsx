@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import img from '../../../assets/image_2.png'
 import img2 from '../../../assets/image_3.png'
 import img3 from '../../../assets/image_4.png'

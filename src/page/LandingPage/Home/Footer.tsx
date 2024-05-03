@@ -1,4 +1,3 @@
-import React from 'react'
 import fb from '../../../assets/fb.svg'
 import x from '../../../assets/x.svg'
 import tube from '../../../assets/tube.svg'

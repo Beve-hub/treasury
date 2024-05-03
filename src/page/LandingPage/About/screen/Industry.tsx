@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import img from "../../../../assets/apple.svg";
 import img2 from "../../../../assets/care.svg";
 import img3 from "../../../../assets/energy.svg";

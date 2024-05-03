@@ -1,4 +1,3 @@
-import React from 'react'
 import PaymentTop from './screen/PaymentTop'
 import PaymentRecent from './screen/PaymentRecent'
 import PaymentSearch from './screen/PaymentSearch'

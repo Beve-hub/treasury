@@ -1,6 +1,4 @@
-import React from 'react'
 import {useEffect} from 'react'
-import img from '../../../assets/image_5.png'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
