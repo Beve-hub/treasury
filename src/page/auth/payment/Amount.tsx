@@ -1,34 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../../../assets/logo2.png';
 import copy from '../../../assets/copy.svg';
 import { useNavigate } from 'react-router-dom';
 
-interface FormData {
+interface FormInput {
     amount: string;
     accountType: string;
     paymentMethod: string;
     cryptoWallet: string;
     cryptoChannel: string;
+    walletAddress: string;
 }
 
 const Amount: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({
+    const [formInput, setFormInput] = useState<FormInput>({
         amount: '',
         accountType: '',
         paymentMethod: '',
         cryptoWallet: '',
-        cryptoChannel: ''
+        cryptoChannel: '',
+        walletAddress: '',
     });
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [walletAddress, setWalletAddress] = useState<string>('');
+    const [cryptoChannel, setCryptoChannel] = useState<string>('');
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const storedFormInput = localStorage.getItem('formInput');
+        if (storedFormInput) {
+            setFormInput(JSON.parse(storedFormInput))
+        }
+    }, [])
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormInput({
+            ...formInput,
             [name]: value
         });
 
@@ -46,26 +56,20 @@ const Amount: React.FC = () => {
     };
 
     const handleCryptoChannelChange = (value: string) => {
-        setFormData({ ...formData, cryptoChannel: value });
+        setFormInput({ ...formInput, cryptoChannel: value });
     
         if (value) {
             setCryptoChannelSelected(true);    
             
             switch (value) {
-                case 'Bitcoin':
-                    setWalletAddress('Bitcoin Wallet Address');
+                case 'BTC':
+                    setWalletAddress('BTC Wallet Address');
                     break;
-                case 'ERC20':
-                    setWalletAddress('ERC20 Wallet Address');
+                case 'ETH':
+                    setWalletAddress('ETH Wallet Address');
                     break;
-                case 'TRC20':
-                    setWalletAddress('TRC20 Wallet Address');
-                    break;
-                case 'BEP20':
-                    setWalletAddress('BEP20 Wallet Address');
-                    break;
-                case 'BEP2':
-                    setWalletAddress('BEP2 Wallet Address');
+                case 'USDT':
+                    setWalletAddress('USDT Wallet Address');
                     break;
                 default:
                     setWalletAddress('');
@@ -73,11 +77,11 @@ const Amount: React.FC = () => {
         } else {
             setCryptoChannelSelected(false);
             setWalletAddress(''); 
+            setCryptoChannel('');
         }
     };
 
-    const handleCopyAddress = () => {
-        // Logic to copy wallet address to clipboard
+    const handleCopyAddress = () => {        
         navigator.clipboard.writeText(walletAddress);
         alert('Copied to clipboard');
     };
@@ -109,7 +113,7 @@ const Amount: React.FC = () => {
                                         type="number"
                                         className="pl-10 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         placeholder="0.00"
-                                        value={formData.amount}
+                                        value={formInput.amount}
                                         onChange={handleInputChange}
                                      />
                                  </div>
@@ -132,7 +136,7 @@ const Amount: React.FC = () => {
                                 </div>
                             )}
 
-                            {formData.accountType && (
+                            {formInput.accountType && (
                                 <div>
                                     <label htmlFor="paymentMethod">Payment method</label>
                                     <select
@@ -149,11 +153,11 @@ const Amount: React.FC = () => {
                                 </div>
                             )}
 
-                            {formData.paymentMethod === 'Cash Deposit' && (
+                            {formInput.paymentMethod === 'Cash Deposit' && (
                                 <p className='max-w-[20rem]'>Visit United Treasury Bank near you and make your deposit</p>
                             )}
 
-                            {formData.paymentMethod === 'Card Deposit' && (
+                            {formInput.paymentMethod === 'Card Deposit' && (
                                 <>
                                     <div>
                                         <label htmlFor="cardNumber">Card Number</label>
@@ -188,7 +192,7 @@ const Amount: React.FC = () => {
                                 </>
                             )}
 
-                            {formData.paymentMethod === 'Crypto Deposit' && (
+                            {formInput.paymentMethod === 'Crypto Deposit' && (
                                 <div>
                                     <label htmlFor="cryptoWallet">Crypto Wallet</label>
                                     <select
@@ -201,46 +205,52 @@ const Amount: React.FC = () => {
                                         <option>BTC</option>
                                         <option>ETH</option>
                                         <option>USDT</option>
-                                        <option>XRP</option>
                                     </select>
                                     {cryptoChannelSelected && (
+                                        
                                         <div className='py-2'>
-                                            <label htmlFor="cryptoChannel">Network Channel</label>
-                                            <select
-                                                id="cryptoChannel"
-                                                name="cryptoChannel"
+                                            <div className="grid py-2 items-center">
+                                        <label htmlFor='cryptoAddress'>Network Channel:</label>
+                                        <div className='flex items-center space-x-2 py-1'>
+                                            <input
+                                                type="text"
+                                                id="cryptoAddress"
+                                                value={cryptoChannel}
+                                                placeholder={formInput.cryptoChannel}
+                                                readOnly
                                                 className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                onChange={(e) => handleCryptoChannelChange(e.target.value)}
+                                            />
+                                            <div
+                                                                                                  className="flex items-center justify-center"
+                                                onClick={handleCopyAddress}
                                             >
-                                                <option>Choose Network Channel</option>
-                                                <option>Bitcoin</option>
-                                                <option>ERC20</option>
-                                                <option>TRC20</option>
-                                                <option>BEP20</option>
-                                                <option>BEP2</option>
-                                            </select>
+                                                <img src={copy} alt='' className='w-[24px]'/>
+                                            </div>     
+                                        </div>
+                                    </div>
+
+                                    <div className="grid py-2 items-center">
+                                    <label htmlFor='address'>Wallet Address:</label>
+                                    <div className='flex items-center space-x-2 py-1'>
+                                        <input
+                                            type="text"
+                                            id='address'
+                                            value={walletAddress}
+                                            placeholder={formInput.walletAddress}
+                                            readOnly
+                                            className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        />
+                                        <div
+                                                                                              className="flex items-center justify-center"
+                                            onClick={handleCopyAddress}
+                                        >
+                                            <img src={copy} alt='' className='w-[24px]'/>
+                                        </div>     
+                                    </div>
+                                </div>
                                         </div>
                                     )}
-                                    {walletAddress && (
-                                        <div className="grid py-2 items-center">
-                                            <label htmlFor='address'>Wallet Address:</label>
-                                            <div className='flex items-center space-x-2 py-1'>
-                                                <input
-                                                    type="text"
-                                                    id='address'
-                                                    value={walletAddress}
-                                                    readOnly
-                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                />
-                                                <div
-                                                                                                      className="flex items-center justify-center"
-                                                    onClick={handleCopyAddress}
-                                                >
-                                                    <img src={copy} alt='' className='w-[24px]'/>
-                                                </div>     
-                                            </div>
-                                        </div>
-                                    )}
+                                    
                                 </div>
                             )}
                         </div>
