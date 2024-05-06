@@ -22,7 +22,7 @@ const DepositInput = () => {
                             >
                                 Submit
                             </button>
-                        </div>
+            </div>
             </div>
         </section>
        

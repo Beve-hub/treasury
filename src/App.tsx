@@ -8,7 +8,6 @@ import About from './page/LandingPage/About/About';
 import Solution from './page/LandingPage/Solution/Solution';
 import Contact from './page/LandingPage/contact/Contact';
 import Register from './page/auth/signup/Register';
-import Reg from './page/auth/signup/Reg';
 import Login from './page/auth/login/Login';
 import Overview from './page/dashboard/overview/Overview';
 import Amount from './page/auth/payment/Amount';
@@ -38,7 +37,6 @@ export default function App(): ReactElement {
         <Route path='/solution' element={<Solution />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/reg' element={<Reg />} />
         <Route path='/login' element={<Login />} />
         <Route path='/amount' element={<Amount />} />
         <Route path='/overview' element={<Overview />} />
