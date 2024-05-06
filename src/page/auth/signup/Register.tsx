@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Logo from '../../../assets/logo2.png'
 import { useNavigate } from 'react-router-dom';
+import '../../../firebase';
+import { auth } from "../../../firebase"
+import { createUserWithEmailAndPassword } from 'firebase/auth'; // Correct import statement
+
 
 const Register  = () => {
   const [firstName, setFirstName] = useState('');
@@ -11,13 +15,24 @@ const Register  = () => {
   const [address, setAddress] = useState('');
   const [state, setState] = useState('');
   const [coun, setCoun] = useState('');
+  const [ssn, setSsn] = useState('');
+    const [pin, setPin] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirm, setConfirm] = useState(''); // State for password
 
   const navigate = useNavigate();
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/reg');
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential)
+    }) .catch((error) => {
+      console.log(error)
+    })
+    navigate('/amount');
   };
+
   return (
     <div>
 
@@ -156,7 +171,73 @@ const Register  = () => {
                 onChange={(e) => setCoun(e.target.value)}
               />
             </div>
-          
+            <div className=" space-y-4" >
+          <p className='font-bold text-xl my-4'>Security Info</p>
+            <input type="hidden" name="remember" defaultValue="true" />
+            
+            
+              <div>
+                <label htmlFor="email-address" className="">
+                Social Security Number (SSN)*
+                </label>
+                <input
+                  id="ssn"
+                  name="ssn"
+                  type="text"
+                  className=" block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Social Security Number "
+                  value={ssn}
+                  onChange={(e) => setSsn(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email-address" className="">
+                Transaction Pin*
+                </label>
+                <input
+                  id="pin"
+                  name="pin"
+                  type="text"
+                  className=" block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Social Security Number "
+                  value={pin}
+                  onChange={(e) => setPin(e.target.value)}
+                />
+              </div>
+             
+              <div>
+                <label htmlFor="email-address" className="">
+                Password *
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="text"
+                  className=" block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="email-address" className="">
+                  Confirm Password *
+                </label>
+                <input
+                  id="confirm"
+                  name="confirm"
+                  type="text"
+                  className=" block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="confirm Password"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                />
+              </div>           
+            
+  
+            
+          </div>
 
           <div className=''>
             <button
@@ -178,4 +259,4 @@ const Register  = () => {
   )
 }
 
-export default Register
+export default Register;

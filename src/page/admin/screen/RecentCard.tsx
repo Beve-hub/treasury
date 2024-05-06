@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState} from "react";
 import edit from '../../../assets/edit.svg';
 import remove from '../../../assets/delete.svg';
 import AddWallet from "./AddWallet";
@@ -23,16 +23,25 @@ const RecentCard = () => {
         setIcon(!icon);
     };
 
+    
+    
     const addWallet = () => {
         if (formInput.cryptoWallet.trim() !== '' && formInput.walletAddress.trim() !== '' && formInput.cryptoChannel.trim() !== '') {
-            setWallet([...wallet, formInput]);
+            console.log('updatedWallet')
+            const updatedWallet = [...wallet, formInput];
+            setWallet(updatedWallet);
             setFormInput({
                 cryptoWallet: '',
                 walletAddress: '',
                 cryptoChannel: '',
-            });
+            });         
+            
         }
     };
+    
+   
+
+
 
     const removeWallet = (index: number) => {
         const updatedWallet = wallet.filter((_, i) => i !== index);
@@ -45,10 +54,7 @@ const RecentCard = () => {
         setWallet(updatedWallet);
     };
 
-    useEffect(() => {
-        localStorage.setItem('formInput', JSON.stringify(formInput))
-    }, [formInput])
-
+   
     return (
         <div>
             <div className="flex justify-between">
@@ -112,7 +118,7 @@ const RecentCard = () => {
                             <option>TRC20</option>
                             <option>ERC20</option>
                             <option>BEP20</option>
-                            <option>BEP2</option>
+                            
                         </select>
                     </div>
 
