@@ -1,15 +1,5 @@
-import React from 'react'
+import React from "react";
+import firebase from "firebase/compat/app";
 
-interface Props {
-    
-}
+export const AuthContext = React.createContext<firebase.User | null>(null);
 
-const AucthContext: React.FC<Props> = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
-
-export default AucthContext
