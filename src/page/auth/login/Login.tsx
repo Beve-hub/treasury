@@ -1,21 +1,59 @@
 import React, { useState } from 'react';
 import Logo from '../../../assets/logo2.png'
 import  "../../../firebase"
-import { auth }  from "../../../firebase";
+import { auth}  from "../../../firebase";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
+import { useNavigate } from 'react-router-dom';
+import { Oval } from 'react-loader-spinner'
+
+
+interface Errors {
+  email?: string;
+  password?: string;
+  
+}
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const validate = () => {
+    const errors: Errors = {};
+    let isValid = true;
+
+    if (!email.trim()) {
+      errors.email = 'Email is required';
+      isValid = false;
+    }
+
+    if (!password.trim()) {
+      errors.password = 'Password is required';
+      isValid = false;
+    }
+
+    setErrors(errors);
+    return isValid;
+  };
+
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential)
-    }) .catch((error) => {
-      console.log(error)
-    })
+    setLoading(true);
+    if (validate()) {
+      try {
+         const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+        navigate('/overview');
+        console.log({'userCredentials': userCredentials})
+      } catch (error) {
+        console.log("Error signing in:")
+        setLoading(false);
+      }
+    }
+    
+    
   };
 
   return (
@@ -52,6 +90,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {errors.email && <span className='text-[#f30000] text-sm'>{errors.email}</span>}
             </div>
             <div>
               <label htmlFor="password" className="">
@@ -68,6 +107,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {errors.password && <span className='text-[#f30000] text-sm'>{errors.password}</span>}
             </div>
           </div>
 
@@ -96,7 +136,7 @@ const Login = () => {
               type="submit"
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color] "
             >
-              Submit
+              {loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Submit'}
             </button>
             <div className="text-sm flex justify-center py-2">
               <p>Don't have an account?  </p>

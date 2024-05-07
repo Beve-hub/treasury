@@ -8,9 +8,12 @@ import left from '../assets/left.svg';
 import right from '../assets/right.svg';
 import down from '../assets/down.svg';
 import user from '../assets/user.svg';
+import { useAuth } from '../context/AuthProvider';
+
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const {logout, isLoggedIn} = useAuth(); 
   const [open, setOpen] = useState(true);
   const [nav, setNav] = useState(true);
   const [icon, setIcon] = useState(false);
@@ -65,11 +68,11 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+      {isLoggedIn && (
       <div className={!nav ? 'fixed right-0 top-0 w-[60%] h-full  border-r-gray-900 bg-[--button-color] z-10 ease-in-out duration-500' : 'fixed left-[-400%]'}>
         <ul className="text-color grid items-center justify-center uppercase pt-24">
           <div onClick={toggleIcon} className="flex items-center gap-2">
-            <img src={user} alt="" className="w-[40px]" />
-            <p className="">Victor</p>
+            <img src={user} alt="" className="w-[40px]" />            
             {!icon ? <img src={right} alt="" className="w-[24px]" /> : <img src={down} alt="" className="w-[24px]" />}
             {icon && (
               <div className="absolute top-[8rem] right-[2rem] z-99 rounded-lg bg-[#ededed] grid items-center justify-center  w-[7rem]">
@@ -77,8 +80,8 @@ const Sidebar = () => {
                   <li className="flex items-center gap-2  p-1 hover:bg-[--button-color] rounded-lg">
                     <NavLink to="/settings">Settings</NavLink>
                   </li>
-                  <li className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
-                    <NavLink to="/setting">Log out</NavLink>
+                  <li onClick={logout}  className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
+                    Log out
                   </li>
                 </ul>
               </div>
@@ -92,6 +95,7 @@ const Sidebar = () => {
           ))}
         </ul>
       </div>
+      )}
     </div>
   );
 };

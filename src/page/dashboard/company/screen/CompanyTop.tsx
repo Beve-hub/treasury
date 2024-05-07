@@ -3,10 +3,12 @@ import notification from '../../../../assets/notification.svg';
 import user from '../../../../assets/user.svg';
 import down from '../../../../assets/down.svg';
 import right from '../../../../assets/right.svg';
+import { useAuth } from '../../../../context/AuthProvider';
 
 
 const CompanyTop = () => {
     const [icon, setIcon] = useState<boolean>(false);
+    const {logout } = useAuth();
 
     const toggleIcon = (): void => {
         setIcon(!icon)
@@ -25,7 +27,7 @@ const CompanyTop = () => {
             </div>
             <div onClick={toggleIcon} className='flex items-center gap-2'>
                 <img src={user} alt='' className='w-[40px]'/>
-                <p className=''>Victor</p>
+                
                 {!icon ? <img src={right} alt=''  className='w-[24px]' /> : <img src={down} alt=''  className='w-[24px]' /> }
                 {icon && (
                      <div className="absolute top-[6rem] rounded-lg bg-[#ededed] grid items-center justify-center  w-[8rem]">
@@ -33,8 +35,8 @@ const CompanyTop = () => {
                         <li className="flex items-center gap-2  p-1 hover:bg-[--button-color] rounded-lg">
                         <a href='/settings'>Settings</a>
                         </li>
-                        <li className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
-                            <a href='/setting'>Log out</a>
+                        <li onClick={logout}  className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
+                            Log out
                         </li>
                       </ul>   
                     </div>

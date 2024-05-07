@@ -24,7 +24,7 @@ const WalletTop = () => {
             </div>
             <div onClick={toggleIcon} className='flex items-center gap-2'>
                 <img src={user} alt='' className='w-[40px]'/>
-                <p className=''>Victor</p>
+                
                 {!icon ? <img src={right} alt=''  className='w-[24px]' /> : <img src={down} alt=''  className='w-[24px]' /> }
                 {icon && (
                      <div className="absolute top-[6rem] rounded-lg bg-[#ededed] grid items-center justify-center  w-[8rem]">
