@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Logo from '../../../assets/logo2.png'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { auth, firestore } from "../../../firebase"
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
@@ -328,9 +328,9 @@ const Register  = () => {
               </button>
               <div className="text-sm flex justify-center py-2">
                 <p>Already have an account? </p>
-                <a href="/login" className="font-bold text-blue-900 text-center">
+                <NavLink to="/login" className="font-bold text-blue-900 text-center">
                   Login
-                </a>
+                </NavLink>
               </div>
             </div>
           </form>
