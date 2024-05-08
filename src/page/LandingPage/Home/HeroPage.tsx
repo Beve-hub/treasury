@@ -13,9 +13,9 @@ const HeroPage= () => {
       }, []);
 
     return (
-        <section id="home" className="relative h-screen w-screen overflow-hidden relative">
+        <section id="home" className="relative h-screen w-screen   ">
             <div className=''>
-                <div className={`absolute w-screen h-full bg-cover bg-center  overlap-hidden`}
+                <div className={`absolute top-0 left-0 w-screen h-full `}
             style={{
                 
               backgroundImage: `url(${image})`,

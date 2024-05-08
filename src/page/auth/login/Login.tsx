@@ -3,8 +3,7 @@ import Logo from '../../../assets/logo2.png'
 import  "../../../firebase"
 import { auth}  from "../../../firebase";
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner'
 
 
@@ -140,9 +139,9 @@ const Login = () => {
             </button>
             <div className="text-sm flex justify-center py-2">
               <p>Don't have an account?  </p>
-              <a href="/register" className="font-bold text-blue-900 text-center">
+              <NavLink to="/register" className="font-bold text-blue-900 text-center">
                 Register
-              </a>
+              </NavLink>
             </div>
           </div>
         </form>
