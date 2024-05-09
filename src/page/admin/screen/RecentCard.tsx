@@ -1,6 +1,10 @@
-import {  useState } from "react";
+import {  useState, useEffect } from "react";
 import remove from '../../../assets/delete.svg';
 import AddWallet from "./AddWallet";
+import { database } from '../../../firebase';
+import { ref, get } from 'firebase/database';
+
+
 
 interface Wallet {
     cryptoWallet: string;
@@ -21,6 +25,26 @@ const RecentCard = () => {
     const toggleIcon = () => {
         setIcon(!icon);
     };
+
+  
+
+    useEffect(() => {
+        const fetchWallets = async () => {
+            try {
+                const usersRef = ref(database, 'UserData');
+                const snapshot = await get(usersRef);
+                const data = snapshot.val();
+                if (data) {
+                    setWallet(Object.values(data));
+                }
+            } catch (error) {
+                console.error('Error fetching wallets:', error);
+            }
+        };
+        fetchWallets();        
+       
+    }, []);
+  
 
     const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/UserData.json"
     
@@ -64,14 +88,14 @@ const RecentCard = () => {
                 body: JSON.stringify(formInput)
             });
          
-            if (resp.ok) { // Check if the HTTP response indicates success
+            if (resp.ok) { 
                 console.log('updatedWallet');
                 const updatedWallet = [...wallet];
                 updatedWallet.splice(index, 1);
                 setWallet(updatedWallet);               
-                alert("Details removed"); // Notify user that details are removed
+                alert("Details removed"); 
             } else {
-                alert("Error in Firebase"); // Notify user of error in Firebase
+                alert("Error in Firebase"); 
             }
         } catch (error) {
             console.error('Error removing wallet:', error);
@@ -91,7 +115,7 @@ const RecentCard = () => {
                 </button>
             </div>
 
-            <div className=' bg-[--layer-color] my-8 overflow-x-auto rounded-lg p-4'>
+            <div className='bg-[--layer-color]  my-8 overflow-x-auto rounded-lg p-4'>
                 <ul>
                     {wallet.map((walletItem, index) => (
                         <li key={index} className="grid gap-4">

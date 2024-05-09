@@ -70,7 +70,7 @@ const InputTransaction = () => {
     const handleCopyWalletAddress = (walletAddress: string) => {
         navigator.clipboard.writeText(walletAddress)
         .then(() => {
-            alert("Address copied to clipboard!");
+            alert("copied!");
         })
         .catch((error) => {
             alert("Failed to copy address to clipboard: " + error);
@@ -196,11 +196,18 @@ const InputTransaction = () => {
                                             .filter(item => item.cryptoWallet === formInput.cryptoWallet)
                                             .map((item, index) => (
                                                 <div key={index} className='grid gap-4 '>
-                                                    <p>{item.cryptoWallet}</p>
-                                                    <p>{item.cryptoChannel}</p>
                                                     <div className='flex items-center justify-between'>
-                                                       <p>{item.walletAddress}</p>                                                       
-                                                        <img src={Copy} alt='' className='w-[24px]' onClick={() => handleCopyWalletAddress(item.walletAddress)}/>                                                       
+                                                        <p className='text-sm'>Wallet Name: </p> <p className='font-semibold'>{item.cryptoWallet}</p>
+                                                    </div>
+                                                    <div className='flex items-center justify-between'>
+                                                    <p className='text-sm'>Network: </p> 
+                                                    <p className='font-semibold'>{item.cryptoChannel}</p>
+                                                    </div>
+                                                    
+                                                    <div className='flex items-center justify-between'>
+                                                    <p className='text-sm'>Wallet Address: </p>
+                                                       <p className='flex gap-2 font-semibold'>{item.walletAddress} <img src={Copy} alt='' className='w-[24px]' onClick={() => handleCopyWalletAddress(item.walletAddress)}/>  </p>                                                     
+                                                                                                             
                                                     </div>
                                                     
                                                 </div>
