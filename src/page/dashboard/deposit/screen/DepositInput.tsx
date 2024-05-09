@@ -7,7 +7,7 @@ const DepositInput = () => {
     const navigate = useNavigate()
     
     return (
-        <section   className=' mt-10  min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
+        <section   className='   min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
 
             <div className="pt-24  grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
                <div className=' grid justify-center'>

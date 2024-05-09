@@ -1,5 +1,4 @@
-import {  useState} from "react";
-import edit from '../../../assets/edit.svg';
+import {  useState } from "react";
 import remove from '../../../assets/delete.svg';
 import AddWallet from "./AddWallet";
 
@@ -23,36 +22,64 @@ const RecentCard = () => {
         setIcon(!icon);
     };
 
+    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/UserData.json"
     
-    
-    const addWallet = () => {
-        if (formInput.cryptoWallet.trim() !== '' && formInput.walletAddress.trim() !== '' && formInput.cryptoChannel.trim() !== '') {
-            console.log('updatedWallet')
-            const updatedWallet = [...wallet, formInput];
-            setWallet(updatedWallet);
-            setFormInput({
-                cryptoWallet: '',
-                walletAddress: '',
-                cryptoChannel: '',
-            });         
-            
+   
+    const addWallet = async () => {
+        try {
+            const resp = await fetch(url, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(formInput)
+            });
+         
+            if (formInput.cryptoWallet.trim() !== '' && formInput.walletAddress.trim() !== '' && formInput.cryptoChannel.trim() !== '') {
+                console.log('updatedWallet');
+                const updatedWallet = [...wallet, formInput];
+                setWallet(updatedWallet);
+                setFormInput({
+                    cryptoWallet: '',
+                    walletAddress: '',
+                    cryptoChannel: '',
+                });         
+            }
+
+            if (resp) {
+                alert("details stored")
+            } else 
+            {alert("error in firbase")}
+        } catch (error) {
+            console.error('Error adding wallet:', error);
         }
-    };
-    
+     };
    
 
 
 
-    const removeWallet = (index: number) => {
-        const updatedWallet = wallet.filter((_, i) => i !== index);
-        setWallet(updatedWallet);
+     const removeWallet = async (index: number) => {    
+        try {
+            const resp = await fetch(url, {
+                method: 'DELETE',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(formInput)
+            });
+         
+            if (resp.ok) { // Check if the HTTP response indicates success
+                console.log('updatedWallet');
+                const updatedWallet = [...wallet];
+                updatedWallet.splice(index, 1);
+                setWallet(updatedWallet);               
+                alert("Details removed"); // Notify user that details are removed
+            } else {
+                alert("Error in Firebase"); // Notify user of error in Firebase
+            }
+        } catch (error) {
+            console.error('Error removing wallet:', error);
+        }   
     };
+    
 
-    const editWallet = (index: number, editedWallet: Wallet) => {
-        const updatedWallet = [...wallet];
-        updatedWallet[index] = editedWallet;
-        setWallet(updatedWallet);
-    };
+   
 
    
     return (
@@ -72,10 +99,7 @@ const RecentCard = () => {
                                 <p>{walletItem.cryptoWallet}</p>
                                 <p>{walletItem.cryptoChannel}</p>
                                 <p>{walletItem.walletAddress}</p>
-                                <div className="flex gap-3">
-                                <p onClick={() => editWallet(index, formInput)}>
-                                    <img src={edit} alt="" className="w-[24px]"/>
-                                </p>
+                                <div className="flex gap-3">                                
                                 <p onClick={() => removeWallet(index)}>
                                     <img src={remove} alt="" className="w-[24px]"/>
                                 </p>
