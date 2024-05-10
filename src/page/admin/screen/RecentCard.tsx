@@ -114,26 +114,39 @@ const RecentCard = () => {
                     + Add
                 </button>
             </div>
-
-            <div className='bg-[--layer-color]  my-8 overflow-x-auto rounded-lg p-4'>
-                <ul>
-                    {wallet.map((walletItem, index) => (
-                        <li key={index} className="grid gap-4">
-                            <div className="w-[60rem] py-2 justify-between flex gap-2 items-center">
-                                <p>{walletItem.cryptoWallet}</p>
-                                <p>{walletItem.cryptoChannel}</p>
-                                <p>{walletItem.walletAddress}</p>
-                                <div className="flex gap-3">                                
-                                <p onClick={() => removeWallet(index)}>
-                                    <img src={remove} alt="" className="w-[24px]"/>
-                                </p>
-                                </div>                                
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+    
+            <div className='bg-[--layer-color]  my-8 rounded-lg p-4'>
+                <p className='font-bold text-lg'>Wallet Details</p>
+                <div className="overflow-x-auto">
+                    <table className="table-auto w-full mt-2">
+                        <thead className='border-b-2'>
+                            <tr>
+                                <th className="px-4 py-2">Crypto</th>
+                                <th className="px-4 py-2">Network</th>
+                                <th className="px-4 py-2">Address</th>  
+                                <th className="px-4 py-2"> </th>   
+                            </tr>
+                        </thead>
+                        <tbody className='border-t-2 mt-4'>
+                            {wallet.map((walletItem, index) => (
+                                <tr key={index} className="text-center ">
+                                    <td className="px-4 py-2">{walletItem.cryptoWallet}</td>
+                                    <td className="px-4 py-2">{walletItem.cryptoChannel}</td>
+                                    <td className="px-4 py-2">{walletItem.walletAddress}</td>
+                                    <td className="px-4 py-2">
+                                        <div className="flex gap-3">
+                                            <p onClick={() => removeWallet(index)} className="px-4 py-2">
+                                                <img src={remove} alt="" className="w-[24px]"/>
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
+    
             <AddWallet toggleIcon={icon} onClose={() => setIcon(false)}>
                 <div>
                     <div>
@@ -149,7 +162,7 @@ const RecentCard = () => {
                             <option>BTC</option>
                             <option>ETH</option>
                             <option>USDT</option>
-                         </select>
+                        </select>
                     </div>
                     
                     <div>
@@ -166,10 +179,9 @@ const RecentCard = () => {
                             <option>TRC20</option>
                             <option>ERC20</option>
                             <option>BEP20</option>
-                            
                         </select>
                     </div>
-
+    
                     <div>
                         <label htmlFor="walletAddress">Wallet Address</label>
                         <input
@@ -182,15 +194,16 @@ const RecentCard = () => {
                         />
                     </div>
                     <button
-                type="submit"
-                onClick={addWallet}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--text-extra] bg-[--bg-color]" >
-                Update
-              </button>
+                        type="submit"
+                        onClick={addWallet}
+                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--text-extra] bg-[--bg-color]" >
+                        Update
+                    </button>
                 </div>
             </AddWallet>
         </div>
     );
+    
 };
 
 export default RecentCard;

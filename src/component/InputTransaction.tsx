@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { database } from '../firebase';
-import { ref, get } from 'firebase/database';
+import { ref, get, push } from 'firebase/database';
 import Copy from '../assets/copy.svg'
 interface UserData {
     cryptoWallet: string;
@@ -20,7 +20,9 @@ const InputTransaction = () => {
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     const [storedData, setStoredData] = useState<UserData[]>([]);
-
+    
+    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/TransactionData.json"
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -77,9 +79,45 @@ const InputTransaction = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();       
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();  
+    
+        // Get current date and time
+        const currentDate = new Date().toISOString();
+        const serialId = Math.floor(Math.random() * 1000000);
+        
+    
+        try {
+            const resp = await fetch(url, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({...formInput, date: currentDate, serialId: serialId }) // Include dateTime in the formInput object
+            });
+    
+            if (formInput.cryptoWallet.trim() !== '' && formInput.walletAddress.trim() !== '' && formInput.cryptoChannel.trim() !== '') {
+                const usersRef = ref(database, 'TransactionData');
+                push(usersRef, { ...formInput, date: currentDate, serialId: serialId }); // Include dateTime in the pushed data
+                setFormInput({
+                    amount: '',
+                    accountType: '',
+                    paymentMethod: '',
+                    cryptoWallet: '',
+                    cryptoChannel: '',
+                    walletAddress: '',
+                });                
+            } 
+            if (resp) {
+                alert("details stored")
+            }
+            else {
+                alert("Please fill in all required fields.");
+            }
+        } catch (error) {
+            console.error('Error adding wallet:', error);
+            alert("Error storing details. Please try again.");
+        }     
     };
+    
 
     return (
         <div className="w-screen grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
@@ -217,6 +255,14 @@ const InputTransaction = () => {
                             </div>
                         )}
                     </div>
+                    <div className='grid items-center justify-center py-3'>
+                            <button
+                                type="submit"
+                                className="w-[20rem] flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color]"                            
+                            >
+                                Submit
+                            </button>
+            </div>
                 </form>
             </div>
         </div>
