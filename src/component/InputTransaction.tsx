@@ -20,8 +20,9 @@ const InputTransaction = () => {
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     const [storedData, setStoredData] = useState<UserData[]>([]);
+    const [amount, setAmount] = useState<number>(0);
     
-    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/TransactionData.json"
+    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/DepositData.json"
     
     useEffect(() => {
         const fetchData = async () => {
@@ -95,7 +96,7 @@ const InputTransaction = () => {
             });
     
             if (formInput.cryptoWallet.trim() !== '' && formInput.walletAddress.trim() !== '' && formInput.cryptoChannel.trim() !== '') {
-                const usersRef = ref(database, 'TransactionData');
+                const usersRef = ref(database, 'DepositData');
                 push(usersRef, { ...formInput, date: currentDate, serialId: serialId }); // Include dateTime in the pushed data
                 setFormInput({
                     amount: '',

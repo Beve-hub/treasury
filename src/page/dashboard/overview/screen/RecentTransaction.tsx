@@ -19,7 +19,7 @@ const RecentTransaction = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersRef = ref(database, 'TransactionData');
+        const usersRef = ref(database, 'DepositData');
         const snapshot = await get(usersRef);
         if (snapshot.exists()) {
           const userData: UserData[] = [];
@@ -45,6 +45,7 @@ const RecentTransaction = () => {
     fetchData();
   }, []);
 
+
   // Function to format the date
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -66,6 +67,7 @@ const RecentTransaction = () => {
             <th className="px-4 py-2">Method</th>
             <th className="px-4 py-2">Type</th>
             <th className="px-4 py-2">Date</th>
+            
           </tr>
         </thead>
         <tbody className='border-t-2 mt-4'>
@@ -76,7 +78,7 @@ const RecentTransaction = () => {
               <td className="px-4 py-2">{item.accountType}</td>    
               <td className="px-4 py-2">{item.paymentMethod}</td>         
               <td className="px-4 py-2">{item.cryptoWallet}</td>              
-              <td className="px-4 py-2">{item.date}</td>
+              <td className="px-4 py-2">{item.date}</td>              
             </tr>
           ))}
         </tbody>

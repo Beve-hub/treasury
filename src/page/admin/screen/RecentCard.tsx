@@ -2,7 +2,8 @@ import {  useState, useEffect } from "react";
 import remove from '../../../assets/delete.svg';
 import AddWallet from "./AddWallet";
 import { database } from '../../../firebase';
-import { ref, get } from 'firebase/database';
+import { ref, get, } from 'firebase/database';
+
 
 
 
@@ -47,10 +48,11 @@ const RecentCard = () => {
   
 
     const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/UserData.json"
+   
     
    
     const addWallet = async () => {
-        try {
+       try {
             const resp = await fetch(url, {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
@@ -82,6 +84,7 @@ const RecentCard = () => {
 
      const removeWallet = async (index: number) => {    
         try {
+
             const resp = await fetch(url, {
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
@@ -97,10 +100,17 @@ const RecentCard = () => {
             } else {
                 alert("Error in Firebase"); 
             }
+            
+        
         } catch (error) {
             console.error('Error removing wallet:', error);
         }   
+
+        
     };
+   
+
+   
     
 
    
@@ -108,11 +118,15 @@ const RecentCard = () => {
    
     return (
         <div>
-            <div className="flex justify-between">
+            <div className="w-full grid justify-between md:grid-cols-2">
                 <p className="font-semibold text-lg">Add Wallet Address</p>
-                <button onClick={toggleIcon} className="bg-[--bg-color] w-[7rem] p-2 text-[--text-extra] rounded-md">
+
+                <div className="grid justify-end">
+                <button onClick={toggleIcon} className="bg-[--bg-color] w-[7rem] p-2 text-[--text-extra] rounded-md ">
                     + Add
                 </button>
+                </div>
+                
             </div>
     
             <div className='bg-[--layer-color]  my-8 rounded-lg p-4'>

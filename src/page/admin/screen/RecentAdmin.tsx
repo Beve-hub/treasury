@@ -9,32 +9,60 @@ interface UserData {
   paymentMethod: string,
   cryptoWallet: string,
   date: string, 
-  serialId: string
+  serialId: string,
+  key: string,
 }
+
 
 const RecentAdmin = () => {
   const [icon, setIcon] = useState(false);
   const [storedData, setStoredData] = useState<UserData[]>([]);
+  const [status, setStatus] = useState<{ [key: string]: string | null }>({});
+
+  const handleAccept = (key: string) => {
+    setStatus((prevStatus) => ({
+      ...prevStatus,
+      [key]: "successful",
+    }))
+  }
+
+  const handleDecline = (key: string) => {
+    setStatus((prevStatus) => ({
+      ...prevStatus,
+      [key]: "failed",
+    }))
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersRef = ref(database, 'TransactionData');
+        const usersRef = ref(database, 'DepositData');
         const snapshot = await get(usersRef);
         if (snapshot.exists()) {
           const userData: UserData[] = [];
+         // console.log('data from firebase snapshot',snapshot)
           snapshot.forEach((childSnapshot) => {
+            const userKey = childSnapshot.key
             const data = childSnapshot.val();
+            console.log('Data',snapshot)
             userData.push({
               amount: data.amount,
               accountType: data.accountType,
               paymentMethod: data.paymentMethod,
-              date: formatDate(data.date), // Format the date here
+              date: formatDate(data.date), 
               cryptoWallet: data.cryptoWallet,
-              serialId: data.serialId
+              serialId: data.serialId,
+              key: userKey,
             });
+           
           });
+          console.log('storedData',userData)
           setStoredData(userData);
+          const initialStatus = userData.reduce((acc, item) => {
+            acc[item.key] = null;
+            return acc;
+          }, {} as {[key: string]: string | null});
+          setStatus(initialStatus)
         } else {
           console.log('No data available');
         }
@@ -66,10 +94,13 @@ const RecentAdmin = () => {
             <th className="px-4 py-2">Method</th>
             <th className="px-4 py-2">Type</th>
             <th className="px-4 py-2">Date</th>
+            <th className="px-4 py-2">Status</th>
           </tr>
         </thead>
         <tbody className='border-t-2 mt-4'>
-          {storedData.map((item, index) => (
+          
+          {            
+          storedData.map((item, index) => (
             <tr key={index} className="text-center">
               <td className="px-4 py-2">D{item.serialId}</td>
               <td className="px-4 py-2">${item.amount}</td>
@@ -77,6 +108,16 @@ const RecentAdmin = () => {
               <td className="px-4 py-2">{item.paymentMethod}</td>         
               <td className="px-4 py-2">{item.cryptoWallet}</td>              
               <td className="px-4 py-2">{item.date}</td>
+              <td className="px-4 py-2 flex gap-2">
+              {status[item.key] ? (
+                 <p> {status[item.key]}</p>
+                 ) : (
+                  <div>
+                    <button className='bg-[--extra-color] p-1 text-[--text-extra] rounded-sm text-xs' onClick={() => handleAccept(item.key)}>Accept</button>
+                    <button className='border-2 p-1  rounded-sm text-xs' onClick={() => handleDecline(item.key)}>Decline</button>
+                  </div>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -19,7 +19,7 @@ const PaymentRecent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersRef = ref(database, 'TransactionData');
+        const usersRef = ref(database, 'DepositData');
         const snapshot = await get(usersRef);
         if (snapshot.exists()) {
           const userData: UserData[] = [];

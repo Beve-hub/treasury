@@ -37,7 +37,7 @@ const Register  = () => {
   const [confirm, setConfirm] = useState(''); 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
-
+ 
   const navigate = useNavigate();
 
   const validate = (): boolean => {

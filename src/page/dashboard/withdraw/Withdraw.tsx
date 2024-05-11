@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {  useState } from 'react';
+import { database } from '../../../firebase';
+import { ref,  push } from 'firebase/database';
+
+
 
 interface FormData {
     amount: string;
@@ -10,7 +13,7 @@ interface FormData {
 }
 
 const Withdraw = () => {
-    const navigate = useNavigate();
+    
     const [formData, setFormData] = useState<FormData>({
         amount: '',
         accountType: '',
@@ -18,6 +21,7 @@ const Withdraw = () => {
         cryptoWallet: '',
         transactionPin: ''
     });
+    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/WithdrawData.json"
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [showPaymentMethod, setShowPaymentMethod] = useState<boolean>(false);
     const [showTransactionPin, setShowTransactionPin] = useState<boolean>(false);
@@ -45,9 +49,39 @@ const Withdraw = () => {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        navigate('/overview');
+        const currentDate = new Date().toISOString();
+        const serialId = Math.floor(Math.random() * 1000000);        
+    
+        try {
+            const resp = await fetch(url, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({...formData, date: currentDate, serialId: serialId }) // Include dateTime in the formInput object
+            });
+    
+            if (formData.cryptoWallet.trim() !== '' && formData.paymentMethod.trim() !== '' && formData.accountType.trim() !== '') {
+                const usersRef = ref(database, 'WithdrawData');
+                push(usersRef, { ...formData, date: currentDate, serialId: serialId }); // Include dateTime in the pushed data
+                setFormData({
+                    amount: '',
+                    accountType: '',
+                    paymentMethod: '',
+                    cryptoWallet: '',
+                    transactionPin: ''
+                });                
+            } 
+            if (resp) {
+                alert("details stored")
+            }
+            else {
+                alert("Please fill in all required fields.");
+            }
+        } catch (error) {
+            console.error('Error adding wallet:', error);
+            alert("Error storing details. Please try again.");
+        }     
     };
 
     return (
@@ -177,6 +211,7 @@ const Withdraw = () => {
                                     <div>
                                         <button
                                             type="submit"
+                                            onClick={handleSubmit}
                                             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color]"
                                             disabled={!accountSelected}
                                         >

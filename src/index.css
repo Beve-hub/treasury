@@ -37,7 +37,8 @@ html{
   --bg-color: #121212;
   --button-color: #56E980;
   --hover-color: #56E98070;
-  --layer-color: #F6F6F6
+  --layer-color: #F6F6F6;
+  --extra-color: #2631fc;
 
   
 }
@@ -51,7 +52,7 @@ body {
 }
 
 .active {
-  @apply text-[#2631fc]  font-bold  ;
+  @apply text-[#56E980]  font-bold  ;
 }
 
 .active img {

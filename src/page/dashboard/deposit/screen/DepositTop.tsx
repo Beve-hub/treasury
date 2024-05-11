@@ -18,9 +18,9 @@ const DepositTop = () => {
         <div  className=' flex justify-between pb-[7rem] '>
             <div className='flex gap-2 items-center'>
 
-                <button onClick={() => navigate('/overview')}>
+                <p onClick={() => navigate('/overview')}>
                     <img src={arrow} alt='' className='w-[24px]'/>
-                </button>   
+                </p>   
                       
             
             </div>  
