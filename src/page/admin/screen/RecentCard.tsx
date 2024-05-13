@@ -32,7 +32,7 @@ const RecentCard = () => {
     useEffect(() => {
         const fetchWallets = async () => {
             try {
-                const usersRef = ref(database, 'UserData');
+                const usersRef = ref(database, 'AdminData');
                 const snapshot = await get(usersRef);
                 const data = snapshot.val();
                 if (data) {
@@ -47,7 +47,7 @@ const RecentCard = () => {
     }, []);
   
 
-    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/UserData.json"
+    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/AdminData.json"
    
     
    

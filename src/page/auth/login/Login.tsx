@@ -17,6 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
+  
   const navigate = useNavigate();
 
 
@@ -44,15 +45,17 @@ const Login = () => {
     if (validate()) {
       try {
          const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-        navigate('/overview');
-        console.log({'userCredentials': userCredentials})
+         if(userCredentials) {
+          localStorage. setItem('userId', userCredentials.user.uid) 
+          navigate(`/overview`,{state:{userId: userCredentials.user.uid,}});
+          console.log("userCredentials:", userCredentials)
+         }               
+        
       } catch (error) {
-        console.log("Error signing in:")
+        console.log("Error signing in:", error)
         setLoading(false);
       }
-    }
-    
-    
+    } 
   };
 
   return (

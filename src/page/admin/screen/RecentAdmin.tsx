@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Accept from './Accept';
 import { database } from '../../../firebase';
 import { ref, get } from 'firebase/database';
+import { Oval } from 'react-loader-spinner'
 
 interface UserData {
   amount: string,
@@ -11,41 +12,104 @@ interface UserData {
   date: string, 
   serialId: string,
   key: string,
+  status: string
 }
 
 
 const RecentAdmin = () => {
   const [icon, setIcon] = useState(false);
   const [storedData, setStoredData] = useState<UserData[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [loader, setLoader] = useState(false);
   const [status, setStatus] = useState<{ [key: string]: string | null }>({});
 
-  const handleAccept = (key: string) => {
-    setStatus((prevStatus) => ({
-      ...prevStatus,
-      [key]: "successful",
-    }))
+  const url1 = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/DepositData.json"
+  const url2 = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/WithdrawData.json"
+  
+  
+  
+  const handleAccept = async (key: string, PaymentMethod: string) => {
+    setLoading(true);
+        
+    try {
+      let url 
+      if (PaymentMethod === 'Crypto withdrawal') {
+        url = url2
+      }else  {
+        url = url1
+      }
+      const resp = await fetch(url, {
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({[`${key}/status`]:'Successful'}) 
+    });
+    if (resp) {
+      setStatus((prevStatus) => ({
+        ...prevStatus,
+        [key]: "Successful",
+      }))
+      setLoading(false)
+      location.reload()
+    } else {
+      console.log('error in status')
+    }    
+    }catch (error) {
+      console.error('Error adding wallet:', error);
+      alert("Error storing details. Please try again.");
+    }    
   }
 
-  const handleDecline = (key: string) => {
-    setStatus((prevStatus) => ({
-      ...prevStatus,
-      [key]: "failed",
-    }))
+  const handleDecline = async (key: string, PaymentMethod: string) => {
+    
+    setLoader(true);
+    try {
+      let url 
+      if (PaymentMethod === 'Crypto withdrawal') {
+        url = url2
+      }else  {
+        url = url1
+      }
+      const resp = await fetch(url, {
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({[`${key}/status`]:'Failed'}) 
+    });
+    if (resp) {
+      setStatus((prevStatus) => ({
+        ...prevStatus,
+        [key]: "Failed",
+      }))
+      setLoader(false)
+      location.reload()
+    } else {
+      console.log('error in status')
+    }    
+    }catch (error) {
+      console.error('Error adding wallet:', error);
+      alert("Error storing details. Please try again.");
+    }
+
   }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersRef = ref(database, 'DepositData');
-        const snapshot = await get(usersRef);
-        if (snapshot.exists()) {
-          const userData: UserData[] = [];
+        const depositRef = ref(database, 'DepositData' );
+        const withdrawalRef = ref(database,  'WithdrawData');
+
+
+        const depositSnapshot = await get(depositRef);
+        const withdrawalSnapshot = await get(withdrawalRef)
+
+        const depositData: UserData[] = [];
+        const withdrawalData: UserData[] = [];
+
+        if (depositSnapshot.exists()) {          
          // console.log('data from firebase snapshot',snapshot)
-          snapshot.forEach((childSnapshot) => {
+           depositSnapshot.forEach((childSnapshot) => {
             const userKey = childSnapshot.key
-            const data = childSnapshot.val();
-            console.log('Data',snapshot)
-            userData.push({
+            const data = childSnapshot.val();            
+            depositData.push({
               amount: data.amount,
               accountType: data.accountType,
               paymentMethod: data.paymentMethod,
@@ -53,19 +117,39 @@ const RecentAdmin = () => {
               cryptoWallet: data.cryptoWallet,
               serialId: data.serialId,
               key: userKey,
+              status: data.status
             });
            
-          });
-          console.log('storedData',userData)
-          setStoredData(userData);
-          const initialStatus = userData.reduce((acc, item) => {
-            acc[item.key] = null;
-            return acc;
-          }, {} as {[key: string]: string | null});
-          setStatus(initialStatus)
-        } else {
-          console.log('No data available');
-        }
+          });       
+         
+        } 
+
+        if (withdrawalSnapshot.exists()) {          
+          // console.log('data from firebase snapshot',snapshot)
+          withdrawalSnapshot.forEach((childSnapshot) => {
+             const userKey = childSnapshot.key
+             const data = childSnapshot.val();            
+             withdrawalData.push({
+               amount: data.amount,
+               accountType: data.accountType,
+               paymentMethod: data.paymentMethod,
+               date: formatDate(data.date), 
+               cryptoWallet: data.cryptoWallet,
+               serialId: data.serialId,
+               key: userKey,
+               status: data.status
+             });
+            
+           });           
+         } 
+
+         setStoredData([...withdrawalData, ...depositData]);
+         const userData = ([...withdrawalData, ...depositData])
+         const initialStatus = userData.reduce((acc, item) => {
+           acc[item.key] = null;
+           return acc;
+         }, {} as {[key: string]: string | null});
+         setStatus(initialStatus)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -109,14 +193,16 @@ const RecentAdmin = () => {
               <td className="px-4 py-2">{item.cryptoWallet}</td>              
               <td className="px-4 py-2">{item.date}</td>
               <td className="px-4 py-2 flex gap-2">
-              {status[item.key] ? (
-                 <p> {status[item.key]}</p>
-                 ) : (
+              {item.status === "Pending"  ? (
                   <div>
-                    <button className='bg-[--extra-color] p-1 text-[--text-extra] rounded-sm text-xs' onClick={() => handleAccept(item.key)}>Accept</button>
-                    <button className='border-2 p-1  rounded-sm text-xs' onClick={() => handleDecline(item.key)}>Decline</button>
+                    <button className='bg-[--extra-color] p-1 text-[--text-extra] rounded-sm text-xs' onClick={() => handleAccept(item.key,item.paymentMethod)}>{loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Accept'}</button>
+                    <button className='border-2 p-1  rounded-sm text-xs' onClick={() => handleDecline(item.key,item.paymentMethod)}>{loader ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Decline'}</button>
                   </div>
-                )}
+                ) : (
+                 <p style={{ color: item.status === 'Successful' ? 'green' : 'red' }}>
+                 {item.status}
+               </p>
+                 )}
               </td>
             </tr>
           ))}

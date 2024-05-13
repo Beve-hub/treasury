@@ -6,6 +6,7 @@ interface UserData {
     cryptoWallet: string;
     cryptoChannel: string;
     walletAddress: string;
+    status: string;
 }
 
 const InputTransaction = () => {
@@ -15,19 +16,20 @@ const InputTransaction = () => {
         paymentMethod: '',
         cryptoWallet: '',
         cryptoChannel: '',
-        walletAddress: '',
+        walletAddress: '',       
     });
+
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     const [storedData, setStoredData] = useState<UserData[]>([]);
-    const [amount, setAmount] = useState<number>(0);
+    
     
     const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/DepositData.json"
     
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const usersRef = ref(database, 'UserData');
+                const usersRef = ref(database, 'AdminData');
                 const snapshot = await get(usersRef);
                 if (snapshot.exists()) {
                     const userData: UserData[] = [];
@@ -37,6 +39,7 @@ const InputTransaction = () => {
                             cryptoWallet: data.cryptoWallet,
                             cryptoChannel: data.cryptoChannel,
                             walletAddress: data.walletAddress,
+                            status: data.status,
                         });
                     });
                     setStoredData(userData);
@@ -86,25 +89,27 @@ const InputTransaction = () => {
         // Get current date and time
         const currentDate = new Date().toISOString();
         const serialId = Math.floor(Math.random() * 1000000);
+        const status = 'Pending'
+        const userId = localStorage.getItem('userId')
         
     
         try {
             const resp = await fetch(url, {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({...formInput, date: currentDate, serialId: serialId }) // Include dateTime in the formInput object
+                body: JSON.stringify({...formInput, date: currentDate, serialId: serialId, status, userId }) // Include dateTime in the formInput object
             });
     
             if (formInput.cryptoWallet.trim() !== '' && formInput.walletAddress.trim() !== '' && formInput.cryptoChannel.trim() !== '') {
                 const usersRef = ref(database, 'DepositData');
-                push(usersRef, { ...formInput, date: currentDate, serialId: serialId }); // Include dateTime in the pushed data
+                push(usersRef, { ...formInput, date: currentDate, serialId: serialId, status , userId}); // Include dateTime in the pushed data
                 setFormInput({
                     amount: '',
                     accountType: '',
                     paymentMethod: '',
                     cryptoWallet: '',
                     cryptoChannel: '',
-                    walletAddress: '',
+                    walletAddress: '',                    
                 });                
             } 
             if (resp) {

@@ -9,7 +9,8 @@ interface UserData {
   paymentMethod: string,
   cryptoWallet: string,
   date: string, 
-  serialId: string
+  serialId: string,
+  status: string
 }
 
 const PaymentRecent = () => {
@@ -19,26 +20,49 @@ const PaymentRecent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersRef = ref(database, 'DepositData');
-        const snapshot = await get(usersRef);
-        if (snapshot.exists()) {
-          const userData: UserData[] = [];
-          snapshot.forEach((childSnapshot) => {
+        const depositRef = ref(database, 'DepositData' );
+        const withdrawalRef = ref(database,  'WithdrawData');
+        
+        const depositSnapshot = await get(depositRef);
+        const withdrawalSnapshot = await get(withdrawalRef)
+
+        const depositData: UserData[] = [];
+        const withdrawalData: UserData[] = [];
+
+        if (depositSnapshot.exists()) {          
+          depositSnapshot.forEach((childSnapshot) => {
             const data = childSnapshot.val();
-            userData.push({
+            depositData.push({
               amount: data.amount,
               accountType: data.accountType,
               paymentMethod: data.paymentMethod,
               date: formatDate(data.date), // Format the date here
               cryptoWallet: data.cryptoWallet,
-              serialId: data.serialId
+              serialId: data.serialId,
+              status: data.status
             });
+          });         
+      } 
+
+      if (withdrawalSnapshot.exists()) {        
+        withdrawalSnapshot.forEach((childSnapshot) => {
+          const data = childSnapshot.val();
+          withdrawalData.push({
+            amount: data.amount,
+            accountType: data.accountType,
+            paymentMethod: data.paymentMethod,
+            date: formatDate(data.date), // Format the date here
+            cryptoWallet: data.cryptoWallet,
+            serialId: data.serialId,
+            status: data.status
           });
-          setStoredData(userData);
-        } else {
-          console.log('No data available');
-        }
-      } catch (error) {
+        });
+      
+    } 
+    setStoredData([...withdrawalData, ...depositData]);
+
+  }
+      catch (error) {
         console.error('Error fetching data:', error);
       }
     };
@@ -65,9 +89,10 @@ const PaymentRecent = () => {
             <th className="px-4 py-2">Method</th>
             <th className="px-4 py-2">Type</th>
             <th className="px-4 py-2">Date</th>
+            <th className="px-4 py-2">Status</th>
           </tr>
         </thead>
-        <tbody className='border-b-2'>
+        <tbody >
         {storedData.map((item, index) => (
             <tr key={index} className="text-center">
               <td className="px-4 py-2">D{item.serialId}</td>
@@ -76,6 +101,8 @@ const PaymentRecent = () => {
               <td className="px-4 py-2">{item.paymentMethod}</td>         
               <td className="px-4 py-2">{item.cryptoWallet}</td>              
               <td className="px-4 py-2">{item.date}</td>
+              <td style={{ color: item.status === 'Successful' ? 'green' : 'red' }}  className="px-4 py-2">{item.status}</td>
+
             </tr>
           ))}
         </tbody>

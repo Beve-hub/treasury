@@ -10,6 +10,7 @@ interface FormData {
     paymentMethod: string;
     cryptoWallet: string;
     transactionPin: string;
+    
 }
 
 const Withdraw = () => {
@@ -53,17 +54,18 @@ const Withdraw = () => {
         e.preventDefault();
         const currentDate = new Date().toISOString();
         const serialId = Math.floor(Math.random() * 1000000);        
-    
+        const status = 'Pending'
+        const userId = localStorage.getItem('userId')
         try {
             const resp = await fetch(url, {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({...formData, date: currentDate, serialId: serialId }) // Include dateTime in the formInput object
+                body: JSON.stringify({...formData, date: currentDate, serialId: serialId, status, userId  }) // Include dateTime in the formInput object
             });
     
             if (formData.cryptoWallet.trim() !== '' && formData.paymentMethod.trim() !== '' && formData.accountType.trim() !== '') {
                 const usersRef = ref(database, 'WithdrawData');
-                push(usersRef, { ...formData, date: currentDate, serialId: serialId }); // Include dateTime in the pushed data
+                push(usersRef, { ...formData, date: currentDate, serialId: serialId,status, userId  }); // Include dateTime in the pushed data
                 setFormData({
                     amount: '',
                     accountType: '',

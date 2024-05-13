@@ -7,11 +7,14 @@ import { useAuth } from '../../../../context/AuthProvider';
 
 
 
+interface UserData {
+    firstName: string,
+ }
 
-const Top = () => {
+
+const Top = (props: UserData) => {
     const [icon, setIcon] = useState<boolean>(false);
-    const {logout } = useAuth();
-
+    const {logout } = useAuth();  
     const toggleIcon = (): void => {
         setIcon(!icon)
     }
@@ -19,7 +22,7 @@ const Top = () => {
         <div className='flex justify-between pb-[3rem] max-w-screen'>
             <div className='flex gap-2'>
             <p className='text-2xl font-bold'>Welcome,</p>
-            <p className='text-2xl'>Victor</p>
+            <p className='text-2xl'>{props.firstName}</p>
             </div>  
 
             <div className=' items-center gap-6 md:flex hidden'>
