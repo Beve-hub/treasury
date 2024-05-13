@@ -18,7 +18,7 @@ const Service = () => {
             <div className='bg-[white]  py-4'>
               <div className='p-6' data-aos="fade-up-right">      
               <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-              <p >Our Services</p>
+              <p className='text-[--text-extra]'>Our Services</p>
               </div>
                <div>                           
               <p className='font-bold py-4 text-2xl text-[#121212]'>Working Together To Drive Growth And Positive Change</p>                    

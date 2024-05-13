@@ -27,7 +27,7 @@ const AboutUs = () => {
             <div className='h-[18rem] grid justify-center items-center' data-aos='fade-right'>           
               <div className=' grid justify-center items-center'>
                 <div className='max-w-[7rem] flex justify-center bg-[--button-color] py-1'>
-                    <p className='font-bold'>About Us</p>
+                    <p className='font-bold text-[--text-extra]'>About Us</p>
                 </div>
                 <h1 className='text-white  font-bold text-[18px] max-w-[30rem] '>Empowering Financial Journey: Welcome to United Treasury Bank</h1>  
               </div>

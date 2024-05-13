@@ -16,7 +16,7 @@ const Join = () => {
                        
           <div className=' py-4'>
              
-            <p className='font-bold ml-8 max-w-[26rem] text-2xl text-[#121212] text-balance' data-aos="zoom-in">Sign up for a new account in minutes.</p>                    
+            <p className='font-bold ml-8 max-w-[26rem] text-2xl text-[#121212] text-balance text-[--text-extra]' data-aos="zoom-in">Sign up for a new account in minutes.</p>                    
             
                        
              

@@ -20,7 +20,7 @@ const Sales= () => {
             <div className='bg-[white]  py-4'>
               <div className='p-6' data-aos="fade-up-right">      
               <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-              <p >Sales And Assessment</p>
+              <p className='text-[--text-extra]'>Sales And Assessment</p>
               </div>
                <div>                           
               <p className='font-bold py-4 text-2xl text-[#121212]'>We Have Autonomy And Ownership</p>                    
@@ -34,7 +34,7 @@ const Sales= () => {
                individuals that are personable, driven, and detailed amongst many other 
                traits is not for the faint hearted. Whether you are just starting to build 
                your sales potentiality or you’re looking to enhance the quality of your 
-               experience, Guaranty Wealth will help. We have worked on creating a variety
+               experience, United Treasury Bank will help. We have worked on creating a variety
                 of assessments that can help ensure you are the best sales-person of your 
                 time with a great Job Opportunity for you to explore.
               </p>

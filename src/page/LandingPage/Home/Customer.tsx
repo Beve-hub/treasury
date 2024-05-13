@@ -20,7 +20,7 @@ const Customer = () => {
           <div className='bg-[white]  py-4'>
             <div className='p-6' data-aos="fade-up-right">      
             <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-            <p >Contact Us</p>
+            <p className='text-[--text-extra]'>Contact Us</p>
             </div>
              <div>                           
             <p className='font-bold py-4 text-2xl text-[#121212]'>We Are Always Here For You24/7 </p>                    

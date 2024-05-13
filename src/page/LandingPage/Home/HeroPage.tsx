@@ -3,6 +3,7 @@ import image from '../../../assets/image_background.png'
 import image2 from '../../../assets/image_hero.png'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -33,10 +34,10 @@ const HeroPage= () => {
                         <p className='text-white  text-md w-[25rem] py-4'>Achieve your financial goals with us at United Treasury Bank </p>
                     </div>
                    
-                    <button  className='font-bold bg-[--button-color] h-10 mt-3 px-4 rounded-md  transition duration-500 hover:scale-110 hover:bg-blue-600 hover:text-white cursor-pointer' data-aos='zoom-in'>
-                    <a href="/register">
+                    <button  className='font-bold bg-[--button-color] h-10 mt-3 px-4 rounded-md  transition duration-500 hover:scale-110 hover:bg-blue-600 hover:text-white cursor-pointer text-[--text-extra]' data-aos='zoom-in'>
+                    <NavLink to='/register' >
                     Get Started
-                    </a>                     
+                    </NavLink>                     
                    </button>
                 </div>
                 <div className='sm:flex hidden' data-aos="fade-up-left">

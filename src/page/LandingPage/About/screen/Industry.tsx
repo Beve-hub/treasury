@@ -17,7 +17,7 @@ const Industry = () => {
           <div className="p-6 ">
             <div className=" grid justify-center items-center">
               <div className="max-w-[80rem] flex justify-center">
-                <p className="  py-1 w-[15rem]  flex justify-center font-medium bg-[--button-color]">                  
+                <p className="  py-1 w-[15rem]  flex justify-center font-medium bg-[--button-color] text-[--text-extra]">                  
                   Our industry expertise
                 </p>
               </div>

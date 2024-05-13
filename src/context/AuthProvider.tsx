@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
+
 interface User {
     uid: string;
     // You can add other user properties here if needed
@@ -32,6 +33,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const auth = getAuth();
     const [user, setUser] = useState<User | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+   
 
     const logout = async () => {
         try {
@@ -39,6 +41,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             setIsLoggedIn(false);
             setUser(null); 
             console.log('Logged out');
+            
         } catch (error) {
             console.error('Failed to sign out', error);
         }

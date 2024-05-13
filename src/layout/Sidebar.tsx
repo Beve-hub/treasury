@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { sidebar } from '../utils/data';
 import Logo from '../assets/logo3.png';
@@ -9,6 +9,9 @@ import right from '../assets/right.svg';
 import down from '../assets/down.svg';
 import user from '../assets/user.svg';
 import { useAuth } from '../context/AuthProvider';
+import {useLocation} from "react-router-dom"
+import {  firestore } from "../firebase"
+import { doc, getDoc } from 'firebase/firestore';
 
 
 const Sidebar = () => {
@@ -17,6 +20,28 @@ const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const [nav, setNav] = useState(true);
   const [icon, setIcon] = useState(false);
+  const [firstName, setFirstName] = useState<string>('');
+    const { state } = useLocation();
+    console.log('users', state);  
+    const userId = state?.userId || '';
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {                
+                const userDocRef = doc(firestore, 'users', userId);
+                console.log('userId', userId);
+                const snapshot = await getDoc(userDocRef);
+                if (snapshot.exists()) {
+                    console.log('userdetails', snapshot.data());
+                    const userDetails = snapshot.data();
+                    setFirstName(userDetails?.firstName);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [userId, firstName]);
 
   const handleBar = () => {
     setNav(!nav);
@@ -69,10 +94,13 @@ const Sidebar = () => {
         </div>
       </div>
       {isLoggedIn && (
-      <div className={!nav ? 'fixed right-0 top-0 w-[60%] h-full  border-r-gray-900 bg-[--button-color] z-10 ease-in-out duration-500' : 'fixed left-[-400%]'}>
+      <div className={!nav ? 'fixed right-0 top-0 w-[60%] h-full  border-r-gray-900 bg-[--layer-colo] z-10 ease-in-out duration-500' : 'fixed left-[-400%]'}>
         <ul className="text-color grid items-center justify-center uppercase pt-24">
           <div onClick={toggleIcon} className="flex items-center gap-2">
-            <img src={user} alt="" className="w-[40px]" />            
+          <div className='flex items-center gap-2'>
+                <img src={user} alt='' className='w-[40px]'/>
+                <p className='text-xl'>{firstName}</p>
+                </div>           
             {!icon ? <img src={right} alt="" className="w-[24px]" /> : <img src={down} alt="" className="w-[24px]" />}
             {icon && (
               <div className="absolute top-[8rem] right-[2rem] z-99 rounded-lg bg-[#ededed] grid items-center justify-center  w-[7rem]">

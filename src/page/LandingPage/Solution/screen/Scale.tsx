@@ -20,7 +20,7 @@ const Scale = () => {
             <div className='bg-[white]  py-4'>
               <div className='p-6' data-aos="fade-up-right">      
               <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-              <p >Security & Scalability</p>
+              <p className='text-[--text-extra]'>Security & Scalability</p>
               </div>
                <div>                           
               <p className='font-bold py-4 text-2xl text-[#121212]'>A system you can rely on</p>                    
