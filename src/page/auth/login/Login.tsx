@@ -39,24 +39,27 @@ const Login = () => {
     return isValid;
   };
 
-  const handleSubmit = async(e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    if (validate()) {
-      try {
-         const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-         if(userCredentials) {
-          localStorage. setItem('userId', userCredentials.user.uid) 
-          navigate(`/overview`,{state:{userId: userCredentials.user.uid,}});
-          console.log("userCredentials:", userCredentials)
-         }               
-        
-      } catch (error) {
-        console.log("Error signing in:", error)
-        setLoading(false);
+  
+    try {
+      if (validate()) {
+        const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+        if (userCredentials && userCredentials.user) {
+          sessionStorage.setItem('userId', userCredentials.user.uid);
+          // Assuming 'navigate' is a function to navigate to a different page
+          navigate(`/overview`, { state: { userId: userCredentials.user.uid } });
+          console.log('User credentials:', userCredentials);
+        }
       }
-    } 
+    } catch (error) {
+      console.error("Error signing in:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+  
 
   return (
     <div>

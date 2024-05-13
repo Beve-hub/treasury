@@ -12,7 +12,7 @@ const Overview = () => {
     const [firstName, setFirstName] = useState<string>('')
     const {state} = useLocation();
     console.log('users', state)
-    const userId = state.userId
+    const userId = state?.userId
   
 
 

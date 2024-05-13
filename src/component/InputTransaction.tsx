@@ -90,7 +90,7 @@ const InputTransaction = () => {
         const currentDate = new Date().toISOString();
         const serialId = Math.floor(Math.random() * 1000000);
         const status = 'Pending'
-        const userId = localStorage.getItem('userId')
+        const userId = sessionStorage.getItem('userId')
         
     
         try {
