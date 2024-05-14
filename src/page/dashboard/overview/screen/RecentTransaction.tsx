@@ -20,6 +20,7 @@ const RecentTransaction = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const userId = sessionStorage.getItem('userId')
       try {
         const depositRef = ref(database, 'DepositData' );
         const withdrawalRef = ref(database,  'WithdrawData');
@@ -33,7 +34,27 @@ const RecentTransaction = () => {
         if (depositSnapshot.exists()) {          
           depositSnapshot.forEach((childSnapshot) => {
             const data = childSnapshot.val();
-            depositData.push({
+            if (data.userId === userId) {
+              depositData.push({
+                amount: data.amount,
+                accountType: data.accountType,
+                paymentMethod: data.paymentMethod,
+                date: formatDate(data.date), // Format the date here
+                cryptoWallet: data.cryptoWallet,
+                serialId: data.serialId,
+                status: data.status,
+                userId: data.userId
+              });
+            }
+            
+          });         
+      } 
+
+      if (withdrawalSnapshot.exists()) {        
+        withdrawalSnapshot.forEach((childSnapshot) => {
+          const data = childSnapshot.val();
+          if (data.userId === userId) {
+            withdrawalData.push({
               amount: data.amount,
               accountType: data.accountType,
               paymentMethod: data.paymentMethod,
@@ -43,22 +64,7 @@ const RecentTransaction = () => {
               status: data.status,
               userId: data.userId
             });
-          });         
-      } 
-
-      if (withdrawalSnapshot.exists()) {        
-        withdrawalSnapshot.forEach((childSnapshot) => {
-          const data = childSnapshot.val();
-          withdrawalData.push({
-            amount: data.amount,
-            accountType: data.accountType,
-            paymentMethod: data.paymentMethod,
-            date: formatDate(data.date), // Format the date here
-            cryptoWallet: data.cryptoWallet,
-            serialId: data.serialId,
-            status: data.status,
-            userId: data.userId
-          });
+          }
         });
       
     } 

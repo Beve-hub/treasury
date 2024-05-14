@@ -49,7 +49,7 @@ const RecentAdmin = () => {
         [key]: "Successful",
       }))
       setLoading(false)
-      location.reload()
+      window.location.reload();
     } else {
       console.log('error in status')
     }    

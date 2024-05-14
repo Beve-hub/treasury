@@ -14,7 +14,7 @@ const HeroPage= () => {
       }, []);
 
     return (
-        <section id="home" className="relative h-screen w-screen   ">
+        <section id="home" className="relative h-screen w-screen  ">
             <div className=''>
                 <div className={`absolute top-0 left-0 w-screen h-full `}
             style={{
@@ -23,6 +23,7 @@ const HeroPage= () => {
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
+              
             }}>     
 
             <div className='grid justify-center items-center  mt-[10rem] pl-[7rem]'>

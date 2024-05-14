@@ -122,7 +122,9 @@ const Register  = () => {
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         console.log(userCredential);
-        const userDocRef = doc(firestore, "users", userCredential.user.uid);
+        if (userCredential && userCredential.user) {
+          sessionStorage.setItem('userId', userCredential.user.uid);
+          const userDocRef = doc(firestore, "users", userCredential.user.uid);
         await setDoc(userDocRef, {
           firstName: firstName,
           lastName: lastName,
@@ -136,6 +138,8 @@ const Register  = () => {
           password: password,
         });
         navigate('/amount');
+        }
+        
       } catch (error) {
         console.log(error);
       }

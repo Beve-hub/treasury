@@ -69,10 +69,10 @@ const Navbar = () => {
                 </div>
                 
                 </div>
-                <div className={!nav ? 'fixed right-0 top-0 w-[60%] h-full  border-r-gray-900 bg-[#989898] z-10 ease-in-out duration-500': 'fixed left-[-400%]'}>
+                <div className={!nav ? 'fixed right-0 top-0 w-[80%] h-full  border-r-gray-900 bg-[#989898] z-10 ease-in-out duration-500': 'fixed left-[-400%]'}>
                               
 
-<ul className=' grid justify-center gap-6 font-medium mt-20'>
+<ul className=' grid justify-start ml-20 gap-6 font-medium mt-20'>
     <li className='text-[--text-extra] text-white transition duration-500 hover:scale-110 cursor-pointer'>
         <NavLink to="/" >
             Home

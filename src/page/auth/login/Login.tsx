@@ -50,7 +50,7 @@ const Login = () => {
           sessionStorage.setItem('userId', userCredentials.user.uid);
           // Assuming 'navigate' is a function to navigate to a different page
           navigate(`/overview`, { state: { userId: userCredentials.user.uid } });
-          console.log('User credentials:', userCredentials);
+          
         }
       }
     } catch (error) {

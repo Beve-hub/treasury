@@ -23,10 +23,8 @@ const Top = () => {
         const fetchData = async () => {
             try {                
                 const userDocRef = doc(firestore, 'users', userId);
-                console.log('userId', userId);
                 const snapshot = await getDoc(userDocRef);
                 if (snapshot.exists()) {
-                    console.log('userdetails', snapshot.data());
                     const userDetails = snapshot.data();
                     setFirstName(userDetails?.firstName);                    
                     localStorage.setItem('firstName', userDetails?.firstName || '');
