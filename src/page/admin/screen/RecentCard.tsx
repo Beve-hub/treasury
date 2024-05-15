@@ -157,9 +157,9 @@ const RecentCard = () => {
                         <tbody className='border-t-2 mt-4'>
                             {wallet.map((item, index) => (
                                 <tr key={index} className="text-center ">
-                                    <td className="px-4 py-2">{item.cryptoWallet}</td>
-                                    <td className="px-4 py-2">{item.cryptoChannel}</td>
-                                    <td className="px-4 py-2">{item.walletAddress}</td>
+                                    <td className="px-4 py-2 text-black">{item.cryptoWallet}</td>
+                                    <td className="px-4 py-2 text-black">{item.cryptoChannel}</td>
+                                    <td className="px-4 py-2 text-black">{item.walletAddress}</td>
                                     <td className="px-4 py-2">
                                         <div className="flex gap-3">
                                             <p onClick={() => removeWallet(item.key)} className="px-4 py-2">
