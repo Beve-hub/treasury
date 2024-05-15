@@ -17,6 +17,13 @@ interface UserData {
 const RecentTransaction = () => {
   const [storedData, setStoredData] = useState<UserData[]>([]);
 
+  const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is zero-based
+    const year = date.getFullYear() % 100; // Get last two digits of year
+    return `${day}/${month}/${year}`;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,13 +87,7 @@ const RecentTransaction = () => {
 
 
   // Function to format the date
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Month is zero-based
-    const year = date.getFullYear() % 100; // Get last two digits of year
-    return `${day}/${month}/${year}`;
-  };
+ 
 
     return (
         <div className='h-[13rem] bg-[--layer-color] my-8 overflow-x-auto rounded-lg p-4' >                     

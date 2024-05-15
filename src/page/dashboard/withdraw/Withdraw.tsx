@@ -1,6 +1,7 @@
 import {  useState } from 'react';
 import { database } from '../../../firebase';
 import { ref,  push } from 'firebase/database';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -26,7 +27,7 @@ const Withdraw = () => {
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [showPaymentMethod, setShowPaymentMethod] = useState<boolean>(false);
     const [showTransactionPin, setShowTransactionPin] = useState<boolean>(false);
-
+    const navigate = useNavigate()
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -56,6 +57,7 @@ const Withdraw = () => {
         const serialId = Math.floor(Math.random() * 1000000);        
         const status = 'Pending'
         const userId = localStorage.getItem('userId')
+       
         try {
             const resp = await fetch(url, {
                 method: 'POST',
@@ -72,10 +74,11 @@ const Withdraw = () => {
                     paymentMethod: '',
                     cryptoWallet: '',
                     transactionPin: ''
-                });                
+                });      
+                navigate('/overview')       
             } 
             if (resp) {
-                alert("details stored")
+                alert("Request Succefull ")
             }
             else {
                 alert("Please fill in all required fields.");
@@ -190,8 +193,7 @@ const Withdraw = () => {
                                                     <option>Choose crypto wallet</option>
                                                     <option>BTC</option>
                                                     <option>ETH</option>
-                                                    <option>USDT</option>
-                                                    <option>XRP</option>
+                                                    <option>USDT</option>                                                   
                                                 </select>
                                             </div>
                                         )}

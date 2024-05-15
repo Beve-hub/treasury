@@ -135,6 +135,7 @@ const Register  = () => {
           state: state,
           coun: coun,
           ssn: ssn,
+          pin: pin,
           password: password,
         });
         navigate('/amount');

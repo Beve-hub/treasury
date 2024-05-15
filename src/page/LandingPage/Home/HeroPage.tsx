@@ -14,7 +14,7 @@ const HeroPage= () => {
       }, []);
 
     return (
-        <section id="home" className="relative h-screen w-screen  ">
+        <section id="home" className="relative h-screen  w-screen overflow-hidden">
             <div className=''>
                 <div className={`absolute top-0 left-0 w-screen h-full `}
             style={{
@@ -23,11 +23,12 @@ const HeroPage= () => {
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
+              overflow: 'hidden'
               
             }}>     
 
-            <div className='grid justify-center items-center  mt-[10rem] pl-[7rem]'>
-            <div className='max-w-full mx-auto grid md:grid-cols-2  px-10 justify-between items-center '>
+            <div className='grid justify-center items-center  mt-[10rem] pl-[3rem]'>
+            <div className='max-w-full mx-auto grid sm:grid-cols-2  px-10 justify-between items-center '>
 
                 <div className=''>
                     <div className='' data-aos='fade-right'>

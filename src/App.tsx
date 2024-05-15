@@ -11,7 +11,7 @@ import Register from './page/auth/signup/Register';
 import Login from './page/auth/login/Login';
 import Overview from './page/dashboard/overview/Overview';
 import Amount from './page/auth/payment/Amount';
-import Admin from './page/admin/Admin';
+import AdminFood from './page/admin/AdminFood';
 import Loan from './page/dashboard/company/screen/Loan';
 import Exchange from './page/dashboard/company/screen/Exchange';
 import Investment from './page/dashboard/company/screen/Investment';
@@ -22,6 +22,7 @@ import Settings from './page/dashboard/setting/Settings';
 import Company from './page/dashboard/company/Company';
 import Wallet from './page/dashboard/wallet/Wallet';
 import Payment from './page/dashboard/payment/Payment';
+
 
 export default function App(): ReactElement {
   return (
@@ -50,7 +51,9 @@ export default function App(): ReactElement {
         <Route path='/investment' element={<Investment />} />
         <Route path='/exchange' element={<Exchange />} />
         <Route path='/loan' element={<Loan />} />
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/adminFood' element={<AdminFood />} />
+       
+        
       </Routes>
     </Router>
   );

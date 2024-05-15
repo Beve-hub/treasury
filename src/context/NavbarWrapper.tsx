@@ -17,9 +17,10 @@ const NavbarWrapper = ({ children }: Props) => {
             '/login',
             '/register',
             '/reg',
-            '/admin',
+            '/adminFood',
             '/settings',
-            '/amount'
+            '/amount',
+            
         ];
 
         const showNavbarPaths = [

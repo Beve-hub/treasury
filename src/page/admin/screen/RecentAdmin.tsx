@@ -105,7 +105,7 @@ const RecentAdmin = () => {
         const withdrawalData: UserData[] = [];
 
         if (depositSnapshot.exists()) {          
-         // console.log('data from firebase snapshot',snapshot)
+        console.log('data from firebase snapshot',status)
            depositSnapshot.forEach((childSnapshot) => {
             const userKey = childSnapshot.key
             const data = childSnapshot.val();            

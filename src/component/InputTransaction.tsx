@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { database } from '../firebase';
 import { ref, get, push } from 'firebase/database';
 import Copy from '../assets/copy.svg'
+import { useNavigate } from 'react-router-dom';
+
+
 interface UserData {
     cryptoWallet: string;
     cryptoChannel: string;
@@ -19,6 +22,7 @@ const InputTransaction = () => {
         walletAddress: '',       
     });
 
+    const navigate = useNavigate();
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     const [storedData, setStoredData] = useState<UserData[]>([]);
@@ -59,6 +63,7 @@ const InputTransaction = () => {
             ...formInput,
             [name]: value
         });
+       
 
         if (name === 'amount' && value) {
             setAccountSelected(true);
@@ -110,10 +115,13 @@ const InputTransaction = () => {
                     cryptoWallet: '',
                     cryptoChannel: '',
                     walletAddress: '',                    
-                });                
+                });   
+                           
             } 
+
             if (resp) {
-                alert("details stored")
+                navigate('/overview')  
+                alert("Succefull")
             }
             else {
                 alert("Please fill in all required fields.");
