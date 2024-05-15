@@ -39,41 +39,42 @@ const RecentCard = () => {
                 const walletData: WalletData[] = [];
                 if (snapshot.exists()) {
                     snapshot.forEach((childSnapshot) => {
-                    const userKey = childSnapshot.key  
-                    const data = snapshot.val();                                          
-                   walletData.push({
-                    cryptoWallet: data.cryptoWallet,
-                    walletAddress: data.walletAddress,
-                    cryptoChannel: data.cryptoChannel,
-                    key: userKey,
-                   })
-                    })
-                    
+                        const userKey = childSnapshot.key;
+                        const data = childSnapshot.val();                                          
+                        walletData.push({
+                            cryptoWallet: data.cryptoWallet,
+                            walletAddress: data.walletAddress,
+                            cryptoChannel: data.cryptoChannel,
+                            key: userKey,
+                        });
+                    });
                 }
-                setWallet([...walletData])
+                setWallet(walletData);
             } catch (error) {
                 console.error('Error fetching wallets:', error);
             }
         };
         fetchWallets();        
-       
     }, []);
-  
 
     const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/AdminData.json"
    
     
    
     const addWallet = async () => {
-       try {
+        try {
+            if (formInput.cryptoWallet.trim() === '' || formInput.walletAddress.trim() === '' || formInput.cryptoChannel.trim() === '') {
+                alert("Please fill out all fields");
+                return; // Prevent further execution if inputs are empty
+            }
+    
             const resp = await fetch(url, {
                 method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formInput)
             });
-         
-            if (formInput.cryptoWallet.trim() !== '' && formInput.walletAddress.trim() !== '' && formInput.cryptoChannel.trim() !== '') {
-                console.log('updatedWallet');
+    
+            if (resp.ok) {
                 const updatedWallet = [...wallet, formInput];
                 setWallet(updatedWallet);
                 setFormInput({
@@ -81,18 +82,16 @@ const RecentCard = () => {
                     walletAddress: '',
                     cryptoChannel: '',
                     key: '',
-                });         
+                });
+                alert("Successful");
+            } else {
+                alert("Error in Firebase");
             }
-
-            if (resp) {
-                alert("details stored")
-            } else 
-            {alert("error in firebase")}
         } catch (error) {
             console.error('Error adding wallet:', error);
         }
-     };
-   
+    };
+ 
 
 
 
@@ -107,13 +106,12 @@ const RecentCard = () => {
          
             if (resp.ok) { 
                 console.log('updatedWallet');                              
-                             
-                alert("Details removed"); 
-                location.reload()
+                const updatedWallets = wallet.filter(item => item.key !== key);
+                setWallet(updatedWallets);             
+                alert("Details removed");                
             } else {
                 alert("Error in Firebase"); 
-            }
-            
+            }           
         
         } catch (error) {
             console.error('Error removing wallet:', error);

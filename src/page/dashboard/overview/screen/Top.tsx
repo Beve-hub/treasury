@@ -12,7 +12,7 @@ import { doc, getDoc } from 'firebase/firestore';
 const Top = () => {
     const [icon, setIcon] = useState<boolean>(false);
     const [firstName, setFirstName] = useState<string>(() => {        
-        return localStorage.getItem('firstName') || '';
+        return sessionStorage.getItem('firstName') || '';
     });
     
     const { state } = useLocation();
@@ -27,7 +27,7 @@ const Top = () => {
                 if (snapshot.exists()) {
                     const userDetails = snapshot.data();
                     setFirstName(userDetails?.firstName);                    
-                    localStorage.setItem('firstName', userDetails?.firstName || '');
+                    sessionStorage.setItem('firstName', userDetails?.firstName || '');
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
