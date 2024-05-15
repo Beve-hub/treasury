@@ -12,7 +12,7 @@ import { doc, getDoc } from 'firebase/firestore';
 const Top = () => {
     const [icon, setIcon] = useState<boolean>(false);
     const [firstName, setFirstName] = useState<string>(() => {        
-        return sessionStorage.getItem('firstName') || '';
+        return localStorage.getItem('firstName') || '';
     });
     
     const { state } = useLocation();
@@ -26,8 +26,9 @@ const Top = () => {
                 const snapshot = await getDoc(userDocRef);
                 if (snapshot.exists()) {
                     const userDetails = snapshot.data();
-                    setFirstName(userDetails?.firstName);                    
-                    sessionStorage.setItem('firstName', userDetails?.firstName || '');
+                    const newFirstName = userDetails?.firstName || '';
+                    setFirstName(newFirstName);
+                    localStorage.setItem('firstName', newFirstName);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -45,7 +46,7 @@ const Top = () => {
 
     const logoutAndNavigate = () => {
         localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('firstName'); // Remove firstName from localStorage on logout
+        localStorage.removeItem('firstName');
         logout();
         navigate('/login');
     };
