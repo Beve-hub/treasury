@@ -71,10 +71,7 @@ const WalletTop = () => {
                     {!icon ? <img src={right} alt='Expand' className='w-[24px]' /> : <img src={down} alt='Collapse' className='w-[24px]' />}
                     {icon && (
                         <div className="absolute top-[6rem] rounded-lg bg-[#ededed] grid items-center justify-center  w-[8rem]">
-                            <ul className='grid p-2 items-center cursor-pointer'>
-                                <li className="flex items-center gap-2  p-1 hover:bg-[--button-color] rounded-lg">
-                                    <a href='/settings'>Settings</a>
-                                </li>
+                            <ul className='grid p-2 items-center cursor-pointer'>                                
                                 <li className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
                                     <button onClick={logoutAndNavigate}>Log out</button>
                                 </li>

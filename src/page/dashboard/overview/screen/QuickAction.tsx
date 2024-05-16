@@ -17,9 +17,7 @@ const QuickAction = () => {
             <h2 className='text-lg '>Withdrawal</h2> 
             </button>
 
-            <button onClick={() => navigate('/transfer')} className='grid justify-center p-1 rounded-2xl  bg-[--text-extra] w-[17rem]'>
-            <h2 className='text-lg '>Transfer</h2> 
-            </button>
+            
            
         </div>
             </div>

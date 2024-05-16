@@ -104,10 +104,7 @@ const Sidebar = () => {
             {!icon ? <img src={right} alt="" className="w-[24px]" /> : <img src={down} alt="" className="w-[24px]" />}
             {icon && (
               <div className="absolute top-[8rem] right-[2rem] z-99 rounded-lg bg-[#ededed] grid items-center justify-center  w-[7rem]">
-                <ul className="grid p-2 items-center cursor-pointer">
-                  <li className="flex items-center gap-2  p-1 hover:bg-[--button-color] rounded-lg">
-                    <NavLink to="/settings">Settings</NavLink>
-                  </li>
+                <ul className="grid p-2 items-center cursor-pointer">                  
                   <li onClick={logout}  className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
                     Log out
                   </li>

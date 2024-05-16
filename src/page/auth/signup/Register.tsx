@@ -40,6 +40,7 @@ const Register  = () => {
   const [validId, setValidId] = useState<string | null>(null);
   const [showPersonalInfo, setShowPersonalInfo] = useState(false);
   const [showSecurityInfo, setShowSecurityInfo] = useState(false);
+  const [showValid, setShowValid] = useState(false);
   const profileInputRef = useRef<HTMLInputElement>(null);
   const validInputRef = useRef<HTMLInputElement>(null);
     
@@ -134,7 +135,9 @@ const Register  = () => {
       const selectedImage = URL.createObjectURL(files[0]);
       setProfileImage(selectedImage);
       setShowPersonalInfo(true);
+      setShowValid(true);
     }
+    
   };
 
    const handleFileValid = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,7 +145,7 @@ const Register  = () => {
     if (files && files.length > 0) {
       const selectedImage = URL.createObjectURL(files[0]);
       setValidId(selectedImage);
-      setShowSecurityInfo(true);
+      setShowSecurityInfo(true);      
     }
   };
 
@@ -210,10 +213,10 @@ const Register  = () => {
           <img
           src={profileImage}
           alt=""
-            className="w-[8rem] h-[8rem] rounded-full "
+            className="w-[6rem] h-[6rem] rounded-full "
             onClick={handleProfileImage}
           />
-          <div onClick={handleProfileImage} className='absolute mt-[5rem] ml-[6.5rem]'><img src={edit} alt='' className='w-[1.5rem]' /></div>
+          <div onClick={handleProfileImage} className='absolute mt-[4rem] ml-[3.5rem]'><img src={edit} alt='' className='w-[1.8rem]' /></div>
           </div>
         ) : (
           <img
@@ -335,8 +338,9 @@ const Register  = () => {
                     </div>
                   )}  
 
+{showValid && (<>
 
-<div className='grid justify-center items-center mt-10'>
+  <div className='grid justify-center items-center mt-10'>
      <div className='grid justify-center items-center gap-4'>
      <label htmlFor='validId' className='font-semibold text-medium'>Upload  Valid ID</label>
      {validId ? (
@@ -411,6 +415,8 @@ const Register  = () => {
     </div>  
     </div>
     )}
+</>)}
+
            
             </div>
             <div>

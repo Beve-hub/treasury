@@ -51,12 +51,16 @@ const Login = () => {
           // Assuming 'navigate' is a function to navigate to a different page
           navigate(`/overview`, { state: { userId: userCredentials.user.uid } });
           
+        }else{
+          alert("User not found")
         }
+
       }
     } catch (error) {
       console.error("Error signing in:", error);
     } finally {
       setLoading(false);
+      
     }
   };
   

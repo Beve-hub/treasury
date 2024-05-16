@@ -61,7 +61,7 @@ const Withdraw = () => {
             }));
             setShowPaymentMethod(true);
             setShowTransactionPin(true);           
-        } else if (name === 'Crypto withdrawal') {
+        } else if (name === 'cryptoWallet') {
             setShowChannel(true);
             setShowWalletAddress(true);
         }
