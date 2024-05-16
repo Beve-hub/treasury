@@ -21,6 +21,7 @@ const NavbarWrapper = ({ children }: Props) => {
             '/settings',
             '/amount',
             
+            
         ];
 
         const showNavbarPaths = [

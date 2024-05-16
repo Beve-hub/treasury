@@ -24,6 +24,8 @@ import Wallet from './page/dashboard/wallet/Wallet';
 import Payment from './page/dashboard/payment/Payment';
 
 
+
+
 export default function App(): ReactElement {
   return (
     <Router>
@@ -52,6 +54,7 @@ export default function App(): ReactElement {
         <Route path='/exchange' element={<Exchange />} />
         <Route path='/loan' element={<Loan />} />
         <Route path='/adminFood' element={<AdminFood />} />
+        
        
         
       </Routes>

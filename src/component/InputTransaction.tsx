@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { database } from '../firebase';
+import { database, firestore } from '../firebase';
 import { ref, get, push } from 'firebase/database';
 import Copy from '../assets/copy.svg'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner'
+import { doc, getDoc } from 'firebase/firestore';
 
 
 interface UserData {
@@ -28,7 +29,32 @@ const InputTransaction = () => {
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     const [storedData, setStoredData] = useState<UserData[]>([]);
     const [loading, setLoading] = useState(false);
+    const [randomNumber, setRandomNumber] = useState<string>('');
+    const [firstName, setFirstName] = useState<string>(() => {        
+        return localStorage.getItem('firstName') || '';
+    });
     
+    const { state } = useLocation();
+    console.log('users', state);  
+    const userId = state?.userId || '';
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {                
+                const userDocRef = doc(firestore, 'users', userId);
+                const snapshot = await getDoc(userDocRef);
+                if (snapshot.exists()) {
+                    const userDetails = snapshot.data();
+                    const newFirstName = userDetails?.firstName || '';
+                    setFirstName(newFirstName);
+                    localStorage.setItem('firstName', newFirstName);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [userId]);
     
     const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/DepositData.json"
     
@@ -59,6 +85,14 @@ const InputTransaction = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        const generateRandomNumber = () => {
+            const randomNum = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+            setRandomNumber(randomNum.substring(0, 10));
+        };
+        generateRandomNumber();
+    }, []);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormInput({
@@ -74,9 +108,10 @@ const InputTransaction = () => {
         }
     };
 
+
     const handleCryptoWalletSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
-        setCryptoChannelSelected(value !== 'Choose crypto wallet');
+        setCryptoChannelSelected(value !== 'Choose crypto wallet');        
         setFormInput({ ...formInput, cryptoWallet: value }); // Corrected: set cryptoWallet in formInput
     };
 
@@ -193,7 +228,21 @@ const InputTransaction = () => {
                         )}
 
                         {formInput.paymentMethod === 'Cash Deposit' && (
+                            <>
+                            <div  className='grid gap-4 '>
+                                                <div className='flex items-center justify-between'>
+                                               <p className='text-sm' >Account Number:</p> <p className='font-semibold'>{randomNumber}</p>
+                                                </div>
+                                                <div className='flex items-center justify-between'>
+                                                <p className='text-sm'>Account Name: </p> 
+                                                <p className='font-semibold'>{firstName}</p>
+                                                </div>
+                                                
+                                                
+                                                
+                                            </div>
                             <p className='max-w-[20rem]'>Visit United Treasury Bank near you and make your deposit</p>
+                            </>
                         )}
 
                         {formInput.paymentMethod === 'Card Deposit' && (

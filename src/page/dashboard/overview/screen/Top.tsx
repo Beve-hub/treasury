@@ -16,7 +16,7 @@ const Top = () => {
     });
     
     const { state } = useLocation();
-    console.log('users', state);  
+     
     const userId = state?.userId || '';
 
     useEffect(() => {
@@ -24,9 +24,11 @@ const Top = () => {
             try {                
                 const userDocRef = doc(firestore, 'users', userId);
                 const snapshot = await getDoc(userDocRef);
-                if (snapshot.exists()) {
+                if (snapshot.exists()) {                    
                     const userDetails = snapshot.data();
+                    
                     const newFirstName = userDetails?.firstName || '';
+                    console.log('users', newFirstName); 
                     setFirstName(newFirstName);
                     localStorage.setItem('firstName', newFirstName);
                 }
