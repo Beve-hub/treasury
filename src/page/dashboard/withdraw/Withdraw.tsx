@@ -11,6 +11,9 @@ interface FormData {
     cryptoWallet: string;    
     walletAddress: string;
     transactionPin: string;
+    accountName: string;
+    accountNumber: string;
+    bankName: string,
 }
 
 const Withdraw = () => {
@@ -20,7 +23,11 @@ const Withdraw = () => {
         paymentMethod: '',
         cryptoWallet: '',
         transactionPin: '',       
-        walletAddress: ''
+        walletAddress: '',
+        accountNumber: '',
+        accountName: '',
+        bankName: '',
+
     });
 
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
@@ -48,13 +55,15 @@ const Withdraw = () => {
                 channel: '',
                 walletAddress: '',
                 transactionPin: '',
+                accountName: '',
+                accountNumber: '',
+                bankName: '',
             }));
             setShowPaymentMethod(true);
-            setShowTransactionPin(true);
-        } else if (name === 'paymentMethod') {
+            setShowTransactionPin(true);           
+        } else if (name === 'Crypto withdrawal') {
             setShowChannel(true);
             setShowWalletAddress(true);
-            setShowTransactionPin(true);
         }
         
     };
@@ -85,7 +94,10 @@ const Withdraw = () => {
                 paymentMethod: '',
                 cryptoWallet: '',
                 transactionPin: '',               
-                walletAddress: ''
+                walletAddress: '',
+                accountName: '',
+                accountNumber: '',
+                bankName: '',
             });
 
             if (resp) {                
@@ -157,7 +169,40 @@ const Withdraw = () => {
                                                 </select>
                                             </div>
                                         )}
-
+                                        {formData.paymentMethod === 'Cash withdrawal' && (
+                                            <>
+                                                <div>
+                                                    <label htmlFor="bankName">Bank Name</label>
+                                                    <input
+                                                        type="text"
+                                                        id="bankName"
+                                                        name="bankName"
+                                                        className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                        placeholder="Enter bank name"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label htmlFor="accountNumber">Account Number</label>
+                                                    <input
+                                                        type="text"
+                                                        id="accountNumber"
+                                                        name="accountNumber"
+                                                        className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                        placeholder="Enter account number"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label htmlFor="accountName">Account Name</label>
+                                                    <input
+                                                        type="text"
+                                                        id="accountName"
+                                                        name="accountName"
+                                                        className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                        placeholder="Enter account name"
+                                                    />
+                                                </div>
+                                            </>
+                                        )}
                                         {formData.paymentMethod === 'Card withdrawal' && (
                                             <>
                                                 <div>
