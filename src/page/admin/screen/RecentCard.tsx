@@ -134,43 +134,43 @@ const RecentCard = () => {
 
                 <div className="grid justify-end">
                 <button onClick={toggleIcon} className="bg-[--bg-color] w-[7rem] p-2 text-[--text-extra] rounded-md ">
-                    + Add
-                </button>
+                    Add
+                </button>                
                 </div>
                 
             </div>
     
-            <div className='bg-[--layer-color]  my-8 rounded-lg p-4'>
-                <p className='font-bold text-lg'>Wallet Details</p>
-                <div className="overflow-x-auto">
-                    <table className="table-auto w-full mt-2">
-                        <thead className='border-b-2'>
-                            <tr>
-                                <th className="px-4 py-2">Crypto</th>
-                                <th className="px-4 py-2">Network</th>
-                                <th className="px-4 py-2">Address</th>  
-                                <th className="px-4 py-2"> </th>   
-                            </tr>
-                        </thead>
-                        <tbody className='border-t-2 mt-4'>
-                            {wallet.map((item, index) => (
-                                <tr key={index} className="text-center ">
-                                    <td className="px-4 py-2 text-black">{item.cryptoWallet}</td>
-                                    <td className="px-4 py-2 text-black">{item.cryptoChannel}</td>
-                                    <td className="px-4 py-2 text-black">{item.walletAddress}</td>
-                                    <td className="px-4 py-2">
-                                        <div className="flex gap-3">
-                                            <p onClick={() => removeWallet(item.key)} className="px-4 py-2">
-                                                <img src={remove} alt="" className="w-[24px]"/>
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <div className='bg-[--layer-color] my-8 overflow-x-auto rounded-lg p-4'>
+    <p className='font-bold text-lg'>Wallet Details</p>
+    <table className="table-auto w-full overflow-x-auto mt-2">
+            <thead className='border-b-2'>
+                <tr>
+                    <th className="px-4 py-2">Crypto</th>
+                    <th className="px-4 py-2">Network</th>
+                    <th className="px-4 py-2">Address</th>  
+                    <th className="px-4 py-2">Action</th>   
+                </tr>
+            </thead>
+            <tbody className='border-t-2 mt-4'>
+                {wallet.map((item, index) => (
+                    <tr key={index} className="text-center">
+                        <td className="px-4 py-2 text-black">{item.cryptoWallet}</td>
+                        <td className="px-4 py-2 text-black">{item.cryptoChannel}</td>
+                        <td className="px-4 py-2 text-black">{item.walletAddress}</td>
+                        <td className="px-4 py-2">
+                            <div className="flex items-center justify-center">
+                                <button onClick={() => removeWallet(item.key)} className="px-4 py-2">
+                                    <img src={remove} alt="" className="w-[24px]" />
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+</div>
+
+
     
             <AddWallet toggleIcon={icon} onClose={() => setIcon(false)}>
                 <div>

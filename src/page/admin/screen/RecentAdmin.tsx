@@ -167,7 +167,7 @@ const RecentAdmin = () => {
   };
 
   return (
-    <div className='h-[18rem] bg-[--layer-color]  my-8 overflow-x-auto rounded-lg p-4'>
+    <div className=' bg-[--layer-color]  my-8 overflow-x-auto rounded-lg p-4'>
       <p className='font-bold text-lg'>Recent Transaction</p>
       <table className="table-auto w-[60rem]  items-center mt-2">
         <thead className='border-b-2'>
@@ -199,9 +199,10 @@ const RecentAdmin = () => {
                     <button className='border-2 p-1  rounded-sm text-xs' onClick={() => handleDecline(item.key,item.paymentMethod)}>{loader ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Decline'}</button>
                   </div>
                 ) : (
-                 <p style={{ color: item.status === 'Successful' ? 'green' : 'red' }}>
-                 {item.status}
-               </p>
+                  <p style={{ color: item.status === 'Failed' ? 'red' : item.status === 'Successful' ? 'green' : 'yellow' }}>
+                  {item.status}
+                </p>
+                
                  )}
               </td>
             </tr>

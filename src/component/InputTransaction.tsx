@@ -3,6 +3,7 @@ import { database } from '../firebase';
 import { ref, get, push } from 'firebase/database';
 import Copy from '../assets/copy.svg'
 import { useNavigate } from 'react-router-dom';
+import { Oval } from 'react-loader-spinner'
 
 
 interface UserData {
@@ -26,6 +27,7 @@ const InputTransaction = () => {
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     const [storedData, setStoredData] = useState<UserData[]>([]);
+    const [loading, setLoading] = useState(false);
     
     
     const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/DepositData.json"
@@ -90,7 +92,7 @@ const InputTransaction = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();  
-    
+        setLoading(true);
         // Get current date and time
         const currentDate = new Date().toISOString();
         const serialId = Math.floor(Math.random() * 1000000);
@@ -121,7 +123,7 @@ const InputTransaction = () => {
 
             if (resp) {
                 navigate('/overview')  
-                alert("Succefull")
+                alert("Successful")
             }
             else {
                 alert("Please fill in all required fields.");
@@ -130,6 +132,7 @@ const InputTransaction = () => {
             console.error('Error adding wallet:', error);
             alert("Error storing details. Please try again.");
         }     
+        setLoading(false);
     };
     
 
@@ -272,9 +275,10 @@ const InputTransaction = () => {
                     <div className='grid items-center justify-center py-3'>
                             <button
                                 type="submit"
-                                className="w-[20rem] flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color]"                            
+                                className="w-[20rem] flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color]"   
+                                disabled={!accountSelected}                         
                             >
-                                Submit
+                               {loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Submit'}
                             </button>
             </div>
                 </form>

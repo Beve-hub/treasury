@@ -1,33 +1,36 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { database } from '../../../firebase';
-import { ref,  push } from 'firebase/database';
+import { ref } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
-
-
+import { Oval } from 'react-loader-spinner';
 
 interface FormData {
     amount: string;
     accountType: string;
     paymentMethod: string;
-    cryptoWallet: string;
+    cryptoWallet: string;    
+    walletAddress: string;
     transactionPin: string;
-    
 }
 
 const Withdraw = () => {
-    
     const [formData, setFormData] = useState<FormData>({
         amount: '',
         accountType: '',
         paymentMethod: '',
         cryptoWallet: '',
-        transactionPin: ''
+        transactionPin: '',       
+        walletAddress: ''
     });
-    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/WithdrawData.json"
+
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
     const [showPaymentMethod, setShowPaymentMethod] = useState<boolean>(false);
+    const [showChannel, setShowChannel] = useState<boolean>(false);
+    const [showWalletAddress, setShowWalletAddress] = useState<boolean>(false);
     const [showTransactionPin, setShowTransactionPin] = useState<boolean>(false);
-    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -42,51 +45,60 @@ const Withdraw = () => {
                 ...prevState,
                 paymentMethod: '',
                 cryptoWallet: '',
-                transactionPin: ''
+                channel: '',
+                walletAddress: '',
+                transactionPin: '',
             }));
             setShowPaymentMethod(true);
             setShowTransactionPin(true);
         } else if (name === 'paymentMethod') {
+            setShowChannel(true);
+            setShowWalletAddress(true);
             setShowTransactionPin(true);
         }
+        
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         const currentDate = new Date().toISOString();
         const serialId = Math.floor(Math.random() * 1000000);        
         const status = 'Pending'
-        const userId = localStorage.getItem('userId')
+        const userId = sessionStorage.getItem('userId')
        
         try {
+            const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/WithdrawData.json";
             const resp = await fetch(url, {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({...formData, date: currentDate, serialId: serialId, status, userId  }) // Include dateTime in the formInput object
+                body: JSON.stringify({...formData, date: currentDate, serialId: serialId, status, userId  })
             });
-    
+
             if (formData.cryptoWallet.trim() !== '' && formData.paymentMethod.trim() !== '' && formData.accountType.trim() !== '') {
                 const usersRef = ref(database, 'WithdrawData');
-                push(usersRef, { ...formData, date: currentDate, serialId: serialId,status, userId  }); // Include dateTime in the pushed data
-                setFormData({
-                    amount: '',
-                    accountType: '',
-                    paymentMethod: '',
-                    cryptoWallet: '',
-                    transactionPin: ''
-                });      
-                navigate('/overview')       
-            } 
-            if (resp) {
-                alert("Request Succefull ")
+               console.log('withdraw', usersRef)
             }
-            else {
+            setFormData({
+                amount: '',
+                accountType: '',
+                paymentMethod: '',
+                cryptoWallet: '',
+                transactionPin: '',               
+                walletAddress: ''
+            });
+
+            if (resp) {                
+                navigate('/overview');
+                alert("Successful");
+            } else {
                 alert("Please fill in all required fields.");
             }
         } catch (error) {
             console.error('Error adding wallet:', error);
             alert("Error storing details. Please try again.");
         }     
+        setLoading(false);
     };
 
     return (
@@ -197,7 +209,36 @@ const Withdraw = () => {
                                                 </select>
                                             </div>
                                         )}
-
+                                            {showChannel && (
+                                            <div>
+                                            <label htmlFor="cryptoChannel">Network</label>
+                                            <select
+                                                id="cryptoChannel"
+                                                name="cryptoChannel"
+                                                className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                onChange={(e) => handleInputChange(e)}
+                                            >
+                                                 <option>Choose crypto channel</option>
+                                                 <option>Bitcoin</option>
+                                                 <option>TRC20</option>
+                                                 <option>ERC20</option>
+                                                 <option>BEP20</option>                                                  
+                                            </select>
+                                        </div>
+                                        )}
+                                        {showWalletAddress && (
+                                            <div>
+                                                <label htmlFor="walletAddress">Wallet Address</label>
+                                                <input
+                                                    type="text"
+                                                    id="walletAddress "
+                                                    name="walletAddress"
+                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    placeholder="Enter wallet address"
+                                                    onChange={handleInputChange}
+                                                />
+                                            </div>
+                                        )}
                                         {showTransactionPin && (
                                             <div>
                                                 <label htmlFor="transactionPin">Transaction Pin</label>
@@ -213,14 +254,14 @@ const Withdraw = () => {
                                         )}
                                     </div>
                                     <div>
-                                        <button
-                                            type="submit"
-                                            onClick={handleSubmit}
-                                            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color]"
-                                            disabled={!accountSelected}
-                                        >
-                                            Submit
-                                        </button>
+                                    <button
+                                        type="submit"
+                                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color]"
+                                        disabled={!accountSelected}
+                                    >
+                                        {loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Submit'}
+                                    </button>
+
                                     </div>
                                 </form>
                             </div>

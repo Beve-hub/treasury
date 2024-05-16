@@ -27,18 +27,18 @@ const RecentTransaction = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const userId = sessionStorage.getItem('userId')
+      const userId = sessionStorage.getItem('userId');
       try {
-        const depositRef = ref(database, 'DepositData' );
-        const withdrawalRef = ref(database,  'WithdrawData');
-        
+        const depositRef = ref(database, 'DepositData');
+        const withdrawalRef = ref(database, 'WithdrawData');
+  
         const depositSnapshot = await get(depositRef);
-        const withdrawalSnapshot = await get(withdrawalRef)
-
+        const withdrawalSnapshot = await get(withdrawalRef);
+  
         const depositData: UserData[] = [];
         const withdrawalData: UserData[] = [];
-
-        if (depositSnapshot.exists()) {          
+  
+        if (depositSnapshot.exists()) {
           depositSnapshot.forEach((childSnapshot) => {
             const data = childSnapshot.val();
             if (data.userId === userId) {
@@ -50,40 +50,39 @@ const RecentTransaction = () => {
                 cryptoWallet: data.cryptoWallet,
                 serialId: data.serialId,
                 status: data.status,
-                userId: data.userId
+                userId: data.userId,
               });
             }
-            
-          });         
-      } 
-
-      if (withdrawalSnapshot.exists()) {        
-        withdrawalSnapshot.forEach((childSnapshot) => {
-          const data = childSnapshot.val();
-          if (data.userId === userId) {
-            withdrawalData.push({
-              amount: data.amount,
-              accountType: data.accountType,
-              paymentMethod: data.paymentMethod,
-              date: formatDate(data.date), // Format the date here
-              cryptoWallet: data.cryptoWallet,
-              serialId: data.serialId,
-              status: data.status,
-              userId: data.userId
-            });
-          }
-        });
-      
-    } 
-    setStoredData([...withdrawalData, ...depositData]);
-
-  }
-      catch (error) {
+          });
+        }
+  
+        if (withdrawalSnapshot.exists()) {
+          withdrawalSnapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val();
+            if (data.userId === userId) {
+              withdrawalData.push({
+                amount: data.amount,
+                accountType: data.accountType,
+                paymentMethod: data.paymentMethod,
+                date: formatDate(data.date), // Format the date here
+                cryptoWallet: data.cryptoWallet,
+                serialId: data.serialId,
+                status: data.status,
+                userId: data.userId,
+              });
+            }
+          });
+        }
+  
+        // Update the state inside each conditional block
+        setStoredData([...withdrawalData, ...depositData]);
+      } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
     fetchData();
   }, []);
+  
 
 
   // Function to format the date
