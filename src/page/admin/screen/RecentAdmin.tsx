@@ -12,7 +12,9 @@ interface UserData {
   date: string, 
   serialId: string,
   key: string,
-  status: string
+  status: string,
+  currency: string,
+  currencyWallet: string
 }
 
 
@@ -33,7 +35,7 @@ const RecentAdmin = () => {
         
     try {
       let url 
-      if (PaymentMethod === 'Crypto withdrawal') {
+      if (PaymentMethod === 'Crypto withdrawal' || PaymentMethod === 'Cash withdrawal' || PaymentMethod === 'Card withdrawal') {
         url = url2
       }else  {
         url = url1
@@ -64,7 +66,7 @@ const RecentAdmin = () => {
     setLoader(true);
     try {
       let url 
-      if (PaymentMethod === 'Crypto withdrawal') {
+      if (PaymentMethod === 'Crypto withdrawal' || PaymentMethod === 'Cash withdrawal' || PaymentMethod === 'Card withdrawal') {
         url = url2
       }else  {
         url = url1
@@ -117,7 +119,9 @@ const RecentAdmin = () => {
               cryptoWallet: data.cryptoWallet,
               serialId: data.serialId,
               key: userKey,
-              status: data.status
+              currency: data.currency,
+              status: data.status,
+              currencyWallet: data.currencyWallet
             });
            
           });       
@@ -137,6 +141,8 @@ const RecentAdmin = () => {
                cryptoWallet: data.cryptoWallet,
                serialId: data.serialId,
                key: userKey,
+               currency: data.currency,
+               currencyWallet: data.currencyWallet,
                status: data.status
              });
             
@@ -186,11 +192,13 @@ const RecentAdmin = () => {
           {            
           storedData.map((item, index) => (
             <tr key={index} className="text-center">
-              <td className="px-4 py-2">D{item.serialId}</td>
-              <td className="px-4 py-2">${item.amount}</td>
+              <td className="px-4 py-2">{item.serialId}</td>
+              <td className="px-4 py-2">{item.currency}{item.amount}</td>
               <td className="px-4 py-2">{item.accountType}</td>    
               <td className="px-4 py-2">{item.paymentMethod}</td>         
-              <td className="px-4 py-2">{item.cryptoWallet}</td>              
+              <td className="px-4 py-2">
+                <p> {item.cryptoWallet} {item.currencyWallet} </p>
+                </td>              
               <td className="px-4 py-2">{item.date}</td>
               <td className="px-4 py-2 flex gap-2">
               {item.status === "Pending"  ? (

@@ -13,7 +13,8 @@ import edit from '../../../assets/edit.svg'
 interface Errors {
   firstName?: string;    
     email?: string;
-    phoneNum?: string;    
+    phoneNum?: string; 
+    maritalStatus?: string;   
     password?: string;
     confirm?: string;
   date?: string;
@@ -21,12 +22,17 @@ interface Errors {
   state?: string;
   coun?: string;  
   pin?: string;
+  occupation?: string;
+  maidenName?: string;
   profileImage?: File;
   validId?: File;
 }
 
 const Register  = () => { 
   const [firstName, setFirstName] = useState('');   
+  const [maidenName, setMaidenName] = useState('');   
+  const [maritalStatus, setMaritalStatus] = useState('');  
+  const [occupation, setOccupation] = useState('');   
     const [email, setEmail] = useState('');
     const [phoneNum, setPhoneNum] = useState('');    
     const [password, setPassword] = useState('');
@@ -56,6 +62,20 @@ const Register  = () => {
 
     if (!firstName.trim()) {
       errors.firstName = 'First Name is required';
+      isValid = false;
+    } 
+
+    if (!maidenName.trim()) {
+      errors.maidenName = 'Madien Name is required';
+      isValid = false;
+    } 
+    if (!maritalStatus.trim()) {
+      errors.maritalStatus = 'Marital Status is required';
+      isValid = false;
+    } 
+
+    if (!occupation.trim()) {
+      errors.occupation = 'Occupation is required';
       isValid = false;
     } 
 
@@ -160,10 +180,13 @@ const Register  = () => {
           sessionStorage.setItem('userId', userCredential.user.uid);
           const userDocRef = doc(firestore, "users", userCredential.user.uid);
         await setDoc(userDocRef, {  
-          firstName: firstName,            
+          firstName: firstName,  
+          maidenName:maidenName,      
+          maritalStatus:maritalStatus,    
             email: email,
             phoneNum: phoneNum,           
-            password: password,        
+            password: password,    
+            occupation:occupation,    
           date: date,
           address: address,
           state: state,
@@ -241,19 +264,36 @@ const Register  = () => {
                 {showPersonalInfo && (
                     <div className='space-y-4'>
                       <p className='font-bold text-xl my-4'>Personal Information </p>
-                      <div>
+                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
+                <div>
                   <label htmlFor="firstName">Full Name *</label>
                   <input
                     id="firstName"
                     name="firstName"
                     type="text"
-                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Full name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   {errors.firstName && <span className='text-[#f30000] text-sm'>{errors.firstName}</span>}
-                </div>                    
+                </div>  
+                <div>
+                  <label htmlFor="maidenName">Maiden Name *</label>
+                  <input
+                    id="maidenName"
+                    name="maidenName"
+                    type="text"
+                    className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    placeholder="maiden name"
+                    value={maidenName}
+                    onChange={(e) => setMaidenName(e.target.value)}
+                  />
+                  {errors.maidenName&& <span className='text-[#f30000] text-sm'>{errors.maidenName}</span>}
+                </div>  
+                </div>
+
+                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
                 <div>
                 <label htmlFor="email-address">Email address *</label>
                 <input
@@ -261,60 +301,100 @@ const Register  = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 {errors.email && <span className='text-[#f30000] text-sm'>{errors.email}</span>}
               </div>
+
               <div>
                 <label htmlFor="phoneNum">Phone Number *</label>
                 <input
                   id="phoneNum"
                   name="phoneNum"
                   type="text"
-                  className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Phone Number"
                   value={phoneNum}
                   onChange={(e) => setPhoneNum(e.target.value)}
                 />
                 {errors.phoneNum && <span className='text-[#f30000] text-sm'>{errors.phoneNum}</span>}
-              </div>      
+              </div>   
+                </div>
 
-              <div>
+                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
+                <div>
               <label htmlFor="date">Date of Birth *</label>
               <input
                 id="date"
                 name="date"
                 type="date"
-                className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="DD MM YY"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
               />
               {errors.date && <span className='text-[#f30000] text-sm'>{errors.date}</span>}
             </div>
+
             <div>
-              <label htmlFor="address">Address *</label>
+                   <label htmlFor="maritalStatus">Marital Status *</label>
+                   <select
+                       id="maritalStatus"
+                       name="maritalStatus"
+                       className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                       value={maritalStatus}
+                      onChange={(e) => setMaritalStatus(e.target.value)}
+                   >
+                       <option></option>
+                       <option>Single</option>
+                       <option>Married</option>                      
+                   </select>   
+                   {errors.maritalStatus && <span className='text-[#f30000] text-sm'>{errors.maritalStatus}</span>}                
+               </div>
+                </div>
+
+                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
+                <div>
+              <label htmlFor="occupation">Occupation *</label>
+              <input
+                id="occupation"
+                name="occupation"
+                type="text"               
+                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Enter occupation"
+                value={occupation}
+                onChange={(e) => setOccupation(e.target.value)}
+              />
+              {errors.occupation && <span className='text-[#f30000] text-sm'>{errors.occupation}</span>}
+            </div>
+
+            <div>
+              <label htmlFor="address">Home Address *</label>
               <input
                 id="address"
                 name="address"
                 type="text"               
-                className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Enter address"
+                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Enter home address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
               {errors.address && <span className='text-[#f30000] text-sm'>{errors.address}</span>}
             </div>
-            <div>
+                </div>
+
+                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
+
+                <div>
               <label htmlFor="state">State *</label>
               <input
                 id="state"
                 name="state"
                 type="text"
-                className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="State"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
@@ -327,13 +407,16 @@ const Register  = () => {
                 id="coun"
                 name="coun"
                 type="text"
-                className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Country"
                 value={coun}
                 onChange={(e) => setCoun(e.target.value)}
               />
               {errors.coun && <span className='text-[#f30000] text-sm'>{errors.coun}</span>}
-            </div>     
+            </div> 
+                </div>
+            
+                
                  
                     </div>
                   )}  

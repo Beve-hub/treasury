@@ -11,7 +11,9 @@ interface UserData {
   date: string, 
   serialId: string,
   status: string,
-  userId: string
+  userId: string,
+  currency: string,
+  currencyWallet: string
 }
 
 const RecentTransaction = () => {
@@ -51,6 +53,8 @@ const RecentTransaction = () => {
                 serialId: data.serialId,
                 status: data.status,
                 userId: data.userId,
+                currency: data.currency,
+                currencyWallet: data.currencyWallet
               });
             }
           });
@@ -69,6 +73,8 @@ const RecentTransaction = () => {
                 serialId: data.serialId,
                 status: data.status,
                 userId: data.userId,
+                currency: data.currency,
+                currencyWallet: data.currencyWallet
               });
             }
           });
@@ -89,9 +95,9 @@ const RecentTransaction = () => {
  
 
     return (
-        <div className='h-[13rem] bg-[--layer-color] my-8 overflow-x-auto rounded-lg p-4' >                     
-            <p className='font-bold text-lg'>Recent Transaction</p>    
-            <table className="table-auto w-[60rem]  items-center mt-2">
+        <div className='h-[13rem]  my-8 overflow-x-auto ' >                     
+            <p className='font-bold text-lg bg-[--bg-color] text-[--text-extra] rounded-lg px-2 py-2 w-[65rem] '>Recent Transaction</p>    
+            <table className="table-auto w-[65rem]  items-center mt-2 bg-[--layer-color] rounded-lg p-4">
         <thead className='border-b-2'>
           <tr>
             <th className="px-4 py-2">Seria ID</th>
@@ -108,10 +114,12 @@ const RecentTransaction = () => {
           {storedData.map((item, index) => (
             <tr key={index} className="text-center">
               <td className="px-4 py-2">{item.serialId}</td>
-              <td className="px-4 py-2">${item.amount}</td>
+              <td className="px-4 py-2">{item.currency}{item.amount}</td>
               <td className="px-4 py-2">{item.accountType}</td>    
               <td className="px-4 py-2">{item.paymentMethod}</td>         
-              <td className="px-4 py-2">{item.cryptoWallet}</td>              
+              <td className="px-4 py-2"><p>
+              {item.cryptoWallet} {item.currencyWallet}
+                </p></td>              
               <td className="px-4 py-2">{item.date}</td>
               <td className="px-4 py-2" style={{ color: item.status === 'Successful' ? 'green' : 'red' }}>{item.status}</td>              
             </tr>

@@ -4,6 +4,7 @@ import { ref } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner';
 
+
 interface FormData {
     amount: string;
     accountType: string;
@@ -14,6 +15,8 @@ interface FormData {
     accountName: string;
     accountNumber: string;
     bankName: string,
+    currency: string,
+    currencyWallet: string,
 }
 
 const Withdraw = () => {
@@ -27,6 +30,8 @@ const Withdraw = () => {
         accountNumber: '',
         accountName: '',
         bankName: '',
+        currency: '€',
+        currencyWallet: '',
 
     });
 
@@ -58,6 +63,7 @@ const Withdraw = () => {
                 accountName: '',
                 accountNumber: '',
                 bankName: '',
+                currencyWallet: '',
             }));
             setShowPaymentMethod(true);
             setShowTransactionPin(true);           
@@ -91,6 +97,8 @@ const Withdraw = () => {
             setFormData({
                 amount: '',
                 accountType: '',
+                currency: '€',
+                currencyWallet: '',
                 paymentMethod: '',
                 cryptoWallet: '',
                 transactionPin: '',               
@@ -123,12 +131,18 @@ const Withdraw = () => {
                                         <div>
                                             <label htmlFor="amount">Amount</label>
                                             <div className="relative">
-                                                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">$</span>
+                                                <span id="sign" className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">
+                                                <select >
+                                                     <option value="€">€</option>
+                                                      <option value="$">$</option>
+                                                      <option value="Kr">Kr</option>               
+                                                  </select>
+                                                </span>
                                                 <input
                                                     id="amount"
                                                     name="amount"
                                                     type="number"
-                                                    className="pl-10 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    className="pl-20 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                                     placeholder="0.00"
                                                     value={formData.amount}
                                                     onChange={handleInputChange}
@@ -147,8 +161,9 @@ const Withdraw = () => {
                                                 >
                                                     <option>Choose Account Type</option>
                                                     <option>Savings Account</option>
-                                                    <option>Checking Account</option>
-                                                    <option>Investment Account</option>
+                                                    <option>Fixed Account</option>
+                                                    <option>Business Account</option>
+                                                    <option>Retirement Account</option>
                                                 </select>
                                             </div>
                                         )}
@@ -171,6 +186,20 @@ const Withdraw = () => {
                                         )}
                                         {formData.paymentMethod === 'Cash withdrawal' && (
                                             <>
+                                            <div>
+                                                <label htmlFor="currencyWallet">Crypto Wallet</label>
+                                                <select
+                                                    id="currencyWallet"
+                                                    name="currencyWallet"
+                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    onChange={(e) => handleInputChange(e)}
+                                                >
+                                                    <option>Choose currency wallet</option>
+                                                    <option>Euro</option>
+                                                    <option>Dollar</option>
+                                                    <option>Krona</option>                                                   
+                                                </select>
+                                            </div>
                                                 <div>
                                                     <label htmlFor="bankName">Bank Name</label>
                                                     <input
@@ -205,6 +234,20 @@ const Withdraw = () => {
                                         )}
                                         {formData.paymentMethod === 'Card withdrawal' && (
                                             <>
+                                            <div>
+                                                <label htmlFor="currencyWallet">Crypto Wallet</label>
+                                                <select
+                                                    id="currencyWallet"
+                                                    name="currencyWallet"
+                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    onChange={(e) => handleInputChange(e)}
+                                                >
+                                                    <option>Choose currency wallet</option>
+                                                    <option>Euro</option>
+                                                    <option>Dollar</option>
+                                                    <option>Krona</option>                                                   
+                                                </select>
+                                            </div>
                                                 <div>
                                                     <label htmlFor="cardNumber">Card Number</label>
                                                     <input

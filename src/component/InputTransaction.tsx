@@ -1,31 +1,34 @@
 import { useEffect, useState } from 'react';
 import { database, firestore } from '../firebase';
 import { ref, get, push } from 'firebase/database';
-import Copy from '../assets/copy.svg'
+import Copy from '../assets/copy.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Oval } from 'react-loader-spinner'
+import { Oval } from 'react-loader-spinner';
 import { doc, getDoc } from 'firebase/firestore';
-
 
 interface UserData {
     cryptoWallet: string;
     cryptoChannel: string;
     walletAddress: string;
     status: string;
+   
 }
 
 const InputTransaction = () => {
     const [formInput, setFormInput] = useState({
         amount: '',
+        currency: '€',
         accountType: '',
         paymentMethod: '',
         cryptoWallet: '',
         cryptoChannel: '',
-        walletAddress: '',       
+        walletAddress: '',  
+        currencyWallet: '',      
     });
 
     const navigate = useNavigate();
     const [accountSelected, setAccountSelected] = useState<boolean>(false);
+    const [CurrencySelected, setCurrencySelected] = useState<boolean>(false);
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     const [storedData, setStoredData] = useState<UserData[]>([]);
     const [loading, setLoading] = useState(false);
@@ -107,7 +110,11 @@ const InputTransaction = () => {
             setAccountSelected(true);
         }
     };
-
+    const handleCurrencySelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { value } = e.target;
+        setCurrencySelected(value !== 'Choose currency wallet');        
+        setFormInput({ ...formInput, currencyWallet: value }); // Corrected: set cryptoWallet in formInput
+    };
 
     const handleCryptoWalletSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
@@ -147,11 +154,13 @@ const InputTransaction = () => {
                 push(usersRef, { ...formInput, date: currentDate, serialId: serialId, status , userId}); // Include dateTime in the pushed data
                 setFormInput({
                     amount: '',
+                    currency: '€',
                     accountType: '',
                     paymentMethod: '',
                     cryptoWallet: '',
                     cryptoChannel: '',
-                    walletAddress: '',                    
+                    walletAddress: '',   
+                    currencyWallet: '',                  
                 });   
                            
             } 
@@ -180,12 +189,18 @@ const InputTransaction = () => {
                         <div>
                             <label htmlFor="amount">Amount</label>
                             <div className="relative">
-                                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">$</span>
+                                <span id="sign" className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">
+                                <select >
+                                <option value="€">€</option>
+                                    <option value="$">$</option>
+                                    <option value="Kr">Kr</option>               
+                                </select>
+                                </span>
                                 <input
                                     id="amount"
                                     name="amount"
                                     type="number"
-                                    className="pl-10 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="pl-20 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="0.00"
                                     value={formInput.amount}
                                     onChange={handleInputChange}
@@ -204,8 +219,9 @@ const InputTransaction = () => {
                                 >
                                     <option>Choose Account Type</option>
                                     <option>Savings Account</option>
-                                    <option>Checking Account</option>
-                                    <option>Investment Account</option>
+                                    <option>Fixed Account</option>
+                                    <option>Business Account</option>
+                                    <option>Retirement Account</option>
                                 </select>
                             </div>
                         )}
@@ -229,7 +245,23 @@ const InputTransaction = () => {
 
                         {formInput.paymentMethod === 'Cash Deposit' && (
                             <>
-                            <div  className='grid gap-4 '>
+                                 <div>
+                                                <label htmlFor="currencyWallet">Currency Wallet</label>
+                                                <select
+                                                    id="currencyWallet"
+                                                    name="currencyWallet"
+                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 mt-2 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    onChange={(e) => handleCurrencySelection(e)}
+                                                >
+                                                    <option>Choose currency wallet</option>
+                                                    <option>Euro</option>
+                                                    <option>Dollar</option>
+                                                    <option>Krona</option>                                                   
+                                                </select>
+                                            </div>
+                                            {CurrencySelected && (
+                                                <>
+                                                  <div  className='grid gap-4 '>
                                                 <div className='flex items-center justify-between'>
                                                <p className='text-sm' >Account Number:</p> <p className='font-semibold'>{randomNumber}</p>
                                                 </div>
@@ -241,13 +273,33 @@ const InputTransaction = () => {
                                                 
                                                 
                                             </div>
+                                                </>
+                                            )}
+                                             
                             <p className='max-w-[20rem]'>Visit United Treasury Bank near you and make your deposit</p>
                             </>
                         )}
 
                         {formInput.paymentMethod === 'Card Deposit' && (
                             <>
-                                <div>
+                            <div>
+                                                <label htmlFor="currencyWallet">Currency Wallet</label>
+                                                <select
+                                                    id="currencyWallet"
+                                                    name="currencyWallet"
+                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 mt-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    onChange={(e) => handleCurrencySelection(e)}
+                                                >
+                                                    <option>Choose currency wallet</option>
+                                                    <option>Euro</option>
+                                                    <option>Dollar</option>
+                                                    <option>Krona</option>                                                   
+                                                </select>
+                                            </div>
+
+                                {CurrencySelected && (
+                                   <>
+                                    <div>
                                     <label htmlFor="cardNumber">Card Number</label>
                                     <input
                                         type="text"
@@ -277,6 +329,9 @@ const InputTransaction = () => {
                                         placeholder="123"
                                     />
                                 </div>
+                                   </> 
+                                )}            
+                               
                             </>
                         )}
 
