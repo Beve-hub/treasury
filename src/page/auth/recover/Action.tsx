@@ -65,16 +65,23 @@ const Action: React.FC = () => {
     };
 
     return (
-        <section className="bg-[--bg-color]">
+        <div>
             <h1>Action</h1>
             {mode === "resetPassword" && (
                 <div>
-                   {loading ? <Loaders/> : <h1 className="text-2xl text-center mt-8">Content Loaded!</h1>}
+                    {loading ? <Loaders/> : <h1 className="text-2xl text-center mt-8">Content Loaded!</h1>}
+                    <button onClick={handlePasswordReset}>Reset Password</button>
+                    <input
+                        type="password"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        readOnly
+                    />
                     <button onClick={handlePasswordReset}>Reset Password</button>
                 </div>
             )}
             <p>{message}</p>
-        </section>
+        </div>
     );
 };
 
