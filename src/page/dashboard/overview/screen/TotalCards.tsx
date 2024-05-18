@@ -199,7 +199,7 @@ const TotalCards = () => {
 
   return (
     <div className='grid items-center justify-between gap-6 md:grid-cols-4'>
-      <div className='grid justify-start p-4 rounded-2xl gap-8 bg-[--bg-color] w-[15rem]'>
+      <div className='grid justify-start p-4 rounded-2xl gap-8 bg-[--bg-color] w-[15rem] border-b-[10px] border-[--tetra-color]'>
         <div className='grid gap-1'>
           <h2 className='text-lg font-semibold text-[--text-extra]'>Total Balance</h2>
           
@@ -214,8 +214,9 @@ const TotalCards = () => {
           <p className='text-sm text-[--text-extra]'>Available Balance</p>
         </div>
       </div>
-
-      <div  className='grid justify-start px-4 py-6 rounded-2xl gap-8 bg-[--layer-color] w-[15rem]'>
+      
+      <div  className='grid justify-start p-4  rounded-2xl gap-8 bg-[--layer-color] w-[15rem] border-b-[10px] border-[--button-color] '>
+        
           <div className='grid gap-1'>
             <h2 className='text-lg font-semibold'>Total Euros Balance</h2>
           </div>
@@ -228,7 +229,7 @@ const TotalCards = () => {
           </div>
         </div>
 
-        <div  className='grid justify-start px-4 py-6 rounded-2xl gap-8 bg-[--layer-color] w-[15rem]'>
+        <div  className='grid justify-start p-4  rounded-2xl gap-8 bg-[--layer-color] w-[15rem] border-b-[10px] border-[--button-color] '>
           <div className='grid gap-1'>
             <h2 className='text-lg font-semibold'>Total Dollars Balance</h2>
           </div>
@@ -240,8 +241,8 @@ const TotalCards = () => {
             <p className='text-sm'>Available Balance</p>
           </div>
         </div>
-
-        <div  className='grid justify-start px-4 py-6 rounded-2xl gap-8 bg-[--layer-color] w-[15rem]'>
+ 
+        <div  className='grid justify-start p-4  rounded-2xl gap-8 bg-[--layer-color] w-[15rem] border-b-[10px] border-[--button-color] '>
           <div className='grid gap-1'>
             <h2 className='text-lg font-semibold'>Total Krona Balance</h2>
           </div>
@@ -257,7 +258,7 @@ const TotalCards = () => {
      
      
 
-      <div className='flex lg:hidden sm:hidden md:hidden'>
+      <div className=' flex hidden sm:hidden md:hidden'>
       <div  className='grid justify-start px-4 py-6 rounded-2xl gap-8 bg-[--layer-color] w-[15rem]'>
           <div className='grid gap-1'>
             <h2 className='text-lg font-semibold'>Total BTC Balance</h2>

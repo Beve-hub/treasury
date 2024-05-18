@@ -88,11 +88,6 @@ const RecentTransaction = () => {
     };
     fetchData();
   }, []);
-  
-
-
-  // Function to format the date
- 
 
     return (
         <div className='h-[13rem]  my-8 overflow-x-auto ' >                     

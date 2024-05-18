@@ -30,7 +30,7 @@ const Withdraw = () => {
         accountNumber: '',
         accountName: '',
         bankName: '',
-        currency: '€',
+        currency: '',
         currencyWallet: '',
 
     });
@@ -74,6 +74,13 @@ const Withdraw = () => {
         
     };
 
+    const handleCurrencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setFormData(prevState => ({
+            ...prevState,
+            currency: e.target.value
+        }));
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -97,7 +104,7 @@ const Withdraw = () => {
             setFormData({
                 amount: '',
                 accountType: '',
-                currency: '€',
+                currency: '',
                 currencyWallet: '',
                 paymentMethod: '',
                 cryptoWallet: '',
@@ -132,7 +139,10 @@ const Withdraw = () => {
                                             <label htmlFor="amount">Amount</label>
                                             <div className="relative">
                                                 <span id="sign" className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">
-                                                <select >
+                                                <select  id="currency"
+                                        name="currency"
+                                        onChange={handleCurrencyChange}
+                                        value={formData.currency} >
                                                      <option value="€">€</option>
                                                       <option value="$">$</option>
                                                       <option value="Kr">Kr</option>               

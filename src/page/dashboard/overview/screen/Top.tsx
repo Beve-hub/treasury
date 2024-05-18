@@ -5,31 +5,34 @@ import down from '../../../../assets/down.svg';
 import right from '../../../../assets/right.svg';
 import { useAuth } from '../../../../context/AuthProvider';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { firestore } from "../../../../firebase"
+import { firestore } from "../../../../firebase";
 import { doc, getDoc } from 'firebase/firestore';
+
 
 
 const Top = () => {
     const [icon, setIcon] = useState<boolean>(false);
-    const [firstName, setFirstName] = useState<string>(() => {        
+    const [firstName, setFirstName] = useState<string>(() => {
         return localStorage.getItem('firstName') || '';
     });
-    
+
+    const [accountNumber, setAccountNumber] = useState<string>(() => {
+        return sessionStorage.getItem('accountNumber') || '';
+    });
+   
     const { state } = useLocation();
-     
     const userId = state?.userId || '';
 
     useEffect(() => {
         const fetchData = async () => {
-            try {                
+            try {
                 const userDocRef = doc(firestore, 'users', userId);
                 const snapshot = await getDoc(userDocRef);
-                if (snapshot.exists()) {                    
+                if (snapshot.exists()) {
                     const userDetails = snapshot.data();
-                    
                     const newFirstName = userDetails?.firstName || '';
-                    console.log('users', newFirstName); 
                     setFirstName(newFirstName);
+                    setAccountNumber(accountNumber)
                     localStorage.setItem('firstName', newFirstName);
                 }
             } catch (error) {
@@ -38,6 +41,8 @@ const Top = () => {
         };
         fetchData();
     }, [userId]);
+
+   
 
     const { logout } = useAuth();
     const navigate = useNavigate();
@@ -57,23 +62,26 @@ const Top = () => {
         <div className='flex justify-between pb-[3rem] max-w-screen'>
             <div className='flex gap-2'>
                 <p className='text-2xl font-bold'>Welcome,</p>
-                <p className='text-2xl'>{firstName}</p>
+                <div>
+                    <p className='text-lg'>{firstName}</p> 
+                    <p  className='text-lg flex items-center justify-center'>Account Number: {accountNumber}</p>
+                                
+                </div>
             </div>
 
-            <div className=' items-center gap-6 md:flex hidden'>
-
+            <div className='items-center gap-6 md:flex hidden'>
                 <div className='bg-[--layer-color] p-2 rounded-3xl'>
                     <img src={notification} alt='Notification' className='w-[20px]' />
                 </div>
                 <div onClick={toggleIcon} className='flex items-center gap-2'>
                     <div className='flex items-center gap-2'>
                         <img src={user} alt='User' className='w-[40px]' />
-                        <p className='text-2xl'>{firstName}</p>
+                        <p className='text-lg'>{firstName}</p>
                     </div>
                     {!icon ? <img src={right} alt='Expand' className='w-[24px]' /> : <img src={down} alt='Collapse' className='w-[24px]' />}
                     {icon && (
-                        <div className="absolute top-[6rem] rounded-lg bg-[#ededed] grid items-center justify-center  w-[8rem]">
-                            <ul className='grid p-2 items-center cursor-pointer'>                                
+                        <div className="absolute top-[6rem] rounded-lg bg-[#ededed] grid items-center justify-center w-[8rem]">
+                            <ul className='grid p-2 items-center cursor-pointer'>
                                 <li className="flex items-center gap-2 p-1 hover:bg-[--button-color] rounded-lg">
                                     <button onClick={logoutAndNavigate}>Log out</button>
                                 </li>
@@ -81,7 +89,6 @@ const Top = () => {
                         </div>
                     )}
                 </div>
-
             </div>
         </div>
     );

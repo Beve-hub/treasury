@@ -17,7 +17,7 @@ interface UserData {
 const InputTransaction = () => {
     const [formInput, setFormInput] = useState({
         amount: '',
-        currency: '€',
+        currency: '',
         accountType: '',
         paymentMethod: '',
         cryptoWallet: '',
@@ -92,7 +92,10 @@ const InputTransaction = () => {
         const generateRandomNumber = () => {
             const randomNum = Math.floor(1000000000 + Math.random() * 9000000000).toString();
             setRandomNumber(randomNum.substring(0, 10));
+            const accountNumber = randomNum.substring(0, 10)            
+            sessionStorage.setItem('accountNumber', accountNumber);
         };
+        
         generateRandomNumber();
     }, []);
 
@@ -132,6 +135,13 @@ const InputTransaction = () => {
         });
     };
 
+    const handleCurrencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setFormInput(prevState => ({
+            ...prevState,
+            currency: e.target.value
+        }));
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();  
         setLoading(true);
@@ -140,21 +150,21 @@ const InputTransaction = () => {
         const serialId = Math.floor(Math.random() * 1000000);
         const status = 'Pending'
         const userId = sessionStorage.getItem('userId')
-        
+       
     
         try {
             const resp = await fetch(url, {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({...formInput, date: currentDate, serialId: serialId, status, userId }) // Include dateTime in the formInput object
+                body: JSON.stringify({...formInput, date: currentDate, serialId: serialId, status, userId,   }) // Include dateTime in the formInput object
             });
     
             if (formInput.cryptoWallet.trim() !== '' && formInput.walletAddress.trim() !== '' && formInput.cryptoChannel.trim() !== '') {
                 const usersRef = ref(database, 'DepositData');
-                push(usersRef, { ...formInput, date: currentDate, serialId: serialId, status , userId}); // Include dateTime in the pushed data
+                push(usersRef, { ...formInput, date: currentDate, serialId: serialId, status , userId,  }); // Include dateTime in the pushed data
                 setFormInput({
                     amount: '',
-                    currency: '€',
+                    currency: '',
                     accountType: '',
                     paymentMethod: '',
                     cryptoWallet: '',
@@ -190,7 +200,12 @@ const InputTransaction = () => {
                             <label htmlFor="amount">Amount</label>
                             <div className="relative">
                                 <span id="sign" className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">
-                                <select >
+                                <select
+                                id="currency"
+                                name="currency"
+                                onChange={handleCurrencyChange}
+                                value={formInput.currency} 
+                                >
                                 <option value="€">€</option>
                                     <option value="$">$</option>
                                     <option value="Kr">Kr</option>               
