@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { confirmPasswordReset, applyActionCode, checkActionCode,  } from "firebase/auth";
-import { auth } from "../../../firebase"
+import { auth } from "../../../firebase";
+import {  useNavigate } from 'react-router-dom';
+
 
 const Action: React.FC = () => {
     const location = useLocation();
@@ -11,7 +13,7 @@ const Action: React.FC = () => {
     const oobCode = queryParams.get("oobCode");
     const [message, setMessage] = useState<string>("");
     const [newPassword, setNewPassword] = useState<string>("");
-
+    const navigate = useNavigate();
     useEffect(() => {
         if (!mode || !oobCode) {
             alert("Invalid request.");
@@ -23,11 +25,13 @@ const Action: React.FC = () => {
                 if (mode === "resetPassword") {
                     // Verify the password reset code is valid
                     await checkActionCode(auth, oobCode);
-                    setMessage("Please enter your new password.");
+                    navigate('/passwordReset');
+                    alert("Please enter your new password.");
                 } else if (mode === "verifyEmail") {
                     // Apply the email verification code
                     await applyActionCode(auth, oobCode);
-                    setMessage("Your email has been verified!");
+                    navigate('/amount');
+                    alert("Your email has been verified!");
                 } else {
                     setMessage("Invalid mode.");
                 }
