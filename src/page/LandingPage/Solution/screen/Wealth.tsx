@@ -9,7 +9,7 @@ export const Wealth = () => {
       }, []);
       
     return (
-      <section  className="min-h-[30rem]  py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
+      <section  className="min-h-[30rem] bg-[--text-extra] py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
       <div>
         <div className='max-w-[1100px] flex gap-2 md:grid-cols-2 '>
          
@@ -21,7 +21,7 @@ export const Wealth = () => {
                <div>                           
               <p className='font-bold py-4 text-2xl text-[--text-extra] '>THIS IS WHAT GUIDES US</p>                    
               <p className='max-w-[30rem] text-light text-[#121212] text-balance md:text-balance'>Markets move fast and often, so you need a partner who understands 
-              the ever-changing investing landscape. Guaranty Wealth combine our patented 
+              the ever-changing investing landscape. Anthstone combine our patented 
               simulation and optimization engines with thoughtful human insights to deliver 
               a portfolio tailored to you. And in the process, we bring you institutional 
               rigor you can benefit from as an individual investor.</p>

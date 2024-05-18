@@ -20,8 +20,8 @@ const NavbarWrapper = ({ children }: Props) => {
             '/adminFood',
             '/settings',
             '/amount',
-            
-            
+            '/recover',
+            '/passwordRest'            
         ];
 
         const showNavbarPaths = [

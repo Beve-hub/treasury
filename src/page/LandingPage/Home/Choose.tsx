@@ -16,7 +16,7 @@ const Choose = () => {
       }, []);
       
     return (
-      <section  className="min-h-[30rem]  py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
+      <section  className="min-h-[30rem]  py-20 flex bg-[--text-extra] md:flex-row grid-col-2 items-center justify-center ">
       <div>
         <div className='max-w-[1100px] flex gap-2 md:grid-cols-2 '>
          
@@ -27,7 +27,7 @@ const Choose = () => {
               </div>
                <div>                           
               <p className='font-bold py-4 text-2xl text-[#121212]'>Financial Strategies</p>                    
-              <p className='max-w-[30rem] text-light text-[#121212] text-balance md:text-balance'>Moving the management of financial resources in the direction of treasury development and the circular economy is hugely important in the fight against human-induced climate change and we intend to follow this trajectory. United Treasury Banking has now published a Financing Framework which applies to the Bank’s funding and lending activities.</p>
+              <p className='max-w-[30rem] text-light text-[#121212] text-balance md:text-balance'>Moving the management of financial resources in the direction of treasury development and the circular economy is hugely important in the fight against human-induced climate change and we intend to follow this trajectory. Anthstone has now published a Financing Framework which applies to the Bank’s funding and lending activities.</p>
               </div>
 
               <div>

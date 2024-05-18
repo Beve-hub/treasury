@@ -10,7 +10,7 @@ const AboutUs = () => {
       }, []);
 
     return (
-        <section id="home" className=" relative h-[17rem] w-screen overflow-hidden relative">
+        <section id="home" className=" bg-[--text-extra] h-[17rem] w-screen overflow-hidden relative">
             <div className=''>
                 <div className={`absolute w-screen h-full bg-cover bg-center overlap-hidden`}
             style={{
@@ -29,7 +29,7 @@ const AboutUs = () => {
                 <div className='max-w-[7rem] flex justify-center bg-[--button-color] py-1'>
                     <p className='font-bold text-[--text-extra]'>About Us</p>
                 </div>
-                <h1 className='text-white  font-bold text-[18px] max-w-[30rem] '>Empowering Financial Journey: Welcome to United Treasury Bank</h1>  
+                <h1 className='text-white  font-bold text-[18px] max-w-[30rem] '>Empowering Financial Journey: Welcome to Anthstone </h1>  
               </div>
                                     
             </div>

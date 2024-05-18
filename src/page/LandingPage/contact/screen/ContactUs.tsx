@@ -11,7 +11,7 @@ const ContactUs = () => {
       }, []);
 
     return (
-        <section id="home" className=" relative h-[17rem] w-screen overflow-hidden relative">
+        <section id="home" className=" bg-[--text-extra] h-[17rem] w-screen overflow-hidden relative">
             <div className=''>
                 <div className={`absolute w-screen h-full bg-cover bg-center overlap-hidden`}
             style={{

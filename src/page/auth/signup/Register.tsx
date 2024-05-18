@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import Logo from '../../../assets/logo2.png'
+import Logo from '../../../assets/anthstone img 2 1.svg'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { auth, firestore } from "../../../firebase"
 import { createUserWithEmailAndPassword } from 'firebase/auth';

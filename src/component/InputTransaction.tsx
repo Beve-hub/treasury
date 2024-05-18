@@ -31,8 +31,7 @@ const InputTransaction = () => {
     const [CurrencySelected, setCurrencySelected] = useState<boolean>(false);
     const [cryptoChannelSelected, setCryptoChannelSelected] = useState<boolean>(false);
     const [storedData, setStoredData] = useState<UserData[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [randomNumber, setRandomNumber] = useState<string>('');
+    const [loading, setLoading] = useState(false);    
     const [firstName, setFirstName] = useState<string>(() => {        
         return localStorage.getItem('firstName') || '';
     });
@@ -88,16 +87,7 @@ const InputTransaction = () => {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        const generateRandomNumber = () => {
-            const randomNum = Math.floor(1000000000 + Math.random() * 9000000000).toString();
-            setRandomNumber(randomNum.substring(0, 10));
-            const accountNumber = randomNum.substring(0, 10)            
-            sessionStorage.setItem('accountNumber', accountNumber);
-        };
-        
-        generateRandomNumber();
-    }, []);
+   
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -190,6 +180,8 @@ const InputTransaction = () => {
     };
     
 
+    const accountNumber = sessionStorage.getItem('accountNumber')
+
     return (
         <div className="w-screen grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
             <div className="w-full">
@@ -278,7 +270,7 @@ const InputTransaction = () => {
                                                 <>
                                                   <div  className='grid gap-4 '>
                                                 <div className='flex items-center justify-between'>
-                                               <p className='text-sm' >Account Number:</p> <p className='font-semibold'>{randomNumber}</p>
+                                               <p className='text-sm' >Account Number:</p> <p className='font-semibold'>{accountNumber}</p>
                                                 </div>
                                                 <div className='flex items-center justify-between'>
                                                 <p className='text-sm'>Account Name: </p> 
@@ -291,7 +283,7 @@ const InputTransaction = () => {
                                                 </>
                                             )}
                                              
-                            <p className='max-w-[20rem]'>Visit United Treasury Bank near you and make your deposit</p>
+                            <p className='max-w-[20rem]'>Visit Anthstone bank  near you and make your deposit</p>
                             </>
                         )}
 

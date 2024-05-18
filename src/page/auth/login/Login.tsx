@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from '../../../assets/logo2.png'
+import Logo from '../../../assets/anthstone img 2 1.svg'
 import  "../../../firebase"
 import { auth}  from "../../../firebase";
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -66,9 +66,9 @@ const Login = () => {
   
 
   return (
-    <div>
+    <div className='bg-[--text-extra]'>
 
-        <div className='m-10 grid justify-start'>
+        <div className='p-10 bg-[--text-extra] grid justify-start'>
            <a href='/'>
              <img src={Logo} alt='' className='w-[10rem]' />
           </a>               
@@ -76,7 +76,7 @@ const Login = () => {
 
     <div className=" w-screen grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
       
-      <div className=" w-full ">        
+      <div className=" w-full bg-[--text-extra]">        
         <div >
           <h2 className="mt-6 text-start text-3xl font-extrabold text-gray-900">Login</h2>
           <p className='max-w-[16rem] py-2'>Please provide your information to continue</p>
@@ -134,9 +134,9 @@ const Login = () => {
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-regular text-blue-600 ">
+              <NavLink to='/recover'  className="font-regular text-blue-600 ">
                 Forgot your password?
-              </a>
+              </NavLink>
             </div>
           </div>
 

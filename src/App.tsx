@@ -22,6 +22,8 @@ import Settings from './page/dashboard/setting/Settings';
 import Company from './page/dashboard/company/Company';
 import Wallet from './page/dashboard/wallet/Wallet';
 import Payment from './page/dashboard/payment/Payment';
+import Recover from './page/auth/recover/Recover';
+import PasswordReset from './page/auth/recover/PasswordReset';
 
 
 
@@ -54,8 +56,8 @@ export default function App(): ReactElement {
         <Route path='/exchange' element={<Exchange />} />
         <Route path='/loan' element={<Loan />} />
         <Route path='/adminFood' element={<AdminFood />} />
-        
-       
+        <Route path='/recover' element={<Recover/>}/>
+        <Route path='/passwordRest' element={<PasswordReset/>}/>
         
       </Routes>
     </Router>

@@ -44,7 +44,7 @@ const Footer = () => {
   
   <div className="flex  md:flex-row grid-col-2  gap-4 items-center py-6" >
   
-    <p className='font-bold text-white'>FOLLOW UTB</p>
+    <p className='font-bold text-white'>FOLLOW Anthstone</p>
     <div className="flex gap-3  md:flex-row grid-col-4 items-center py-6" >
   <div className='bg-[--button-color]  p-1'>
   <img src={fb} alt='' className='w-[24px]' />
@@ -98,7 +98,7 @@ const Footer = () => {
   <div className='mx-auto grid py-4  items-center md:grid-cols-2 gap-4 px-8 mt-4'>
   
   <div>
-   <button  className='text-[#EBEBEB50] text-m '>Copyright © 2024, United Treasury Bank </button>
+   <button  className='text-[#EBEBEB50] text-m '>Copyright © 2024, Anthstone </button>
    </div> 
   
   

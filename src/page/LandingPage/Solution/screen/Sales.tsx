@@ -9,7 +9,7 @@ const Sales= () => {
       }, []);
       
     return (
-      <section  className="min-h-[30rem]  py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
+      <section  className="min-h-[30rem] bg-[--text-extra] py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
       <div>
         <div className='max-w-[1100px] flex gap-8 md:grid-cols-2 '>
 
@@ -24,7 +24,7 @@ const Sales= () => {
               </div>
                <div>                           
               <p className='font-bold py-4 text-2xl text-[#121212]'>We Have Autonomy And Ownership</p>                    
-              <p className='max-w-[30rem] text-light text-[#121212] text-balance md:text-balance'>Working as an Guaranty Wealth sales team means you don't have 
+              <p className='max-w-[30rem] text-light text-[#121212] text-balance md:text-balance'>Working as an Anthstone sales team means you don't have 
               someone micro-managing you or looking over your shoulder to make sure
               you're getting things done. We're a team of doer, who take full ownership
               of their results.</p>
@@ -34,7 +34,7 @@ const Sales= () => {
                individuals that are personable, driven, and detailed amongst many other 
                traits is not for the faint hearted. Whether you are just starting to build 
                your sales potentiality or you’re looking to enhance the quality of your 
-               experience, United Treasury Bank will help. We have worked on creating a variety
+               experience, Anthstone will help. We have worked on creating a variety
                 of assessments that can help ensure you are the best sales-person of your 
                 time with a great Job Opportunity for you to explore.
               </p>

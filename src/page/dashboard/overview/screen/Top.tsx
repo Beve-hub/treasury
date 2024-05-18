@@ -9,8 +9,10 @@ import { firestore } from "../../../../firebase";
 import { doc, getDoc } from 'firebase/firestore';
 
 
-
-const Top = () => {
+interface Props {
+    randomNumber: string;
+}
+const Top = ({randomNumber}:Props) => {
     const [icon, setIcon] = useState<boolean>(false);
     const [firstName, setFirstName] = useState<string>(() => {
         return localStorage.getItem('firstName') || '';
@@ -55,7 +57,7 @@ const Top = () => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('firstName');
         logout();
-        navigate('/login');
+        navigate('/');
     };
 
     return (
@@ -64,7 +66,7 @@ const Top = () => {
                 <p className='text-2xl font-bold'>Welcome,</p>
                 <div>
                     <p className='text-lg'>{firstName}</p> 
-                    <p  className='text-lg flex items-center justify-center'>Account Number: {accountNumber}</p>
+                    <p  className='text-md flex items-center justify-center'>Account Number: <span>{randomNumber}</span></p>
                                 
                 </div>
             </div>

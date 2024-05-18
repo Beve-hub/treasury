@@ -9,7 +9,7 @@ const Support = () => {
       }, []);
       
       return (
-        <section  className="min-h-[30rem]  py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
+        <section  className="min-h-[30rem] bg-[--text-extra] py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
             <div>
               <div className='max-w-[1100px] flex gap-2 md:grid-cols-2 '>
               <div className='sm:grid hidden' data-aos='zoom-in'>

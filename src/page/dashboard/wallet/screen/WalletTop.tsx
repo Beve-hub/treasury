@@ -48,7 +48,7 @@ const WalletTop = () => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('firstName'); // Remove firstName from localStorage on logout
         logout();
-        navigate('/login');
+        navigate('/');
     };
 
     return (

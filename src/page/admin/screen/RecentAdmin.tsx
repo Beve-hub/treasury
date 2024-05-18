@@ -203,7 +203,7 @@ const RecentAdmin = () => {
               <td className="px-4 py-2 flex gap-2">
               {item.status === "Pending"  ? (
                   <div>
-                    <button className='bg-[--extra-color] p-1 text-[--text-extra] rounded-sm text-xs' onClick={() => handleAccept(item.key,item.paymentMethod)}>{loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Accept'}</button>
+                    <button className='bg-[--button-color] p-1 text-[--text-extra] rounded-sm text-xs' onClick={() => handleAccept(item.key,item.paymentMethod)}>{loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Accept'}</button>
                     <button className='border-2 p-1  rounded-sm text-xs' onClick={() => handleDecline(item.key,item.paymentMethod)}>{loader ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Decline'}</button>
                   </div>
                 ) : (

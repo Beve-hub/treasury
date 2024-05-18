@@ -13,7 +13,7 @@ const Testimonia = () => {
         AOS.init({duration: 2000})
       }, []);
     return (
-        <section  className="min-h-[30rem]  py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
+        <section  className="min-h-[30rem] bg-[--text-extra]  py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
         <div>
           <div className='max-w-[1100px] flex gap-2 md:grid-cols-2 '>
            
@@ -37,7 +37,7 @@ const Testimonia = () => {
                             <div className='mt-6'>
                              
                             <div className='mx-2'>                                
-                                <p className='text-sm '>I recently switched to Guaranty Wealth and I'm extremely happy with the results. Their customer service is outstanding - they're always willing to go that extra mile to make sure I'm satisfied. The features they offer are top-notch and their fees are very reasonable. Overall, I'm a big fan of Latitude Fidelity and would highly recommend them to anyone looking for reliable financial services.</p>
+                                <p className='text-sm '>I recently switched to Anthstone and I'm extremely happy with the results. Their customer service is outstanding - they're always willing to go that extra mile to make sure I'm satisfied. The features they offer are top-notch and their fees are very reasonable. Overall, I'm a big fan of Latitude Fidelity and would highly recommend them to anyone looking for reliable financial services.</p>
                             </div>
 
                             <div className='flex items-center mt-6 justify-between mx-2 pr-4 gap-2 py-2'>
@@ -62,7 +62,7 @@ const Testimonia = () => {
                             <div className='mt-6'>
                              
                             <div className='mx-2'>                                
-                                <p className='text-sm '>I've been a customer of Guaranty Wealth for over 5 years now and I'm still delighted with their service. Their customer support team is always helpful and willing to go the extra mile, making sure I get the best product or service every time.</p>
+                                <p className='text-sm '>I've been a customer of Anthstone for over 5 years now and I'm still delighted with their service. Their customer support team is always helpful and willing to go the extra mile, making sure I get the best product or service every time.</p>
                             </div>
 
                             <div className='flex items-center mt-[6.5rem] justify-between mx-2 pr-4 gap-2 py-2'>
@@ -87,7 +87,7 @@ const Testimonia = () => {
                             <div className='mt-6'>
                              
                             <div className='mx-2'>                                
-                                <p className='text-sm '>I've been using Guaranty Wealth for a few months now and I can confidently say that they are the best in the market. Their customer service is top-notch and their products are always reliable. They take feedback seriously and strive to make their customers happy. I'm impressed with the quality of their product and recommend them to anyone looking for a reliable financial solution.</p>
+                                <p className='text-sm '>I've been using Anthstone for a few months now and I can confidently say that they are the best in the market. Their customer service is top-notch and their products are always reliable. They take feedback seriously and strive to make their customers happy. I'm impressed with the quality of their product and recommend them to anyone looking for a reliable financial solution.</p>
                             </div>
 
                             <div className='flex items-center mt-6 justify-between mx-2 pr-4 gap-2 py-2'>

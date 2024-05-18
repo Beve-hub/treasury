@@ -25,9 +25,9 @@ const Navbar = () => {
                  {!nav ? <img src={cancel} alt=''  className='bg-[#fff] p-1' /> : <img src={menu} alt=''  className='bg-[#fff] p-1' /> }
                  </div>
                  <div>
-                 <NavLink to='/'>
+                 <a href='/'>
                   <img src={Logo} alt='' className='w-[9rem] hover:scale-105'/>
-                  </NavLink>
+                  </a>
                  </div>
                   
                     

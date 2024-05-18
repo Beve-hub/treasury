@@ -1,4 +1,4 @@
-import Logo from '../../../assets/logo2.png';
+import Logo from '../../../assets/anthstone img 2 1.svg';
 import InputTransaction from '../../../component/InputTransaction';
 
 

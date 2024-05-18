@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { sidebar } from '../utils/data';
-import Logo from '../assets/logo3.png';
+import Logo from '../assets/anthstone img 2 1.svg';
 import cancel from '../assets/cancel.svg';
 import menu from '../assets/menu.svg';
 import left from '../assets/left.svg';
@@ -66,13 +66,13 @@ const Sidebar = () => {
           )}
         </div>
         <div onClick={() => navigate('/overview')}>
-          <img src={Logo} alt="" className="w-[5rem] block md:hidden" />
+          <img src={Logo} alt="" className=" w-[10rem] block md:hidden" />
         </div>
       </div>
       <div style={{ width: open ? '200px' : '100px' }} className="w-[400px] h-screen bg-[--layer-color] p-8 fixed z-99 sm:block hidden">
         <div className="flex items-center">
           <div onClick={() => navigate('/overview')} className="cursor-pointer">
-            <img src={Logo} alt="" className="w-[5rem]" />
+            <img src={Logo} alt="" className="w-[10rem]" />
           </div>
           <div onClick={toggleBar} className="absolute right-[-20px]">
             {!open ? (

@@ -9,7 +9,7 @@ const Scale = () => {
       }, []);
       
     return (
-      <section  className="min-h-[30rem]  py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
+      <section  className="min-h-[30rem] bg-[--text-extra] py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
       <div>
         <div className='max-w-[1100px] flex gap-8 md:grid-cols-2 '>
 
@@ -28,8 +28,7 @@ const Scale = () => {
               costumer’s data as you scale. Rest assured that your account will 
               run securely and smoothly on Guaranty Wealth.</p>
 
-              <p className='max-w-[30rem] py-2 text-light text-[#121212] text-balance md:text-balance'>With our professional and technical expertise, United Treasury
-               Bank has always been rated as the leading company with a high standard
+              <p className='max-w-[30rem] py-2 text-light text-[#121212] text-balance md:text-balance'>With our professional and technical expertise, Anthstone has always been rated as the leading company with a high standard
                 in security and stability. With a strong assurance our system that can 
                 keep up with your growth and will always prioritize the security and 
                 stability of your account.
