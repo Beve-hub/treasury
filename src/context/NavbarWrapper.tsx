@@ -21,7 +21,7 @@ const NavbarWrapper = ({ children }: Props) => {
             '/settings',
             '/amount',
             '/recover',
-            '/passwordRest'            
+            '/passwordReset'            
         ];
 
         const showNavbarPaths = [

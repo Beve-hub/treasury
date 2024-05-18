@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Logo from '../../../assets/anthstone img 2 1.svg'
 import  "../../../firebase"
-import {passwordReset}  from "../../../firebase";
+import {  getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import {  useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner'
 
@@ -42,7 +42,8 @@ const Recover = () => {
     
       try {
         if (validate()) {
-          await passwordReset( email);
+          const auth = getAuth();
+          await sendPasswordResetEmail(auth, email);
           navigate('/login');
           alert('recovery link has been sent to your email')
         } else{

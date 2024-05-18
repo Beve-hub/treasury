@@ -72,7 +72,7 @@ const Transfer = () => {
     };
 
     return (
-        <section   className='md:mt-20  min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
+        <section   className='md:mt-20 bg-[--text-extra] min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
         <div className="grid justify-center items-center">
            <h2 className="mb-6 text-start text-2xl font-semibold text-gray-900">Transfer</h2>
             <form className="space-y-6" onSubmit={handleSubmit}>

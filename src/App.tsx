@@ -57,7 +57,7 @@ export default function App(): ReactElement {
         <Route path='/loan' element={<Loan />} />
         <Route path='/adminFood' element={<AdminFood />} />
         <Route path='/recover' element={<Recover/>}/>
-        <Route path='/passwordRest' element={<PasswordReset/>}/>
+        <Route path='/passwordReset' element={<PasswordReset/>}/>
         
       </Routes>
     </Router>
