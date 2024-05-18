@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Logo from '../../../assets/anthstone img 2 1.svg'
-import { NavLink} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { auth, firestore } from "../../../firebase"
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
@@ -29,6 +29,7 @@ interface Errors {
 }
 
 const Register  = () => { 
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');   
   const [maidenName, setMaidenName] = useState('');   
   const [maritalStatus, setMaritalStatus] = useState('');  
@@ -199,11 +200,11 @@ const Register  = () => {
         });
        
         }
-        
+        navigate('/')  
       } catch (error) {
         console.log(error);
       }     
-      alert('Registration Completed')
+      alert('Registration Completed verify your email for access')
     }
     
     setLoading(false);

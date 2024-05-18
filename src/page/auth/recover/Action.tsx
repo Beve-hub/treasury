@@ -1,10 +1,10 @@
 // src/components/Action.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useLocation } from "react-router-dom";
-import { confirmPasswordReset, applyActionCode, checkActionCode,  } from "firebase/auth";
+import {  applyActionCode, checkActionCode,  } from "firebase/auth";
 import { auth } from "../../../firebase";
 import {  useNavigate } from 'react-router-dom';
-import Loaders from "../../../component/Loaders";
+import { Triangle } from 'react-loader-spinner'
 
 
 const Action: React.FC = () => {
@@ -13,17 +13,10 @@ const Action: React.FC = () => {
     const queryParams = new URLSearchParams(location.search);
     const mode = queryParams.get("mode");
     const oobCode = queryParams.get("oobCode");
-    const [message, setMessage] = useState<string>("");
-    const [newPassword, setNewPassword] = useState<string>("");
-    const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate some asynchronous operation
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
+   
     
+  
+
     useEffect(() => {
         if (!mode || !oobCode) {
             alert("Invalid request.");
@@ -43,7 +36,7 @@ const Action: React.FC = () => {
                     navigate('/amount');
                     alert("Your email has been verified!");
                 } else {
-                    setMessage("Invalid mode.");
+                    alert("Invalid mode.");
                 }
             } catch (error) {
                 alert("Invalid request.");
@@ -53,34 +46,23 @@ const Action: React.FC = () => {
         handleAction();
     }, [mode, oobCode]);
 
-    const handlePasswordReset = async () => {
-        try {
-            if (oobCode) {
-                await confirmPasswordReset(auth, oobCode, newPassword);
-                setMessage("Password has been reset successfully.");
-            }
-        } catch (error) {
-           alert()
-        }
-    };
+ 
 
     return (
         <div>
-            <h1>Action</h1>
+            
             {mode === "resetPassword" && (
-                <div>
-                    {loading ? <Loaders/> : <h1 className="text-2xl text-center mt-8">Content Loaded!</h1>}
-                    <button onClick={handlePasswordReset}>Reset Password</button>
-                    <input
-                        type="password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        readOnly
-                    />
-                    <button onClick={handlePasswordReset}>Reset Password</button>
+                <div className="flex justify-center items-center">
+                    <Triangle  visible={true}  height="150"  width="150"  color="#2631fc"  ariaLabel="triangle-loading"  wrapperStyle={{}}  wrapperClass=""  />
                 </div>
             )}
-            <p>{message}</p>
+
+            {mode === "verifyEmail" && (
+                <div className="flex justify-center items-center">
+                <Triangle  visible={true}  height="150"  width="150"  color="#2631fc"  ariaLabel="triangle-loading"  wrapperStyle={{}}  wrapperClass=""  />
+            </div>
+            )}
+            
         </div>
     );
 };
