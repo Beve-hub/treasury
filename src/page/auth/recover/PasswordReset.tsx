@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Logo from '../../../assets/anthstone img 2 1.svg'
 import  "../../../firebase"
-import {confirmThePasswordReset}  from "../../../firebase";
+import { getAuth, confirmPasswordReset } from "firebase/auth";
 import {useSearchParams, useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner'
 
@@ -55,8 +55,9 @@ const PasswordReset = () => {
             return;
       }
       try {
-        if (oobCode) {
-          await confirmThePasswordReset(oobCode, confirm);
+        if (oobCode) {            
+            const auth = getAuth()
+          await confirmPasswordReset(auth, oobCode, confirm);
           navigate('/login');
           alert('Success! Your password has been changed successfully.')
         }  else {
@@ -86,7 +87,7 @@ const PasswordReset = () => {
         <div className=" w-full bg-[--text-extra]">        
           <div >
             <h2 className="mt-6 text-start text-3xl font-extrabold text-gray-900">Password Recovery</h2>
-            <p className='max-w-[16rem] py-2'>Let us help you recover your account.</p>
+            <p className='max-w-[16rem] py-2'>fill up the form help you recover your account.</p>
           </div>
           <form className=" space-y-6" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
@@ -99,14 +100,14 @@ const PasswordReset = () => {
       name="password"
       type="password"
       className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-      placeholder="Password"
+      placeholder="New Password"
       required
       value={password}
       onChange={(e) => setPassword(e.target.value)}
     />
     {errors.password && <span className='text-[#f30000] text-sm'>{errors.password}</span>}
   </div>
-  
+
   <div>
     <label htmlFor="confirm">Confirm Password *</label>
     <input

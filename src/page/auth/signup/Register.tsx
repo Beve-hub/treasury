@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import Logo from '../../../assets/anthstone img 2 1.svg'
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { auth, firestore } from "../../../firebase"
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
 import { Oval } from 'react-loader-spinner'
 import IMG from '../../../assets/user_img.png'
@@ -54,7 +54,7 @@ const Register  = () => {
   const [errors, setErrors] = useState<Errors>({});
 
   
-  const navigate = useNavigate();
+
 
   const validate = (): boolean => {
     const errors: Errors = {};
@@ -175,6 +175,9 @@ const Register  = () => {
     if (validate()) {
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await sendEmailVerification(user);
+        alert("Registration successful! A verification email has been sent to your email address.")
         console.log(userCredential);
         if (userCredential && userCredential.user) {
           sessionStorage.setItem('userId', userCredential.user.uid);
@@ -199,8 +202,7 @@ const Register  = () => {
         
       } catch (error) {
         console.log(error);
-      }
-      navigate('/amount');
+      }     
       alert('Registration Completed')
     }
     
