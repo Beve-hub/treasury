@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../../assets/anthstone img 2 1.svg'
-import  "../../../firebase"
-import { getAuth, confirmPasswordReset } from "firebase/auth";
-import {useSearchParams, useNavigate } from 'react-router-dom';
-import { Oval } from 'react-loader-spinner'
+import {auth} from "../../../firebase"
+import { confirmPasswordReset } from "firebase/auth";
+import {useLocation, useNavigate } from 'react-router-dom';
+import Loaders from '../../../component/Loaders';
+
 
 
 interface Errors {
@@ -12,16 +13,15 @@ interface Errors {
 }
 
 const PasswordReset = () => {
-
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const oobCode = queryParams.get("oobCode");
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');     
     const [errors, setErrors] = useState<Errors>({});
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const [searchParams] = useSearchParams();
-   
 
-    const oobCode = searchParams.get('oobCode');
   
     const validate = () => {
       const errors: Errors = {};
@@ -39,12 +39,16 @@ const PasswordReset = () => {
         errors.confirm = 'Passwords do not match';
         isValid = false;
       }
-  
-    
-  
       setErrors(errors);
       return isValid;
     };
+
+    useEffect(() => {
+      // Simulate some asynchronous operation
+      setTimeout(() => {
+        setLoading(false);
+      }, 5000);
+    }, []);
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -56,8 +60,8 @@ const PasswordReset = () => {
       }
       try {
         if (oobCode) {            
-            const auth = getAuth()
-          await confirmPasswordReset(auth, oobCode, confirm);
+            
+          await confirmPasswordReset(auth, password, oobCode);
           navigate('/login');
           alert('Success! Your password has been changed successfully.')
         }  else {
@@ -75,8 +79,11 @@ const PasswordReset = () => {
   
     return (
       <div className='bg-[--text-extra]'>
-  
-          <div className='p-10 bg-[--text-extra] grid justify-start'>
+      { loading ? ( <div className='flex justify-center items-center'>
+        <Loaders  />
+      </div>) :
+      ( <>
+      <div className='p-10 bg-[--text-extra] grid justify-start'>
              <a href='/'>
                <img src={Logo} alt='' className='w-[10rem]' />
             </a>               
@@ -131,13 +138,16 @@ const PasswordReset = () => {
               <button
                 type="submit"
                 className="w-full text-[--text-extra] flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium bg-[--button-color] " >
-                {loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Submit'}
+                Submit
               </button>
              
             </div>
           </form>
         </div>
       </div>
+      </>)
+         
+      }
       </div>
     );
   };

@@ -1,7 +1,7 @@
 // src/components/Action.tsx
 import React, { useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
-import {  applyActionCode, checkActionCode,  } from "firebase/auth";
+import {  applyActionCode, checkActionCode,} from "firebase/auth";
 import { auth } from "../../../firebase";
 import {  useNavigate } from 'react-router-dom';
 import Loaders from "../../../component/Loaders";
@@ -12,7 +12,7 @@ const Action: React.FC = () => {
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(location.search);
     const mode = queryParams.get("mode");
-    const oobCode = queryParams.get("oobCode");
+    const oobCode = queryParams.get("oobCode");   
     const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -57,8 +57,7 @@ const Action: React.FC = () => {
         handleAction();
     }, [mode, oobCode]);
 
- 
-
+  
     return (
         <section className='h-screen w-screen grid bg-[--bg-color] -center items-center'>
             <div className="w-screen h-screen grid justify-center items-center">
