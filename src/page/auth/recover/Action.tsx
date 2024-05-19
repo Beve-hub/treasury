@@ -116,7 +116,7 @@ const Action: React.FC = () => {
                 {mode === "resetPassword" && (
                 <div className="h-screen  bg-[--bg-color] flex justify-center items-center">
                    {loading ? <Loaders/> : (
-                      <div className='grid bg-[--text-extra] w-screen '>
+                      <div className='grid bg-[--text-extra] w-screen h-screen'>
           <div className='px-10 bg-[--text-extra] grid justify-start'>
             <a href='/'>
               <img src={Logo} alt='Logo' className='w-[10rem]' />
