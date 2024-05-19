@@ -112,13 +112,12 @@ const Action: React.FC = () => {
       };
     return (
         <section className='h-screen w-screen grid bg-[--bg-color] -center items-center'>
-            <div className="w-screen h-screen grid justify-center items-center">
-                
+            <div className="w-screen h-screen grid justify-center items-center">                
                 {mode === "resetPassword" && (
                 <div className="flex justify-center items-center">
                    {loading ? <Loaders/> : (
-        <div className='grid bg-[--text-extra] w-screen h-screen'>
-          <div className='p-10 bg-[--text-extra] grid justify-start'>
+                      <div className='grid bg-[--text-extra] w-screen '>
+          <div className='px-10 bg-[--text-extra] grid justify-start'>
             <a href='/'>
               <img src={Logo} alt='Logo' className='w-[10rem]' />
             </a>
@@ -174,8 +173,8 @@ const Action: React.FC = () => {
               </form>
             </div>
           </div>
-        </div>
-      ) }
+                      </div>
+                    ) }
                 </div>
                  )}
                
