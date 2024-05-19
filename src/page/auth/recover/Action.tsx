@@ -116,7 +116,7 @@ const Action: React.FC = () => {
                   
                 <div className="h-screen  bg-[--text-extra] flex justify-center items-center">
                    {loading ? <Loaders/> : (
-                      <div className='grid '>
+                      <div className='grid mb-10'>
           <div className='px-10 bg-[--text-extra] grid justify-start'>
             <a href='/'>
               <img src={Logo} alt='Logo' className='w-[10rem]' />
