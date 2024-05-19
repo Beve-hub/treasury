@@ -116,7 +116,7 @@ const Action: React.FC = () => {
                   
                 <div className="h-screen  bg-[--bg-color] flex justify-center items-center">
                    {loading ? <Loaders/> : (
-                      <div className='grid bg-[--text-extra] w-screen h-screen'>
+                      <div className='grid '>
           <div className='px-10 bg-[--text-extra] grid justify-start'>
             <a href='/'>
               <img src={Logo} alt='Logo' className='w-[10rem]' />
@@ -126,7 +126,7 @@ const Action: React.FC = () => {
           <div className="w-screen grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
             <div className="w-full bg-[--text-extra]">
               <div>
-                <h2 className="mt-6 text-start text-3xl font-extrabold text-gray-900">Password Recovery</h2>
+                <h2 className=" text-start text-3xl font-extrabold text-gray-900">Password Recovery</h2>
                 <p className='max-w-[16rem] py-2'>Fill up the form to help you recover your account.</p>
               </div>
               <form className="space-y-6" onSubmit={handleSubmit}>
