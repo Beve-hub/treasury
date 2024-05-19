@@ -5,7 +5,7 @@ import {  applyActionCode, checkActionCode,confirmPasswordReset} from "firebase/
 import { auth } from "../../../firebase";
 import {  useNavigate } from 'react-router-dom';
 import Loaders from "../../../component/Loaders";
-import Logo from '../../../assets/anthstone img 2 1.svg';
+
 
 interface Errors {
     password?: string;
@@ -116,12 +116,7 @@ const Action: React.FC = () => {
                   
                 <div className="h-screen  bg-[--text-extra] flex justify-center items-center">
                    {loading ? <Loaders/> : (
-                      <div className='grid mb-10'>
-          <div className='px-10 bg-[--text-extra] grid justify-start'>
-            <a href='/'>
-              <img src={Logo} alt='Logo' className='w-[10rem]' />
-            </a>
-          </div>
+                      <div className='grid mb-10'>        
 
           <div className="w-screen grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
             <div className="w-full bg-[--text-extra]">
