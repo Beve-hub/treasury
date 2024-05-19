@@ -116,7 +116,7 @@ const Action: React.FC = () => {
                 {mode === "resetPassword" && (
                 <div className="h-screen  bg-[--bg-color] flex justify-center items-center">
                    {loading ? <Loaders/> : (
-                      <div className='grid bg-[--text-extra] w-screen h-screen'>
+                      <div className='grid bg-[--text-extra] w-screen h-[30rem]'>
           <div className='px-10 bg-[--text-extra] grid justify-start'>
             <a href='/'>
               <img src={Logo} alt='Logo' className='w-[10rem]' />
@@ -133,7 +133,7 @@ const Action: React.FC = () => {
                 <input type="hidden" name="remember" defaultValue="true" />
                 <div className="grid gap-4">
                   <div>
-                    <label htmlFor="password">Password *</label>
+                    <label htmlFor="password">New Password *</label>
                     <input
                       id="password"
                       name="password"
@@ -148,7 +148,7 @@ const Action: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="confirm">Confirm Password *</label>
+                    <label htmlFor="confirm">Confirm New assword *</label>
                     <input
                       id="confirm"
                       name="confirm"
