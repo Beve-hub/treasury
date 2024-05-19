@@ -112,9 +112,9 @@ const Action: React.FC = () => {
       };
     return (
         <section className='h-screen w-screen grid bg-[--bg-color] -center items-center'>
-            <div className="w-screen h-screen grid justify-center items-center">                
+            <div className="w-screen h-screen  bg-[--bg-color] grid justify-center items-center">                
                 {mode === "resetPassword" && (
-                <div className="flex justify-center items-center">
+                <div className="h-screen  bg-[--bg-color] flex justify-center items-center">
                    {loading ? <Loaders/> : (
                       <div className='grid bg-[--text-extra] w-screen '>
           <div className='px-10 bg-[--text-extra] grid justify-start'>
