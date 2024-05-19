@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Logo from '../../../assets/anthstone img 2 1.svg'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { auth, firestore } from "../../../firebase"
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
-import { Oval } from 'react-loader-spinner'
 import IMG from '../../../assets/user_img.png'
 import edit from '../../../assets/edit.svg'
+import Loaders from '../../../component/Loaders';
 
 
 
@@ -56,6 +56,13 @@ const Register  = () => {
 
   
 
+
+  useEffect(() => {
+    // Simulate some asynchronous operation
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, []);
 
   const validate = (): boolean => {
     const errors: Errors = {};
@@ -211,8 +218,12 @@ const Register  = () => {
   };
 
   return (
-    <div>
-      <div className='p-8 bg-[#ffff] w-screen fixed grid justify-start'>
+    <div className='grid justify-center items-center'>
+     { loading ? <div className='flex justify-center items-center'>
+        <Loaders  />
+      </div> : 
+      <div>
+     <div className=' bg-[#ffff] w-screen fixed grid justify-start'>
         <a href='/'>
           <img src={Logo} alt='' className='w-[10rem]' />
         </a>               
@@ -242,7 +253,7 @@ const Register  = () => {
             className="w-[6rem] h-[6rem] rounded-full "
             onClick={handleProfileImage}
           />
-          <div onClick={handleProfileImage} className='absolute mt-[4rem] ml-[3.5rem]'><img src={edit} alt='' className='w-[1.8rem]' /></div>
+          <div onClick={handleProfileImage} className='absolute mt-[4.2rem] ml-[3.5rem]'><img src={edit} alt='' className='w-[1.8rem]' /></div>
           </div>
         ) : (
           <img
@@ -266,45 +277,41 @@ const Register  = () => {
                 
                 {showPersonalInfo && (
                     <div className='space-y-4'>
-                      <p className='font-bold text-xl my-4'>Personal Information </p>
-                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
-                <div>
+                <div className='grid'>
                   <label htmlFor="firstName">Full Name *</label>
                   <input
                     id="firstName"
                     name="firstName"
                     type="text"
-                    className="block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="Full name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   {errors.firstName && <span className='text-[#f30000] text-sm'>{errors.firstName}</span>}
                 </div>  
-                <div>
+                <div className='grid'>
                   <label htmlFor="maidenName">Maiden Name *</label>
                   <input
                     id="maidenName"
                     name="maidenName"
                     type="text"
-                    className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="maiden name"
                     value={maidenName}
                     onChange={(e) => setMaidenName(e.target.value)}
                   />
                   {errors.maidenName&& <span className='text-[#f30000] text-sm'>{errors.maidenName}</span>}
                 </div>  
-                </div>
 
-                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
-                <div>
+                <div className='grid'>
                 <label htmlFor="email-address">Email address *</label>
                 <input
                   id="email-address"
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -312,113 +319,102 @@ const Register  = () => {
                 {errors.email && <span className='text-[#f30000] text-sm'>{errors.email}</span>}
               </div>
 
-              <div>
+              <div className='grid'>
                 <label htmlFor="phoneNum">Phone Number *</label>
                 <input
                   id="phoneNum"
                   name="phoneNum"
                   type="text"
-                  className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Phone Number"
                   value={phoneNum}
                   onChange={(e) => setPhoneNum(e.target.value)}
                 />
                 {errors.phoneNum && <span className='text-[#f30000] text-sm'>{errors.phoneNum}</span>}
-              </div>   
-                </div>
+              </div> 
 
-                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
-                <div>
+              <div className='grid'>
               <label htmlFor="date">Date of Birth *</label>
               <input
                 id="date"
                 name="date"
                 type="date"
-                className="block w-[12rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="DD MM YY"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
               />
               {errors.date && <span className='text-[#f30000] text-sm'>{errors.date}</span>}
             </div>
-
-            <div>
+            <div className='grid'>
                    <label htmlFor="maritalStatus">Marital Status *</label>
                    <select
                        id="maritalStatus"
                        name="maritalStatus"
-                       className="block w-[12rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        value={maritalStatus}
                       onChange={(e) => setMaritalStatus(e.target.value)}
-                   >
-                       <option></option>
+                   >     
+                       <option></option>                 
                        <option>Single</option>
                        <option>Married</option>                      
                    </select>   
                    {errors.maritalStatus && <span className='text-[#f30000] text-sm'>{errors.maritalStatus}</span>}                
-               </div>
-                </div>
+               </div>   
 
-                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
-                <div>
+                <div className='grid'>
               <label htmlFor="occupation">Occupation *</label>
               <input
                 id="occupation"
                 name="occupation"
                 type="text"               
-                className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter occupation"
                 value={occupation}
                 onChange={(e) => setOccupation(e.target.value)}
               />
               {errors.occupation && <span className='text-[#f30000] text-sm'>{errors.occupation}</span>}
-            </div>
-
-            <div>
+                 </div>
+                <div className='grid'>
               <label htmlFor="address">Home Address *</label>
               <input
                 id="address"
                 name="address"
                 type="text"               
-                className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter home address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
               {errors.address && <span className='text-[#f30000] text-sm'>{errors.address}</span>}
-            </div>
-                </div>
+                 </div>
 
-                <div className='grid md:grid-cols-2 items-center justify-center gap-2'>
-
-                <div>
+                 <div className='grid'>
               <label htmlFor="state">State *</label>
               <input
                 id="state"
                 name="state"
                 type="text"
-                className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="State"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
               />
               {errors.state && <span className='text-[#f30000] text-sm'>{errors.state}</span>}
-            </div>
-            <div>
+                </div>
+            <div className='grid'>
               <label htmlFor="coun">Country *</label>
               <input
                 id="coun"
                 name="coun"
                 type="text"
-                className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Country"
                 value={coun}
                 onChange={(e) => setCoun(e.target.value)}
               />
               {errors.coun && <span className='text-[#f30000] text-sm'>{errors.coun}</span>}
             </div> 
-                </div>
-            
                 
                  
                     </div>
@@ -459,13 +455,13 @@ const Register  = () => {
                 <div className='space-y-4'>
                    <p className='font-bold text-xl my-4'>Security Information </p>
 
-<div>
+                   <div className='grid'>
   <label htmlFor="pin">Transaction Pin*</label>
   <input
     id="pin"
     name="pin"
     type="text"
-    className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
     placeholder="Enter transaction pin"
     value={pin}
     onChange={(e) => setPin(e.target.value)}
@@ -473,26 +469,26 @@ const Register  = () => {
   {errors.pin && <span className='text-[#f30000] text-sm'>{errors.pin}</span>}
 </div>
 
-<div>
+<div className='grid'>
     <label htmlFor="password">Password *</label>
     <input
       id="password"
       name="password"
       type="password"
-      className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       placeholder="Password"
       value={password}
       onChange={(e) => setPassword(e.target.value)}
     />
     {errors.password && <span className='text-[#f30000] text-sm'>{errors.password}</span>}
   </div>
-  <div>
+  <div className='grid'>
     <label htmlFor="confirm">Confirm Password *</label>
     <input
       id="confirm"
       name="confirm"
       type="password"
-      className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       placeholder="Confirm Password"
       value={confirm}
       onChange={(e) => setConfirm(e.target.value)} 
@@ -509,7 +505,7 @@ const Register  = () => {
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium  bg-[--button-color] ">
-                {loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Submit'}
+                 Submit
               </button>
               <div className="text-sm flex justify-center py-2">
                   <p>Already have an account? </p>
@@ -521,6 +517,9 @@ const Register  = () => {
           </form>
         </div>
       </div>
+      </div>
+      }
+      
     </div>
   )
 }

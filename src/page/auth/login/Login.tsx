@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../../assets/anthstone img 2 1.svg'
 import  "../../../firebase"
 import { auth}  from "../../../firebase";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Oval } from 'react-loader-spinner'
+import Loaders from '../../../component/Loaders';
 
 
 interface Errors {
@@ -19,6 +19,13 @@ const Login = () => {
   const [errors, setErrors] = useState<Errors>({});
   
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Simulate some asynchronous operation
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, []);
 
 
   const validate = () => {
@@ -66,9 +73,12 @@ const Login = () => {
   
 
   return (
-    <div className='bg-[--text-extra]'>
-
-        <div className='p-10 bg-[--text-extra] grid justify-start'>
+    <div className='bg-[--text-extra] grid justify-center items-center'>
+      {loading ? ( <div className='flex justify-center items-center'>
+        <Loaders  />
+      </div>) : 
+      (<>
+      <div className='p-10 bg-[--text-extra] grid justify-start'>
            <a href='/'>
              <img src={Logo} alt='' className='w-[10rem]' />
           </a>               
@@ -145,7 +155,7 @@ const Login = () => {
               type="submit"
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color] "
             >
-              {loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Submit'}
+             Submit
             </button>
             <div className="text-sm flex justify-center py-2">
               <p>Don't have an account?  </p>
@@ -157,6 +167,9 @@ const Login = () => {
         </form>
       </div>
     </div>
+      </>)
+      }
+     
     </div>
   );
 };

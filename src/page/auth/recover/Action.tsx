@@ -1,10 +1,10 @@
 // src/components/Action.tsx
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
 import {  applyActionCode, checkActionCode,  } from "firebase/auth";
 import { auth } from "../../../firebase";
 import {  useNavigate } from 'react-router-dom';
-import { Triangle } from 'react-loader-spinner'
+import Loaders from "../../../component/Loaders";
 
 
 const Action: React.FC = () => {
@@ -13,6 +13,14 @@ const Action: React.FC = () => {
     const queryParams = new URLSearchParams(location.search);
     const mode = queryParams.get("mode");
     const oobCode = queryParams.get("oobCode");
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate some asynchronous operation
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
    
     
   
@@ -24,17 +32,20 @@ const Action: React.FC = () => {
         }
 
         const handleAction = async () => {
+            
             try {
                 if (mode === "resetPassword") {
+
                     // Verify the password reset code is valid
                     await checkActionCode(auth, oobCode);
-                    navigate('/passwordReset');
-                    alert("Please enter your new password.");
+                    navigate('/passwordReset');         
+
                 } else if (mode === "verifyEmail") {
+
                     // Apply the email verification code
                     await applyActionCode(auth, oobCode);
                     navigate('/amount');
-                    alert("Your email has been verified!");
+                    
                 } else {
                     alert("Invalid mode.");
                 }
@@ -51,21 +62,20 @@ const Action: React.FC = () => {
     return (
         <section className='h-screen w-screen grid bg-[--bg-color] -center items-center'>
             <div className="w-screen h-screen grid justify-center items-center">
-                <div className="grid justify-center items-center">
+                
                 {mode === "resetPassword" && (
                 <div className="flex justify-center items-center">
-                    <Triangle  visible={true}  height="150"  width="150"  color="#2631fc"  ariaLabel="triangle-loading"  wrapperStyle={{}}  wrapperClass=""  />
+                   {loading ? <Loaders/> : '' }
                 </div>
                  )}
-                </div>
+               
             
-                 <div className="grid justify-center items-center ">
                  {mode === "verifyEmail" && (
                 <div className="flex justify-center items-center">
-                <Triangle  visible={true}  height="150"  width="150"  color="#2631fc"  ariaLabel="triangle-loading"  wrapperStyle={{}}  wrapperClass=""  />
+                {loading ? <Loaders/> : '' }
                  </div>
                  )}
-                 </div>
+             
            
             
             </div>
