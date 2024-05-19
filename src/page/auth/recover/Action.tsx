@@ -49,21 +49,28 @@ const Action: React.FC = () => {
  
 
     return (
-        <div>
-            
-            {mode === "resetPassword" && (
+        <section className='h-screen w-screen grid bg-[--bg-color] -center items-center'>
+            <div className="w-screen h-screen grid justify-center items-center">
+                <div className="grid justify-center items-center">
+                {mode === "resetPassword" && (
                 <div className="flex justify-center items-center">
                     <Triangle  visible={true}  height="150"  width="150"  color="#2631fc"  ariaLabel="triangle-loading"  wrapperStyle={{}}  wrapperClass=""  />
                 </div>
-            )}
-
-            {mode === "verifyEmail" && (
+                 )}
+                </div>
+            
+                 <div className="grid justify-center items-center ">
+                 {mode === "verifyEmail" && (
                 <div className="flex justify-center items-center">
                 <Triangle  visible={true}  height="150"  width="150"  color="#2631fc"  ariaLabel="triangle-loading"  wrapperStyle={{}}  wrapperClass=""  />
-            </div>
-            )}
+                 </div>
+                 )}
+                 </div>
+           
             
-        </div>
+            </div>
+            
+        </section>
     );
 };
 
