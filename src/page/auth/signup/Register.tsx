@@ -274,7 +274,7 @@ const Register  = () => {
                     id="firstName"
                     name="firstName"
                     type="text"
-                    className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Full name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -287,7 +287,7 @@ const Register  = () => {
                     id="maidenName"
                     name="maidenName"
                     type="text"
-                    className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="maiden name"
                     value={maidenName}
                     onChange={(e) => setMaidenName(e.target.value)}
@@ -304,7 +304,7 @@ const Register  = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -318,7 +318,7 @@ const Register  = () => {
                   id="phoneNum"
                   name="phoneNum"
                   type="text"
-                  className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Phone Number"
                   value={phoneNum}
                   onChange={(e) => setPhoneNum(e.target.value)}
@@ -334,7 +334,7 @@ const Register  = () => {
                 id="date"
                 name="date"
                 type="date"
-                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="block w-[12rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="DD MM YY"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -347,7 +347,7 @@ const Register  = () => {
                    <select
                        id="maritalStatus"
                        name="maritalStatus"
-                       className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                       className="block w-[12rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                        value={maritalStatus}
                       onChange={(e) => setMaritalStatus(e.target.value)}
                    >
@@ -366,7 +366,7 @@ const Register  = () => {
                 id="occupation"
                 name="occupation"
                 type="text"               
-                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Enter occupation"
                 value={occupation}
                 onChange={(e) => setOccupation(e.target.value)}
@@ -380,7 +380,7 @@ const Register  = () => {
                 id="address"
                 name="address"
                 type="text"               
-                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Enter home address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -397,7 +397,7 @@ const Register  = () => {
                 id="state"
                 name="state"
                 type="text"
-                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="State"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
@@ -410,7 +410,7 @@ const Register  = () => {
                 id="coun"
                 name="coun"
                 type="text"
-                className="block w-[10rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Country"
                 value={coun}
                 onChange={(e) => setCoun(e.target.value)}
@@ -465,7 +465,7 @@ const Register  = () => {
     id="pin"
     name="pin"
     type="text"
-    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+    className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
     placeholder="Enter transaction pin"
     value={pin}
     onChange={(e) => setPin(e.target.value)}
@@ -479,7 +479,7 @@ const Register  = () => {
       id="password"
       name="password"
       type="password"
-      className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
       placeholder="Password"
       value={password}
       onChange={(e) => setPassword(e.target.value)}
@@ -492,7 +492,7 @@ const Register  = () => {
       id="confirm"
       name="confirm"
       type="password"
-      className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      className="block  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
       placeholder="Confirm Password"
       value={confirm}
       onChange={(e) => setConfirm(e.target.value)} 
