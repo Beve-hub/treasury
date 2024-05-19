@@ -117,7 +117,7 @@ const Action: React.FC = () => {
                 {mode === "resetPassword" && (
                 <div className="flex justify-center items-center">
                    {loading ? <Loaders/> : (
-        <>
+        <div className='grid bg-[--text-extra] w-screen h-screen'>
           <div className='p-10 bg-[--text-extra] grid justify-start'>
             <a href='/'>
               <img src={Logo} alt='Logo' className='w-[10rem]' />
@@ -174,7 +174,7 @@ const Action: React.FC = () => {
               </form>
             </div>
           </div>
-        </>
+        </div>
       ) }
                 </div>
                  )}
