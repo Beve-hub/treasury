@@ -36,7 +36,7 @@ const InputTransaction = () => {
         return localStorage.getItem('firstName') || '';
     });
 
-    const [accountNumber, setAccountNumber] = useState<string>(() => {
+    const [account, setAccount] = useState<string>(() => {
         return localStorage.getItem('accountNumber') || '';
     });
     
@@ -55,7 +55,7 @@ const InputTransaction = () => {
                     const newAccountNumber = userDetails?.accountNumber || '';
                    
                     setFirstName(newFirstName); 
-                    setAccountNumber(newAccountNumber);   
+                    setAccount(newAccountNumber);   
 
                     localStorage.setItem('firstName', newFirstName);
                     localStorage.setItem('accountNumber', newAccountNumber);
@@ -280,7 +280,7 @@ const InputTransaction = () => {
                                                 <>
                                                   <div  className='grid gap-4 '>
                                                 <div className='flex items-center justify-between'>
-                                               <p className='text-sm' >Account Number:</p> <p className='font-semibold'>{accountNumber}</p>
+                                               <p className='text-sm' >Account Number:</p> <p className='font-semibold'>{account}</p>
                                                 </div>
                                                 <div className='flex items-center justify-between'>
                                                 <p className='text-sm'>Account Name: </p> 
