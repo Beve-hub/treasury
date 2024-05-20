@@ -2,6 +2,7 @@ import overIcon from '../assets/overview.svg'
 import paymentIcon from '../assets/payment.svg'
 import walletIcon from '../assets/wallet.svg'
 import companyIcon from '../assets/company.svg'
+import contact from '../assets/customer.svg'
 
 interface SidebarItem {
     name: string;
@@ -29,5 +30,10 @@ export const sidebar: SidebarItem[] = [
         name: 'Company',
         path: '/company',
         icon: companyIcon
+    },
+    {
+        name: 'Contact',
+        path: '/contactUs',
+        icon: contact
     },
 ]

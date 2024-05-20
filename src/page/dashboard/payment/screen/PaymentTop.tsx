@@ -68,7 +68,7 @@ const PaymentTop = () => {
                 <div onClick={toggleIcon} className='flex items-center gap-2'>
                     <div className='flex items-center gap-2'>
                         <img src={user} alt='User' className='w-[40px]' />
-                        <p className='text-2xl'>{firstName}</p>
+                        <p className='text-lg'>{firstName}</p>
                     </div>
                     {!icon ? <img src={right} alt='Expand' className='w-[24px]' /> : <img src={down} alt='Collapse' className='w-[24px]' />}
                     {icon && (

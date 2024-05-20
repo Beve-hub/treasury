@@ -24,6 +24,7 @@ import Wallet from './page/dashboard/wallet/Wallet';
 import Payment from './page/dashboard/payment/Payment';
 import Recover from './page/auth/recover/Recover';
 import Action from './page/auth/recover/Action';
+import ContactUs from './page/dashboard/ContactUs/ContactUs';
 
 
 
@@ -58,6 +59,7 @@ export default function App(): ReactElement {
         <Route path='/adminFood' element={<AdminFood />} />
         <Route path='/recover' element={<Recover/>}/>
         <Route path='/action' element={<Action/>}/>
+        <Route path='/contactUs' element={<ContactUs/>}/>
       </Routes>
     </Router>
   );

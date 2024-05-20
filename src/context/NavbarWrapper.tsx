@@ -21,6 +21,7 @@ const NavbarWrapper = ({ children }: Props) => {
             '/settings',
             '/amount',
             '/recover',
+            '/withdraw',
             '/action'            
         ];
 
@@ -30,14 +31,14 @@ const NavbarWrapper = ({ children }: Props) => {
             '/wallet',
             '/company',
             '/pin',
-            '/transfer',
-            '/withdraw',
+            '/transfer',           
             '/card',
             '/address',
             '/investment',
             '/exchange',
             '/loan',
-            '/deposit'
+            '/deposit',
+            '/contactUs'
         ];
 
         if (restrictedPaths.includes(location.pathname)) {

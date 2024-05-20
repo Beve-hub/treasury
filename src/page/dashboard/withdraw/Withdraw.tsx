@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { database } from '../../../firebase';
 import { ref } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
-import { Oval } from 'react-loader-spinner';
+import Loaders from '../../../component/Loaders';
+import Arrow from '../../../assets/arrow-left.svg'
 
 
 interface FormData {
@@ -17,6 +18,7 @@ interface FormData {
     bankName: string,
     currency: string,
     currencyWallet: string,
+    
 }
 
 const Withdraw = () => {
@@ -129,47 +131,52 @@ const Withdraw = () => {
     };
 
     return (
-        <section   className='md:mt-20 bg-[--text-extra] min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
-        <div className="grid justify-center items-center">
-                                <h2 className="mb-6 text-start text-2xl font-semibold text-gray-900">Withdraw</h2>
-                                <form className="space-y-6" onSubmit={handleSubmit}>
-                                    <input type="hidden" name="remember" defaultValue="true" />
-                                    <div className="grid gap-4">
-                                        <div>
-                                            <label htmlFor="amount">Amount</label>
-                                            <div className="relative">
-                                                <span id="sign" className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">
-                                                <select  id="currency"
-                                        name="currency"
-                                        onChange={handleCurrencyChange}
-                                        value={formData.currency} >
-                                                     <option value="€">€</option>
-                                                      <option value="$">$</option>
-                                                      <option value="Kr">Kr</option>               
-                                                  </select>
-                                                </span>
-                                                <input
-                                                    id="amount"
-                                                    name="amount"
-                                                    type="number"
-                                                    className="pl-20 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                    placeholder="0.00"
-                                                    value={formData.amount}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                        </div>
+        <section   className='w-screen md:mt-20 bg-[--text-extra] min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
+        {loading ? <Loaders/> : (
+        <div className='grid  h-[20rem] w-screen'>
+            <div onClick={() => navigate('/overview')} className='p-6'>
+                <img src={Arrow} alt='' className='w-[3rem] bg-[--layer-color] p-3 rounded-3xl' />
+            </div>
+             <div className="grid justify-center items-center h-[10rem]">
+           <h2 className="mb-6 text-start text-2xl font-semibold text-gray-900">Withdraw</h2>
+           <form className="space-y-6" onSubmit={handleSubmit}>
+               <input type="hidden" name="remember" defaultValue="true" />
+               <div className="grid gap-4">
+                   <div>
+                       <label htmlFor="amount">Amount</label>
+                       <div className="relative">
+                           <span id="sign" className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">
+                           <select  id="currency"
+                   name="currency"
+                   onChange={handleCurrencyChange}
+                   value={formData.currency} >
+                                <option value="€">€</option>
+                                <option value="$">$</option>
+                                <option value="Kr">Kr</option>               
+                            </select>
+                          </span>
+                          <input
+                              id="amount"
+                              name="amount"
+                              type="number"
+                              className="pl-20 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                              placeholder="0.00"
+                              value={formData.amount}
+                              onChange={handleInputChange}
+                          />
+                      </div>
+                  </div>
 
-                                        {accountSelected && (
-                                            <div>
-                                                <label htmlFor="account">Account Type</label>
-                                                <select
-                                                    id="account"
-                                                    name="accountType"
-                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                    onChange={handleInputChange}
-                                                >
-                                                    <option>Choose Account Type</option>
+                  {accountSelected && (
+                      <div>
+                          <label htmlFor="account">Account Type</label>
+                          <select
+                              id="account"
+                              name="accountType"
+                              className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                              onChange={handleInputChange}
+                          >
+                              <option>Choose Account Type</option>
                                                     <option>Savings Account</option>
                                                     <option>Fixed Account</option>
                                                     <option>Business Account</option>
@@ -188,16 +195,16 @@ const Withdraw = () => {
                                                     onChange={handleInputChange}
                                                 >
                                                     <option>Choose payment method</option>
-                                                    <option>Cash withdrawal</option>
+                                                    <option>Bank withdrawal</option>
                                                     <option>Card withdrawal</option>
                                                     <option>Crypto withdrawal</option>
                                                 </select>
                                             </div>
                                         )}
-                                        {formData.paymentMethod === 'Cash withdrawal' && (
+                                        {formData.paymentMethod === 'Bank withdrawal' && (
                                             <>
                                             <div>
-                                                <label htmlFor="currencyWallet">Crypto Wallet</label>
+                                                <label htmlFor="currencyWallet">Currency Wallet</label>
                                                 <select
                                                     id="currencyWallet"
                                                     name="currencyWallet"
@@ -354,15 +361,16 @@ const Withdraw = () => {
                                     <div>
                                     <button
                                         type="submit"
-                                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--bg-color] bg-[--button-color]"
-                                        disabled={!accountSelected}
-                                    >
-                                        {loading ? <Oval  visible={true}  height="20" width="20" color="#ffff"  ariaLabel="oval-loading"  wrapperStyle={{}}  wrapperClass=""  />  : 'Submit'}
+                                        className="w-full flex justify-center  py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[--text-extra] bg-[--button-color]"
+                                        disabled={!accountSelected} >
+                                         Submit
                                     </button>
 
                                     </div>
                                 </form>
-                            </div>
+        </div>
+        </div>       
+    )}
         </section>
     );
 }

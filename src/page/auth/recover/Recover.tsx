@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from '../../../assets/anthstone img 2 1.svg'
+import Logo from '../../../assets/logo1.png'
 import  "../../../firebase"
 import {  getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import {  useNavigate } from 'react-router-dom';

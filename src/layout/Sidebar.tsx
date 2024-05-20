@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { sidebar } from '../utils/data';
-import Logo from '../assets/anthstone img 2 1.svg';
+import Logo from '../assets/logo1.png';
 import cancel from '../assets/cancel.svg';
 import menu from '../assets/menu.svg';
 import left from '../assets/left.svg';
@@ -85,8 +85,8 @@ const Sidebar = () => {
         <div>
           <div className="mt-14">
             {sidebar.map((item, index) => (
-              <NavLink to={item.path} key={index} className="flex items-center gap-2 py-5">
-                <img src={item.icon} alt="" className="w-[30px]" />
+              <NavLink to={item.path} key={index} className="flex items-center gap-2 py-3">
+                <img src={item.icon} alt="" className="w-[25px]" />
                 <div style={{ display: open ? 'block' : 'none' }}>{item.name}</div>
               </NavLink>
             ))}

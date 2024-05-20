@@ -66,7 +66,7 @@ const Top = ({randomNumber}:Props) => {
                 <p className='text-2xl font-bold'>Welcome,</p>
                 <div>
                     <p className='text-lg'>{firstName}</p> 
-                    <p  className='text-md flex items-center justify-center'>Account Number: <span>{randomNumber}</span></p>
+                    <p  className='text-md flex items-center justify-center '>Account Number: <span className='font-bold'>{randomNumber}</span></p>
                                 
                 </div>
             </div>

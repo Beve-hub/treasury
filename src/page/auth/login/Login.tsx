@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../../../assets/anthstone img 2 1.svg'
+import Logo from '../../../assets/logo1.png'
 import  "../../../firebase"
 import { auth}  from "../../../firebase";
 import { signInWithEmailAndPassword } from 'firebase/auth';
