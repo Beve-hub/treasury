@@ -16,10 +16,6 @@ const Top = () => {
         return localStorage.getItem('firstName') || '';
     });
 
-    const [accountNumber, setAccountNumber] = useState<string>(() => {
-        return sessionStorage.getItem('accountNumber') || '';
-    });
-   
     const { state } = useLocation();
     const userId = state?.userId || '';
 
@@ -31,8 +27,7 @@ const Top = () => {
                 if (snapshot.exists()) {
                     const userDetails = snapshot.data();
                     const newFirstName = userDetails?.firstName || '';
-                    setFirstName(newFirstName);
-                    setAccountNumber(accountNumber)
+                    setFirstName(newFirstName);                  
                     localStorage.setItem('firstName', newFirstName);
                 }
             } catch (error) {
@@ -64,7 +59,7 @@ const Top = () => {
                 <p className='text-2xl font-bold'>Welcome,</p>
                 <div>
                     <p className='text-2xl font-semibold'>{firstName}</p> 
-                    <p  className='text-md flex items-center justify-center '>Account Number: <span className='font-bold'>{accountNumber}</span></p>
+                    <p  className='text-md flex items-center justify-center '>Account Number: <span className='font-bold'></span></p>
                                 
                 </div>
             </div>
