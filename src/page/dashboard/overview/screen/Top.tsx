@@ -15,6 +15,9 @@ const Top = () => {
     const [firstName, setFirstName] = useState<string>(() => {
         return localStorage.getItem('firstName') || '';
     });
+    const [accountNumber, setAccountNumber] = useState<string>(() => {
+        return localStorage.getItem('accountNumber') || '';
+    });
 
     const { state } = useLocation();
     const userId = state?.userId || '';
@@ -27,8 +30,13 @@ const Top = () => {
                 if (snapshot.exists()) {
                     const userDetails = snapshot.data();
                     const newFirstName = userDetails?.firstName || '';
-                    setFirstName(newFirstName);                  
+                    const newAccountNumber = userDetails?.accountNumber || '';
+                   
+                    setFirstName(newFirstName); 
+                    setAccountNumber(newAccountNumber);   
+
                     localStorage.setItem('firstName', newFirstName);
+                    localStorage.setItem('accountNumber', newAccountNumber);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -59,7 +67,7 @@ const Top = () => {
                 <p className='text-2xl font-bold'>Welcome,</p>
                 <div>
                     <p className='text-2xl font-semibold'>{firstName}</p> 
-                    <p  className='text-md flex items-center justify-center '>Account Number: <span className='font-bold'></span></p>
+                    <p  className='text-md flex items-center justify-center '>Account Number: <span className='font-bold'>{accountNumber}</span></p>
                                 
                 </div>
             </div>
