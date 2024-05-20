@@ -19,6 +19,7 @@
     "react-avatar-edit": "^1.2.0",
     "react-avatar-editor": "^13.0.2",
     "react-dom": "^18.2.0",
+    "react-flags-select": "^2.2.3",
     "react-image-crop": "^11.0.5",
     "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^6.23.0",

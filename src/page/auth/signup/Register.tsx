@@ -7,6 +7,7 @@ import { doc, setDoc } from "firebase/firestore";
 import IMG from '../../../assets/user_img.png'
 import edit from '../../../assets/edit.svg'
 import Loaders from '../../../component/Loaders';
+import ReactFlagsSelect from "react-flags-select";
 
 
 
@@ -59,8 +60,7 @@ const Register  = () => {
   
 
 
-  useEffect(() => {
-    // Simulate some asynchronous operation
+  useEffect(() => {    
     setTimeout(() => {
       setLoading(false);
     }, 5000);
@@ -199,7 +199,7 @@ const Register  = () => {
           const userDocRef = doc(firestore, "users", userCredential.user.uid);
         await setDoc(userDocRef, {  
           firstName: firstName, 
-          lastName: firstName,  
+          lastName: lastName,  
           maidenName:maidenName,      
           maritalStatus:maritalStatus,    
             email: email,
@@ -425,14 +425,13 @@ const Register  = () => {
                 </div>
             <div className='grid'>
               <label htmlFor="coun">Country *</label>
-              <input
-                id="coun"
-                name="coun"
-                type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Country"
-                value={coun}
-                onChange={(e) => setCoun(e.target.value)}
+              <ReactFlagsSelect
+                id="coun"                               
+                selected={coun}
+                onSelect={(code) => setCoun(code)}  
+                placeholder="Select Country"   
+                searchable  
+                searchPlaceholder="Search countries"                         
               />
               {errors.coun && <span className='text-[#f30000] text-sm'>{errors.coun}</span>}
             </div> 
