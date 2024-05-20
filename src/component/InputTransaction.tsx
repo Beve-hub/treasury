@@ -11,7 +11,6 @@ interface UserData {
     cryptoChannel: string;
     walletAddress: string;
     status: string;
-   
 }
 
 const InputTransaction = () => {
@@ -36,7 +35,7 @@ const InputTransaction = () => {
         return localStorage.getItem('firstName') || '';
     });
 
-    const [account, setAccount] = useState<string>(() => {
+    const [accountNumber, setAccountNumber] = useState<string>(() => {
         return localStorage.getItem('accountNumber') || '';
     });
     
@@ -55,7 +54,7 @@ const InputTransaction = () => {
                     const newAccountNumber = userDetails?.accountNumber || '';
                    
                     setFirstName(newFirstName); 
-                    setAccount(newAccountNumber);   
+                    setAccountNumber(newAccountNumber);   
 
                     localStorage.setItem('firstName', newFirstName);
                     localStorage.setItem('accountNumber', newAccountNumber);
@@ -190,8 +189,6 @@ const InputTransaction = () => {
     };
     
 
-    const accountNumber = sessionStorage.getItem('accountNumber')
-
     return (
         <div className="w-screen grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
             <div className="w-full">
@@ -280,7 +277,7 @@ const InputTransaction = () => {
                                                 <>
                                                   <div  className='grid gap-4 '>
                                                 <div className='flex items-center justify-between'>
-                                               <p className='text-sm' >Account Number:</p> <p className='font-semibold'>{account}</p>
+                                               <p className='text-sm' >Account Number:</p> <p className='font-semibold'>{accountNumber}</p>
                                                 </div>
                                                 <div className='flex items-center justify-between'>
                                                 <p className='text-sm'>Account Name: </p> 
