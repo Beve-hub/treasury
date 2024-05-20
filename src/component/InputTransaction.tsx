@@ -35,6 +35,10 @@ const InputTransaction = () => {
     const [firstName, setFirstName] = useState<string>(() => {        
         return localStorage.getItem('firstName') || '';
     });
+
+    const [accountNumber, setAccountNumber] = useState<string>(() => {
+        return localStorage.getItem('accountNumber') || '';
+    });
     
     const { state } = useLocation();
     console.log('users', state);  
@@ -42,14 +46,19 @@ const InputTransaction = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {                
+            try {
                 const userDocRef = doc(firestore, 'users', userId);
                 const snapshot = await getDoc(userDocRef);
                 if (snapshot.exists()) {
                     const userDetails = snapshot.data();
                     const newFirstName = userDetails?.firstName || '';
-                    setFirstName(newFirstName);
+                    const newAccountNumber = userDetails?.accountNumber || '';
+                   
+                    setFirstName(newFirstName); 
+                    setAccountNumber(newAccountNumber);   
+
                     localStorage.setItem('firstName', newFirstName);
+                    localStorage.setItem('accountNumber', newAccountNumber);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -57,6 +66,7 @@ const InputTransaction = () => {
         };
         fetchData();
     }, [userId]);
+
     
     const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/DepositData.json"
     
