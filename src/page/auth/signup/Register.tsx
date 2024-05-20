@@ -3,11 +3,12 @@ import Logo from '../../../assets/logo1.png'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { auth, firestore } from "../../../firebase"
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDocs, collection, query, where } from "firebase/firestore";
 import IMG from '../../../assets/user_img.png'
 import edit from '../../../assets/edit.svg'
 import Loaders from '../../../component/Loaders';
 import ReactFlagsSelect from "react-flags-select";
+
 
 
 
@@ -37,10 +38,10 @@ const Register  = () => {
   const [maidenName, setMaidenName] = useState('');   
   const [maritalStatus, setMaritalStatus] = useState('');  
   const [occupation, setOccupation] = useState('');   
-    const [email, setEmail] = useState('');
-    const [phoneNum, setPhoneNum] = useState('');    
-    const [password, setPassword] = useState('');
-    const [confirm, setConfirm] = useState(''); 
+  const [email, setEmail] = useState('');
+  const [phoneNum, setPhoneNum] = useState('');    
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState(''); 
   const [date, setDate] = useState('');
   const [address, setAddress] = useState('');
   const [state, setState] = useState('');
@@ -152,6 +153,21 @@ const Register  = () => {
     return isValid;
   };
 
+
+  const generateAccountNumber = async (): Promise<string> => {
+    let isUnique = false;
+    let accountNumber = '';
+    while (!isUnique) {
+      accountNumber = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+      const q = query(collection(firestore, "users"), where("accountNumber", "==", accountNumber));
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        isUnique = true;
+      }
+    }
+    return accountNumber;
+  };
+
   const handleProfileImage = () => {
     if (profileInputRef.current) {
       profileInputRef.current.click();      
@@ -189,39 +205,38 @@ const Register  = () => {
     setLoading(true);
     if (validate()) {
       try {
+        const accountNumber = await generateAccountNumber();
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         await sendEmailVerification(user);
-        alert("Registration successful! A verification email has been sent to your email address.")
+        alert("Registration successful! A verification email has been sent to your email address.");
         console.log(userCredential);
         if (userCredential && userCredential.user) {
           sessionStorage.setItem('userId', userCredential.user.uid);
           const userDocRef = doc(firestore, "users", userCredential.user.uid);
-        await setDoc(userDocRef, {  
-          firstName: firstName, 
-          lastName: lastName,  
-          maidenName:maidenName,      
-          maritalStatus:maritalStatus,    
-            email: email,
-            phoneNum: phoneNum,           
-            password: password,    
-            occupation:occupation,    
-          date: date,
-          address: address,
-          state: state,
-          coun: coun,          
-          pin: pin,
-          
-        });
-       
+          await setDoc(userDocRef, {
+            firstName,
+            lastName,
+            maidenName,
+            maritalStatus,
+            email,
+            phoneNum,
+            password,
+            occupation,
+            date,
+            address,
+            state,
+            coun,
+            pin,
+            accountNumber,
+          });
         }
-        navigate('/')  
+        navigate('/');
       } catch (error) {
         console.log(error);
-      }     
-      alert('Registration Completed verify your email for access')
+      }
+      alert('Registration Completed verify your email for access');
     }
-    
     setLoading(false);
   };
 

@@ -9,10 +9,8 @@ import { firestore } from "../../../../firebase";
 import { doc, getDoc } from 'firebase/firestore';
 
 
-interface Props {
-    randomNumber: string;
-}
-const Top = ({randomNumber}:Props) => {
+
+const Top = () => {
     const [icon, setIcon] = useState<boolean>(false);
     const [firstName, setFirstName] = useState<string>(() => {
         return localStorage.getItem('firstName') || '';
@@ -65,8 +63,8 @@ const Top = ({randomNumber}:Props) => {
             <div className='flex gap-2'>
                 <p className='text-2xl font-bold'>Welcome,</p>
                 <div>
-                    <p className='text-lg'>{firstName}</p> 
-                    <p  className='text-md flex items-center justify-center '>Account Number: <span className='font-bold'>{randomNumber}</span></p>
+                    <p className='text-2xl font-semibold'>{firstName}</p> 
+                    <p  className='text-md flex items-center justify-center '>Account Number: <span className='font-bold'>{accountNumber}</span></p>
                                 
                 </div>
             </div>
