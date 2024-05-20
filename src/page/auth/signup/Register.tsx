@@ -210,7 +210,6 @@ const Register  = () => {
         const user = userCredential.user;
         await sendEmailVerification(user);
         alert("Registration successful! A verification email has been sent to your email address.");
-        console.log(userCredential);
         if (userCredential && userCredential.user) {
           sessionStorage.setItem('userId', userCredential.user.uid);
           const userDocRef = doc(firestore, "users", userCredential.user.uid);
