@@ -26,7 +26,7 @@ const Navbar = () => {
                  </div>
                  <div>
                  <a href='/'>
-                  <img src={Logo} alt='' className='w-[9rem] hover:scale-105'/>
+                  <img src={Logo} alt='' className='w-[12rem] hover:scale-105'/>
                   </a>
                  </div>
                   

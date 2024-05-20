@@ -11,7 +11,8 @@ import Loaders from '../../../component/Loaders';
 
 
 interface Errors {
-  firstName?: string;    
+  firstName?: string;  
+  lastName?: string;    
     email?: string;
     phoneNum?: string; 
     maritalStatus?: string;   
@@ -30,7 +31,8 @@ interface Errors {
 
 const Register  = () => { 
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState('');   
+  const [firstName, setFirstName] = useState('');  
+  const [lastName, setLastName] = useState('');   
   const [maidenName, setMaidenName] = useState('');   
   const [maritalStatus, setMaritalStatus] = useState('');  
   const [occupation, setOccupation] = useState('');   
@@ -70,6 +72,11 @@ const Register  = () => {
 
     if (!firstName.trim()) {
       errors.firstName = 'First Name is required';
+      isValid = false;
+    } 
+
+    if (!lastName.trim()) {
+      errors.lastName = 'Last Name is required';
       isValid = false;
     } 
 
@@ -191,7 +198,8 @@ const Register  = () => {
           sessionStorage.setItem('userId', userCredential.user.uid);
           const userDocRef = doc(firestore, "users", userCredential.user.uid);
         await setDoc(userDocRef, {  
-          firstName: firstName,  
+          firstName: firstName, 
+          lastName: firstName,  
           maidenName:maidenName,      
           maritalStatus:maritalStatus,    
             email: email,
@@ -278,7 +286,7 @@ const Register  = () => {
                 {showPersonalInfo && (
                     <div className='space-y-4'>
                 <div className='grid'>
-                  <label htmlFor="firstName">Full Name *</label>
+                  <label htmlFor="firstName">First Name *</label>
                   <input
                     id="firstName"
                     name="firstName"
@@ -289,6 +297,19 @@ const Register  = () => {
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   {errors.firstName && <span className='text-[#f30000] text-sm'>{errors.firstName}</span>}
+                </div> 
+                <div className='grid'>
+                  <label htmlFor="lastName">Last Name *</label>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                  {errors.lastName && <span className='text-[#f30000] text-sm'>{errors.lastName}</span>}
                 </div>  
                 <div className='grid'>
                   <label htmlFor="maidenName">Maiden Name *</label>
@@ -355,7 +376,7 @@ const Register  = () => {
                        value={maritalStatus}
                       onChange={(e) => setMaritalStatus(e.target.value)}
                    >     
-                       <option></option>                 
+                       <option>status</option>                 
                        <option>Single</option>
                        <option>Married</option>                      
                    </select>   
