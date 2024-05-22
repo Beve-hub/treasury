@@ -19,8 +19,9 @@ return (
      
         <div className='bg-[white]  py-4'>
           <div className='p-6' data-aos="fade-up-right">      
-          <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-          <p className='text-[--text-extra]'>OUR VALUES</p>
+          <div  >
+          <p className='text-[--text-color] text-xl font-semibold'>Our Values</p>
+          <div  className='w-[3rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
           </div>
            <div>                           
           <p className='font-bold py-4 text-2xl text-[#121212]'>Our Commitment to your Prosperity</p>                    
@@ -45,7 +46,8 @@ return (
         <div className='max-w-[90rem] mx-auto grid md:grid-cols-2 gap-4 px-8 py-10'>
         <div className=' drop-shadow-xl border-2 w-[15rem] py-4  rounded-lg transition-all duration-500 ' >
             <div className='max-w-[80rem] flex justify-start mx-2'>
-                <img src={img} alt='' className='w-[35px] h-[35px] bg-[--hover-color] p-2 rounded-2xl text-[--text-extra]' />
+                <img src={img} alt=''
+                 className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl"/>
             </div>                         
              <div className='mt-6'>
                              
@@ -60,7 +62,8 @@ return (
 
         <div className=' drop-shadow-xl border-2 w-[15rem] py-4  rounded-lg transition-all duration-500 ' >
             <div className='max-w-[80rem] flex justify-start mx-2'>
-                <img src={img2} alt='' className='w-[35px] h-[35px] bg-[--hover-color] p-2 rounded-2xl text-[--text-extra]' />
+                <img src={img2} alt=''
+                  className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl" />
             </div>                         
              <div className='mt-6'>
                              
@@ -75,7 +78,9 @@ return (
 
         <div className=' drop-shadow-xl border-2 w-[15rem] py-4  rounded-lg transition-all duration-500 ' >
             <div className='max-w-[80rem] flex justify-start mx-2'>
-                <img src={img3} alt='' className='w-[35px] h-[35px] bg-[--hover-color] p-2 rounded-2xl text-[--text-extra]' />
+                <img src={img3} alt=''
+                  className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl"
+                 />
             </div>                         
              <div className='mt-6'>
                              
@@ -89,7 +94,8 @@ return (
 
         <div className=' drop-shadow-xl border-2 w-[15rem] py-4  rounded-lg transition-all duration-500 ' >
             <div className='max-w-[80rem] flex justify-start mx-2'>
-                <img src={img4} alt='' className='w-[35px] h-[35px] bg-[--hover-color] p-2 rounded-2xl text-[--text-extra]' />
+                <img src={img4} alt=''
+                  className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl"/>
             </div>                         
              <div className='mt-6'>
                              

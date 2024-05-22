@@ -17,9 +17,12 @@ const Industry = () => {
           <div className="p-6 ">
             <div className=" grid justify-center items-center">
               <div className="max-w-[80rem] flex justify-center">
-                <p className="  py-1 w-[15rem]  flex justify-center font-medium bg-[--button-color] text-[--text-extra]">                  
+                <div>
+                <p className=" font-semibold  text-[--text-color] text-xl">                  
                   Our industry expertise
                 </p>
+                <div  className='w-[3rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
+                </div>                
               </div>
               <p className="font-bold max-w-[40rem] py-4 text-2xl text-[#121212] text-center">
               We serve large corporations, mid-sized companies, governments, and not-for profits
@@ -33,7 +36,7 @@ const Industry = () => {
                     <img
                       src={img}
                       alt=""
-                      className="w-[35px] h-[35px] bg-[--hover-color] p-2 rounded-2xl"
+                      className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl"
                     />
                   </div>
                   <div className="mt-6">
@@ -52,7 +55,7 @@ const Industry = () => {
                     <img
                       src={img2}
                       alt=""
-                      className="w-[35px] h-[35px] bg-[--hover-color] p-2 rounded-2xl"
+                      className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl"
                     />
                   </div>
                   <div className="mt-6">
@@ -73,7 +76,7 @@ const Industry = () => {
                     <img
                       src={img3}
                       alt=""
-                      className="w-[35px] h-[35px] bg-[--hover-color] p-2 rounded-2xl"
+                      className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl"
                     />
                   </div>
                   <div className="mt-6">
@@ -91,7 +94,7 @@ const Industry = () => {
                     <img
                       src={img4}
                       alt=""
-                      className="w-[35px] h-[35px] bg-[--hover-color] p-2 rounded-2xl"
+                      className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl"
                     />
                   </div>
                   <div className="mt-6">

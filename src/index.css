@@ -12,6 +12,7 @@
   text-decoration: none;
   scroll-padding-top: 2rem;
   scroll-behavior: smooth;
+  font-family: Poppins, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 html{
@@ -20,7 +21,7 @@ html{
 }
 
 :root {
-  font-family: Poppins, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
   line-height: 1.5;
   font-weight: 400;
 
@@ -34,9 +35,9 @@ html{
   
   --text-extra:#ffff;
   --text-color:#121212;
-  --bg-color: #121212;
-  --button-color: #2631fc;
-  --hover-color: #2631fc70;
+  --bg-color: #003e62;
+  --button-color: #FFC700;
+  --hover-color: #003e6250;
   --layer-color: #F6F6F6;
   --layer-colo: #989898;  
   --tetra-color: #90f7d8;
@@ -55,10 +56,10 @@ body {
 }
 
 .active {
-  @apply text-[#2631fc]  font-bold  ;
+  @apply text-[#FFC700]  font-bold  ;
 }
 
 .active img {
-  filter: invert(33%) sepia(81%) saturate(5091%) hue-rotate(215deg) brightness(103%) contrast(97%);
- 
+  filter: invert(81%) sepia(79%) saturate(6528%) hue-rotate(320deg) brightness(90%) contrast(90%);
+
 }

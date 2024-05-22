@@ -35,6 +35,9 @@ const InputTransaction = () => {
         return localStorage.getItem('firstName') || '';
     });
 
+    const [lastName, setLastName] = useState<string>(() => {        
+        return localStorage.getItem('lastName') || '';
+    });
     const [accountNumber, setAccountNumber] = useState<string>(() => {
         return localStorage.getItem('accountNumber') || '';
     });
@@ -51,12 +54,15 @@ const InputTransaction = () => {
                 if (snapshot.exists()) {
                     const userDetails = snapshot.data();
                     const newFirstName = userDetails?.firstName || '';
+                    const newLastName = userDetails?.lastName || '';
                     const newAccountNumber = userDetails?.accountNumber || '';
                    
                     setFirstName(newFirstName); 
+                    setLastName(newLastName); 
                     setAccountNumber(newAccountNumber);   
 
                     localStorage.setItem('firstName', newFirstName);
+                    localStorage.setItem('lastName', newLastName);
                     localStorage.setItem('accountNumber', newAccountNumber);
                 }
             } catch (error) {
@@ -196,7 +202,7 @@ const InputTransaction = () => {
                     <input type="hidden" name="remember" defaultValue="true" />
                     <div className="grid gap-4">
                         <div>
-                            <label htmlFor="amount">Amount</label>
+                            <label htmlFor="currency">Amount</label>
                             <div className="relative">
                                 <span id="sign" className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-700">
                                 <select
@@ -260,9 +266,10 @@ const InputTransaction = () => {
                         {formInput.paymentMethod === 'Cash Deposit' && (
                             <>
                                  <div>
-                                                <label htmlFor="currencyWallet">Currency Wallet</label>
+                                                <label htmlFor="currencyWalle">Currency Wallet</label>
                                                 <select
-                                                    id="currencyWallet"
+                                                    id="currencyWalle"
+                                                    
                                                     name="currencyWallet"
                                                     className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 mt-2 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                                     onChange={(e) => handleCurrencySelection(e)}
@@ -281,7 +288,7 @@ const InputTransaction = () => {
                                                 </div>
                                                 <div className='flex items-center justify-between'>
                                                 <p className='text-sm'>Account Name: </p> 
-                                                <p className='font-semibold'>{firstName}</p>
+                                                <p className='font-semibold'>{firstName} {lastName}</p>
                                                 </div>
                                                 
                                                 

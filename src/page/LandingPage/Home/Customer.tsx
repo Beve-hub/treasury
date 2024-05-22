@@ -57,8 +57,9 @@ const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/CustomerDa
        
           <div className='bg-[white]  py-4'>
             <div className='p-6' data-aos="fade-up-right">      
-            <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-            <p className='text-[--text-extra]'>Contact Us</p>
+            <div  >
+            <p className='text-[--text-color] text-xl font-semibold'>Contact Us</p>
+            <div  className='w-[3rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
             </div>
              <div>                           
             <p className='font-bold py-4 text-2xl text-[#121212]'>We Are Always Here For You24/7 </p>                    

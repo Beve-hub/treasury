@@ -15,11 +15,12 @@ export const Wealth = () => {
          
             <div className='bg-[white]  py-4'>
               <div className='p-6' data-aos="fade-up-right">      
-              <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-              <p className='text-[--text-extra]'>Wealth Management</p>
+              <div  >
+              <p className='text-[--text-color] text-2xl font-semibold'>Wealth Management</p>
+              <div  className='w-[3rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
               </div>
                <div>                           
-              <p className='font-bold py-4 text-2xl text-[--text-extra] '>THIS IS WHAT GUIDES US</p>                    
+              <p className='font-bold py-4 text-2xl text-[--text-color] '>THIS IS WHAT GUIDES US</p>                    
               <p className='max-w-[30rem] text-light text-[#121212] text-balance md:text-balance'>Markets move fast and often, so you need a partner who understands 
               the ever-changing investing landscape. Anthstone combine our patented 
               simulation and optimization engines with thoughtful human insights to deliver 

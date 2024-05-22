@@ -21,7 +21,11 @@ const Testimonia = () => {
                 <div className='p-6 ' >     
                   <div className=' grid justify-center items-center'> 
                   <div className='max-w-[80rem] flex justify-center'>
-                  <p className='  py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color] text-[--text-extra]'> TESTIMONIAL</p>  
+                    <div>
+                    <p className='font-semibold text-[--text-color]'> TESTIMONIAL</p>  
+                  <div  className='w-[3rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
+                    </div>
+                  
                   </div>
                                           
                    <p className='font-bold py-4 text-center text-2xl text-[#121212] max-w-[30rem] te'>The Journey Of Building A Financial Plan That Is Both Successful</p>                    

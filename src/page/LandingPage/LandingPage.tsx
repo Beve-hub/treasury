@@ -3,7 +3,6 @@ import HeroPage from "./Home/HeroPage";
 import Choose from "./Home/Choose";
 import Customer from "./Home/Customer";
 import Testimonia from "./Home/Testimonia";
-import Join from "./Home/Join";
 import Footer from "./Home/Footer";
 
 const LandingPage = () => {
@@ -14,7 +13,6 @@ const LandingPage = () => {
       <Guide />
       <Testimonia />
       <Customer />
-      <Join />
       <Footer />
     </div>
   );

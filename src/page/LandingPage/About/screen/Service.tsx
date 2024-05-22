@@ -17,8 +17,9 @@ const Service = () => {
          
             <div className='bg-[white]  py-4'>
               <div className='p-6' data-aos="fade-up-right">      
-              <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-              <p className='text-[--text-extra]'>Our Services</p>
+              <div  >
+              <p className='text-[--text-color] font-semibold text-xl '>Our Services</p>
+              <div  className='w-[3rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
               </div>
                <div>                           
               <p className='font-bold py-4 text-2xl text-[#121212]'>Working Together To Drive Growth And Positive Change</p>                    
@@ -46,7 +47,8 @@ const Service = () => {
             <div className=' drop-shadow-xl border-2  py-2  rounded-lg transition-all duration-500 ' >
                 <div className='flex items-center justify-around'>
                 
-                    <img src={img} alt='' className='w-[35px] h-[35px] bg-[--hover-color] p-2 mx-2 rounded-2xl' />
+                    <img src={img} alt=''
+                     className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl"/>
                                         
                  <div className=' max-w-[20rem]'>                                
                      
@@ -61,7 +63,7 @@ const Service = () => {
             </div>
             <div className=' drop-shadow-xl border-2  py-2  rounded-lg transition-all duration-500 ' >
                 <div className='flex items-center justify-around'>               
-                    <img src={img2} alt='' className='w-[35px] h-[35px] bg-[--hover-color] p-2 mx-2 rounded-2xl' />
+                    <img src={img2} alt=''  className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl" />
                                         
                  <div className=' max-w-[20rem]'>                                
                      
@@ -75,7 +77,7 @@ const Service = () => {
             </div> 
             <div className=' drop-shadow-xl border-2  py-2  rounded-lg transition-all duration-500 ' >
                 <div className='flex items-center justify-around'>                
-                    <img src={img3} alt='' className='w-[35px] h-[35px] bg-[--hover-color] p-2 mx-2 rounded-2xl' />                                        
+                    <img src={img3} alt=''  className="w-[30px] h-[30px] border-2 border-[--button-color] p-1 rounded-2xl" />                                        
                  <div className='max-w-[20rem]'>                             
                      
                     <p className='text-md font-bold'>Treasury Management</p>                             

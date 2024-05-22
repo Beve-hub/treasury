@@ -11,14 +11,15 @@ const Mission = () => {
       }, []);
       
     return (
-      <section  className="min-h-[30rem] bg-[--text-extra] py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
+      <section   className="min-h-[30rem] bg-[--text-extra] py-20 flex  md:flex-row grid-col-2 items-center justify-center ">
       <div>
         <div className='max-w-[1100px] flex gap-2 md:grid-cols-2 '>
          
             <div className='bg-[white]  py-4'>
               <div className='p-6' data-aos="fade-up-right">      
-              <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-              <p className='text-[--text-extra]'>Our Mission</p>
+              <div  >
+              <p className='text-[--text-color] text-xl font-semibold'>Our Mission</p>
+              <div  className='w-[3rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
               </div>
                <div>                           
               <p className='font-bold py-4 text-2xl text-[#121212]'>Empowering Financial Freedom.</p>                    

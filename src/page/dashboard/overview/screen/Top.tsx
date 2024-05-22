@@ -15,6 +15,9 @@ const Top = () => {
     const [firstName, setFirstName] = useState<string>(() => {
         return localStorage.getItem('firstName') || '';
     });
+    const [lastName, setLastName] = useState<string>(() => {
+        return localStorage.getItem('lastName') || '';
+    });
     const [accountNumber, setAccountNumber] = useState<string>(() => {
         return localStorage.getItem('accountNumber') || '';
     });
@@ -30,12 +33,15 @@ const Top = () => {
                 if (snapshot.exists()) {
                     const userDetails = snapshot.data();
                     const newFirstName = userDetails?.firstName || '';
+                    const newLastName = userDetails?.lastName || '';
                     const newAccountNumber = userDetails?.accountNumber || '';
                    
                     setFirstName(newFirstName); 
+                    setLastName(newLastName); 
                     setAccountNumber(newAccountNumber);   
 
                     localStorage.setItem('firstName', newFirstName);
+                    localStorage.setItem('lastName', newLastName);
                     localStorage.setItem('accountNumber', newAccountNumber);
                 }
             } catch (error) {
@@ -66,8 +72,8 @@ const Top = () => {
             <div className='flex gap-2'>
                 <p className='text-2xl font-bold'>Welcome,</p>
                 <div>
-                    <p className='text-2xl font-semibold'>{firstName}</p> 
-                    <p  className='text-md flex items-center justify-center '>Account Number: <span className='font-bold'>{accountNumber}</span></p>
+                    <p className='text-2xl font-semibold'>{firstName}{lastName}</p> 
+                    <p  className='text-md flex items-center justify-center '>Acct/Num: <span className='font-bold'>{accountNumber}</span></p>
                                 
                 </div>
             </div>

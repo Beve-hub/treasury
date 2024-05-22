@@ -1,5 +1,5 @@
 import  {useEffect} from 'react'
-import img from '../../../assets/image_1.png'
+import img from '../../../assets/image_hero.png'
 import check from '../../../assets/icons_check-fill.svg'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -22,8 +22,10 @@ const Choose = () => {
          
             <div className='bg-[white]  py-4'>
               <div className='p-6' data-aos="fade-up-right">      
-              <div className='py-1 w-[10rem]  flex justify-center font-medium bg-[--button-color]' >
-              <p className='text-[--text-extra]'>Why Choose Us</p>
+              <div>
+              <p className='text-[--text-color] text-xl'>Why Choose Us</p>
+              <div  className='w-[5rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
+              
               </div>
                <div>                           
               <p className='font-bold py-4 text-2xl text-[#121212]'>Financial Strategies</p>                    
@@ -67,7 +69,7 @@ const Choose = () => {
   
      
            <div className='sm:grid hidden' data-aos='zoom-in'>
-             <img src={img} alt="" className='w-[30rem] h-[30rem] hover:scale-110 transition-all duration-500 cursor-pointer' />
+             <img src={img} alt="" className='w-[30rem] h-[25rem] hover:scale-110 transition-all duration-500 cursor-pointer' />
             </div>
          
         </div>
