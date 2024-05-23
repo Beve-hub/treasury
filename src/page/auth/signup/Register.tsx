@@ -678,20 +678,20 @@ const Register  = () => {
               {errors.kinState && <span className='text-[#f30000] text-sm'>{errors.kinState}</span>}
                 </div>
 
-                <div className='grid'>
+              
+
+                  <div className='grid'>
               <label htmlFor="kinCoun">Kin Country *</label>
-              <input
-                id="kinCoun"
-                name="kinCoun"
-                type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Kin Country"
-                value={kinCoun}
-                onChange={(e) => setKinCoun(e.target.value)}
+              <ReactFlagsSelect
+                id="kinCoun"                               
+                selected={kinCoun}
+                onSelect={(code) => setKinCoun(code)}  
+                placeholder="Select Country"   
+                searchable  
+                searchPlaceholder="Search countries"                         
               />
               {errors.kinCoun && <span className='text-[#f30000] text-sm'>{errors.kinCoun}</span>}
-                </div>
-                      
+            </div>     
               </div>
 
 
