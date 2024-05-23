@@ -85,15 +85,15 @@ const Login = () => {
           </a>               
         </div>
 
-        <div className='w-screen flex items-center justify-between'>
-        <img src={Logo2} alt='' className='w-[50rem] h-[39rem]'/>
+        <div className='w-screen flex items-center justify-between '>
+        <img src={Logo2} alt='' className='w-[50rem] h-[39rem] md:flex hidden'/>
 
-        <div className="  h-[30rem]  bg-[--text-extra] mr-[15rem]">        
+        <div className="  h-[30rem]  bg-[--text-extra] mr-[15rem] mx-[1rem]">        
           <div >
     <h2 className="mt-6 text-start text-3xl font-extrabold text-gray-900">Login</h2>
     <p className='max-w-[16rem] py-2'>Please provide your information to continue</p>
           </div>
-          <form className=" space-y-6" onSubmit={handleSubmit}>
+          <form className=" space-y-6 " onSubmit={handleSubmit}>
     <input type="hidden" name="remember" defaultValue="true" />
     <div className="grid gap-4">
       <div>

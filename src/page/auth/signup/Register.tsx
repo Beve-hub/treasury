@@ -314,7 +314,7 @@ const Register  = () => {
           <img src={Logo} alt='' className='w-[10rem]' />
         </a>               
       </div>
-        <div>
+        <div className='mx-[1rem]'>
           <div className=' w-screen md:flex hidden'>
             <div className='bg-[--bg-color] w-[50rem] h-[30rem] justify-center items-center'>
                 <div className='h-[10rem] grid justify-center items-center mt-[10rem]'>
@@ -338,7 +338,7 @@ const Register  = () => {
         <div className=" w-full ">        
          
           
-          <form className=" space-y-6 mx-auto" onSubmit={handleSubmit}>
+          <form className=" space-y-6 mx-[10rem]" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
 
             <div >
@@ -574,15 +574,12 @@ const Register  = () => {
       onChange={(e) => setConfirm(e.target.value)} 
     />
     {errors.confirm && <span className='text-[#f30000] text-sm'>{errors.confirm}</span>}
-    </div>       
-              </div>
+    </div> 
 
 
-              <div className="my-6 space-y-4">
-                <p className='font-semibold text-xl'>Next of Kin Information</p>
-                <div className='space-y-2 grid md:grid-cols-2 justify-center items-center gap-2'>
+    <p className='font-semibold text-xl mt-6'>Next of Kin Information</p> 
                 <div className='grid'>
-              <label htmlFor="kinFirstName">Next of Kin First Name *</label>
+              <label htmlFor="kinFirstName">Kin First Name *</label>
               <input
                 id="kinFirstName"
                 name="kinFirstName"
@@ -694,9 +691,17 @@ const Register  = () => {
               />
               {errors.kinCoun && <span className='text-[#f30000] text-sm'>{errors.kinCoun}</span>}
                 </div>
-                
-                </div>
+                      
               </div>
+
+
+              </div>
+                          
+        
+                
+              
+     
+     
      <div className='grid justify-center items-center mt-10'>
      <div className='grid justify-center items-center gap-4'>
      <label htmlFor='validId' className='font-semibold text-medium'>Upload  Valid ID</label>
@@ -726,7 +731,7 @@ const Register  = () => {
 
      </div>
  
-            </div>
+            
             <div className=' justify-center grid'>
               <button
                 type="submit"
