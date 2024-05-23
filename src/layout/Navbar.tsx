@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import menu from '../assets/menu.svg'
 import cancel from '../assets/cancel.svg'
-import Logo from '../assets/logo1.png'
+import Logo from '../assets/logo2.png'
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
  
