@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Logo from '../../../assets/logo1.png'
+import IMG2 from '../../../assets/open-account.webp'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { auth, firestore } from "../../../firebase"
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
@@ -24,6 +25,14 @@ interface Errors {
   address?: string;
   state?: string;
   coun?: string;  
+  kinFirstName?: string;  
+  kinLastName?: string;    
+    kinEmail?: string;
+    kinPhoneNum?: string; 
+    kinMaritalStatus?: string;      
+  kinAddress?: string;
+  kinState?: string;
+  kinCoun?: string;  
   pin?: string;
   occupation?: string;
   maidenName?: string;
@@ -45,13 +54,19 @@ const Register  = () => {
   const [date, setDate] = useState('');
   const [address, setAddress] = useState('');
   const [state, setState] = useState('');
-  const [coun, setCoun] = useState('');  
+  const [coun, setCoun] = useState(''); 
+  const [kinFirstName, setKinFirstName] = useState('');  
+  const [kinLastName, setKinLastName] = useState('');   
+   const [kinMaritalStatus, setKinMaritalStatus] = useState('');  
+  const [kinEmail, setKinEmail] = useState('');
+  const [kinPhoneNum, setKinPhoneNum] = useState('');    
+  const [kinAddress, setKinAddress] = useState('');
+  const [kinState, setKinState] = useState('');
+  const [kinCoun, setKinCoun] = useState('');  
   const [pin, setPin] = useState(''); 
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [validId, setValidId] = useState<string | null>(null);
-  const [showPersonalInfo, setShowPersonalInfo] = useState(false);
-  const [showSecurityInfo, setShowSecurityInfo] = useState(false);
-  const [showValid, setShowValid] = useState(false);
+
   const profileInputRef = useRef<HTMLInputElement>(null);
   const validInputRef = useRef<HTMLInputElement>(null);
     
@@ -81,12 +96,26 @@ const Register  = () => {
       isValid = false;
     } 
 
+    if (!kinFirstName.trim()) {
+      errors.kinFirstName = 'Next of Kin First Name is required';
+      isValid = false;
+    } 
+
+    if (!kinLastName.trim()) {
+      errors.kinLastName = 'Next of Kin Last Name is required';
+      isValid = false;
+    } 
+
     if (!maidenName.trim()) {
       errors.maidenName = 'Madien Name is required';
       isValid = false;
     } 
     if (!maritalStatus.trim()) {
       errors.maritalStatus = 'Marital Status is required';
+      isValid = false;
+    } 
+    if (!kinMaritalStatus.trim()) {
+      errors.kinMaritalStatus = 'Next of Kin Marital Status is required';
       isValid = false;
     } 
 
@@ -106,6 +135,20 @@ const Register  = () => {
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = 'Email is invalid';
+      isValid = false;
+    }
+
+    if (!kinPhoneNum.trim()) {
+      errors.kinPhoneNum= 'Next of Kin Phone Number is required';
+      isValid = false;
+    }
+    
+
+    if (!kinEmail .trim()) {
+      errors.kinEmail  = 'Next of Kin Email is required';
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.kinEmail = 'Next of Kin Email is invalid';
       isValid = false;
     }
 
@@ -141,7 +184,22 @@ const Register  = () => {
     if (!coun.trim()) {
       errors.coun = 'Country is required';
       isValid = false;
-    }    
+    }   
+    
+    if (!kinAddress.trim()) {
+      errors.kinAddress = 'Next of Kin Address is required';
+      isValid = false;
+    }
+
+    if (!kinState.trim()) {
+      errors.kinState = 'Next of Kin State is required';
+      isValid = false;
+    }
+
+    if (!kinCoun.trim()) {
+      errors.kinCoun = 'Next of Kin Country is required';
+      isValid = false;
+    }   
 
     if (!pin.trim()) {
       errors.pin = 'Transaction Pin is required';
@@ -184,9 +242,7 @@ const Register  = () => {
     const files = event.target.files;
     if (files && files.length > 0) {
       const selectedImage = URL.createObjectURL(files[0]);
-      setProfileImage(selectedImage);
-      setShowPersonalInfo(true);
-      setShowValid(true);
+      setProfileImage(selectedImage);     
     }
     
   };
@@ -195,8 +251,7 @@ const Register  = () => {
     const files = event.target.files;
     if (files && files.length > 0) {
       const selectedImage = URL.createObjectURL(files[0]);
-      setValidId(selectedImage);
-      setShowSecurityInfo(true);      
+      setValidId(selectedImage);  
     }
   };
 
@@ -227,6 +282,14 @@ const Register  = () => {
             state,
             coun,
             pin,
+            kinFirstName,  
+            kinLastName,    
+            kinEmail,
+            kinPhoneNum,
+            kinMaritalStatus,   
+            kinAddress,
+            kinState,
+            kinCoun,
             accountNumber,
           });
         }
@@ -244,26 +307,48 @@ const Register  = () => {
      { loading ? <div className='flex justify-center items-center'>
         <Loaders  />
       </div> : 
+      (
       <div>
      <div className=' bg-[#ffff] w-screen fixed grid justify-start'>
         <a href='/'>
           <img src={Logo} alt='' className='w-[10rem]' />
         </a>               
       </div>
-      <div className="pt-[7rem] w-screen grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
-        <div className=" w-full ">        
-          <div >
-            <h2 className="mt-6 text-start text-3xl font-extrabold text-gray-900">Register</h2>
-            <p className='max-w-[16rem] py-2'>Join us today and enjoy our offers</p>
-
-
+        <div>
+          <div className=' w-screen md:flex hidden'>
+            <div className='bg-[--bg-color] w-[50rem] h-[30rem] justify-center items-center'>
+                <div className='h-[10rem] grid justify-center items-center mt-[10rem]'>
+                  <div>
+                  <p className='text-[2rem] font-bold text-[--text-extra]'>Essential banking accounts</p>
+                  <p className='text-16 text-[--text-extra]'>From the bank obsessed with your success™.</p>
+                  </div>   
+                  <div>
+                  <button className='bg-[--button-color] px-6 py-2 rounded-full'>
+                  Apply
+                </button>
+                  </div> 
+                </div>
+                
+            </div>
+            <img src={IMG2} alt='' className='w-[50rem] h-[30rem] '/>
           </div>
+
+
+          <div className="pt-[7rem] w-screen grid items-center justify-center bg-gray-50 sm:px-6 lg:px-8">
+        <div className=" w-full ">        
+         
           
-          <form className=" space-y-6 " onSubmit={handleSubmit}>
+          <form className=" space-y-6 mx-auto" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
 
-         {/* Profile image upload */}
-            <div className='grid justify-center items-center'>
+            <div >
+            <h2 className="mt-6 text-start text-3xl font-extrabold text-gray-900">Get Started</h2>
+            <p className='text-balance py-2 '>We're required by law to ask your name, address, date of birth and other information to help us identify you.</p>
+
+
+              </div>
+
+            <div className='grid justify-center items-center mx-auto'>
               <div className='grid justify-center items-center gap-4'>
               <label htmlFor="profileImage"  className='font-semibold'>Upload  Profile Image</label>
                {/* Conditionally render uploaded image or default image */}
@@ -294,11 +379,11 @@ const Register  = () => {
             
               </div>
               
-              <div className="grid gap-2">
-                {/* Personal Information section */}
-                
-                {showPersonalInfo && (
-                    <div className='space-y-4'>
+              
+              <div className="grid gap-2 mx-auto">
+              <p className='font-semibold text-xl'>Personal Information</p>
+              <div className='space-y-4 grid md:grid-cols-2 items-center gap-2'>
+
                 <div className='grid'>
                   <label htmlFor="firstName">First Name *</label>
                   <input
@@ -450,13 +535,169 @@ const Register  = () => {
               {errors.coun && <span className='text-[#f30000] text-sm'>{errors.coun}</span>}
             </div> 
                 
-                 
-                    </div>
-                  )}  
+            <div className='grid'>
+  <label htmlFor="pin">Transaction Pin*</label>
+  <input
+    id="pin"
+    name="pin"
+    type="text"
+    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    placeholder="Enter transaction pin"
+    value={pin}
+    onChange={(e) => setPin(e.target.value)}
+  />
+  {errors.pin && <span className='text-[#f30000] text-sm'>{errors.pin}</span>}
+       </div>   
 
-{showValid && (<>
+     <div className='grid'>
+    <label htmlFor="password">Password *</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      placeholder="Password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+    />
+    {errors.password && <span className='text-[#f30000] text-sm'>{errors.password}</span>}
+  </div>
+  <div className='grid'>
+    <label htmlFor="confirm">Confirm Password *</label>
+    <input
+      id="confirm"
+      name="confirm"
+      type="password"
+      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      placeholder="Confirm Password"
+      value={confirm}
+      onChange={(e) => setConfirm(e.target.value)} 
+    />
+    {errors.confirm && <span className='text-[#f30000] text-sm'>{errors.confirm}</span>}
+    </div>       
+              </div>
 
-  <div className='grid justify-center items-center mt-10'>
+
+              <div className="my-6 space-y-4">
+                <p className='font-semibold text-xl'>Next of Kin Information</p>
+                <div className='space-y-2 grid md:grid-cols-2 justify-center items-center gap-2'>
+                <div className='grid'>
+              <label htmlFor="kinFirstName">Next of Kin First Name *</label>
+              <input
+                id="kinFirstName"
+                name="kinFirstName"
+                type="text"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Kin First Name"
+                value={kinFirstName}
+                onChange={(e) => setKinFirstName(e.target.value)}
+              />
+              {errors.kinFirstName && <span className='text-[#f30000] text-sm'>{errors.kinFirstName}</span>}
+                </div>
+
+                <div className='grid'>
+              <label htmlFor="kinLastName">Kin Last Name *</label>
+              <input
+                id="kinLastName"
+                name="kinLastName"
+                type="text"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Kin Last Name"
+                value={kinLastName}
+                onChange={(e) => setKinLastName(e.target.value)}
+              />
+              {errors.kinLastName && <span className='text-[#f30000] text-sm'>{errors.kinLastName}</span>}
+                </div>
+
+                <div className='grid'>
+              <label htmlFor="kinEmail">Kin Email*</label>
+              <input
+                id="kinEmail"
+                name="kinEmail"
+                type="text"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Kin Email"
+                value={kinEmail}
+                onChange={(e) => setKinEmail(e.target.value)}
+              />
+              {errors.kinEmail && <span className='text-[#f30000] text-sm'>{errors.kinEmail}</span>}
+                </div>
+
+                <div className='grid'>
+              <label htmlFor="kinPhoneNum">Kin Phone Number *</label>
+              <input
+                id="kinPhoneNum"
+                name="kinPhoneNum"
+                type="text"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Kin Phone Number"
+                value={kinPhoneNum}
+                onChange={(e) => setKinPhoneNum(e.target.value)}
+              />
+              {errors.kinPhoneNum && <span className='text-[#f30000] text-sm'>{errors.kinPhoneNum}</span>}
+                </div>
+
+                <div className='grid'>
+                   <label htmlFor="kinMaritalStatus"> Kin Marital Status *</label>
+                   <select
+                       id="kinMaritalStatus"
+                       name="kinMaritalStatus"
+                       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       value={kinMaritalStatus}
+                      onChange={(e) => setKinMaritalStatus(e.target.value)}
+                   >     
+                       <option>Kin Marital Status</option>                 
+                       <option>Single</option>
+                       <option>Married</option>                      
+                   </select>   
+                   {errors.kinMaritalStatus && <span className='text-[#f30000] text-sm'>{errors.kinMaritalStatus}</span>}                
+               </div> 
+
+                <div className='grid'>
+              <label htmlFor="kinAddress">Kin Address*</label>
+              <input
+                id="kinAddress"
+                name="kinAddress"
+                type="text"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Kin Address"
+                value={kinAddress}
+                onChange={(e) => setKinAddress(e.target.value)}
+              />
+              {errors.kinAddress && <span className='text-[#f30000] text-sm'>{errors.kinAddress}</span>}
+                </div>
+
+                <div className='grid'>
+              <label htmlFor="kinState">Kin State *</label>
+              <input
+                id="kinState"
+                name="kinState"
+                type="text"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Kin State"
+                value={kinState}
+                onChange={(e) => setKinState(e.target.value)}
+              />
+              {errors.kinState && <span className='text-[#f30000] text-sm'>{errors.kinState}</span>}
+                </div>
+
+                <div className='grid'>
+              <label htmlFor="kinCoun">Kin Country *</label>
+              <input
+                id="kinCoun"
+                name="kinCoun"
+                type="text"
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Kin Country"
+                value={kinCoun}
+                onChange={(e) => setKinCoun(e.target.value)}
+              />
+              {errors.kinCoun && <span className='text-[#f30000] text-sm'>{errors.kinCoun}</span>}
+                </div>
+                
+                </div>
+              </div>
+     <div className='grid justify-center items-center mt-10'>
      <div className='grid justify-center items-center gap-4'>
      <label htmlFor='validId' className='font-semibold text-medium'>Upload  Valid ID</label>
      {validId ? (
@@ -484,58 +725,9 @@ const Register  = () => {
       </div>
 
      </div>
-      {/* Security Information section */}
-              {showSecurityInfo && (
-                <div className='space-y-4'>
-                   <p className='font-bold text-xl my-4'>Security Information </p>
-
-                   <div className='grid'>
-  <label htmlFor="pin">Transaction Pin*</label>
-  <input
-    id="pin"
-    name="pin"
-    type="text"
-    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    placeholder="Enter transaction pin"
-    value={pin}
-    onChange={(e) => setPin(e.target.value)}
-  />
-  {errors.pin && <span className='text-[#f30000] text-sm'>{errors.pin}</span>}
-</div>
-
-<div className='grid'>
-    <label htmlFor="password">Password *</label>
-    <input
-      id="password"
-      name="password"
-      type="password"
-      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      placeholder="Password"
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-    />
-    {errors.password && <span className='text-[#f30000] text-sm'>{errors.password}</span>}
-  </div>
-  <div className='grid'>
-    <label htmlFor="confirm">Confirm Password *</label>
-    <input
-      id="confirm"
-      name="confirm"
-      type="password"
-      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      placeholder="Confirm Password"
-      value={confirm}
-      onChange={(e) => setConfirm(e.target.value)} 
-    />
-    {errors.confirm && <span className='text-[#f30000] text-sm'>{errors.confirm}</span>}
-    </div>  
-    </div>
-    )}
-</>)}
-
-           
+ 
             </div>
-            <div>
+            <div className=' justify-center grid'>
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium  bg-[--button-color] ">
@@ -550,9 +742,10 @@ const Register  = () => {
             </div>
           </form>
         </div>
+          </div>
+        </div>  
       </div>
-      </div>
-      }
+      )}
       
     </div>
   )

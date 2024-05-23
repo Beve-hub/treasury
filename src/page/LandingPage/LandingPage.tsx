@@ -1,16 +1,18 @@
-import Guide from "./Home/Guide";
 import HeroPage from "./Home/HeroPage";
-import Choose from "./Home/Choose";
 import Customer from "./Home/Customer";
 import Testimonia from "./Home/Testimonia";
 import Footer from "./Home/Footer";
+import Insurance from "./Home/Insurance";
+import Features from "./Home/Features";
+import Find from "./Home/Find";
 
 const LandingPage = () => {
   return (
     <div>
       <HeroPage />
-      <Choose />
-      <Guide />
+      <Insurance/>
+      <Find/>
+      <Features/>     
       <Testimonia />
       <Customer />
       <Footer />
