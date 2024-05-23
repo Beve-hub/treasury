@@ -61,7 +61,7 @@ const HeroPage= () => {
                 overflow: 'hidden'                
               }}>     
   
-              <div className='grid justify-center items-center  h-[40rem] '>
+              <div className='grid justify-center items-center  h-[40rem] mx-auto'>
               <div className=''>
                       <div className='' data-aos='fade-right'>
                           <h1 className='text-white text-balance font-bold text-[3rem] '>{items.title}</h1>

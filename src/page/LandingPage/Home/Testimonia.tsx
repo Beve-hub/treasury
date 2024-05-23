@@ -47,7 +47,7 @@ const Testimonials = () => {
     <section className="min-h-[30rem] bg-[--text-extra] py-20 flex items-center justify-center">
       <div className="max-w-[1100px] w-full px-4 relative">
         <div className='text-center mb-8'>
-          <p className='font-semibold text-[--text-color]'>TESTIMONIAL</p>
+          <p className='font-bold text-[--text-color] text-2xl'>TESTIMONIAL</p>
           <div className='w-[3rem] py-1 mx-auto border-b-4 border-[--button-color]'></div>
         </div>
 

@@ -62,7 +62,7 @@ const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/CustomerDa
             <div  className='w-[3rem] py-1  flex justify-center border-b-4 border-[--button-color] ' ></div>
             </div>
              <div>                           
-            <p className='font-bold py-4 text-2xl text-[#121212]'>We Are Always Here For You24/7 </p>                    
+            <p className='font-bold py-4 text-xl text-[#121212]'>We Are Always Here For You24/7 </p>                    
             <p className='max-w-[30rem] text-light text-[#121212] text-balance md:text-balance'>Feel Free To Ask Your Questions</p>
             </div>
 

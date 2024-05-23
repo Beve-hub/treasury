@@ -14,7 +14,7 @@ const Find = () => {
                 }}
             >
                 <div className="grid justify-center items-center h-[10rem]">
-                    <p className='font-bold text-3xl text-[--text-extra]'>Find out more about <span className='text-[--button-color]'>what we do</span> </p>
+                    <p className='mx-auto font-bold text-3xl text-[--text-extra]'>Find out more about <span className='text-[--button-color]'>what we do</span> </p>
                 </div>
             </div>
         </section>
