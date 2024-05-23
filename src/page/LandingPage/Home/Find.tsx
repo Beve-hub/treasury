@@ -13,7 +13,7 @@ const Find = () => {
                     overflow: 'hidden',
                 }}
             >
-                <div className="grid justify-center items-center h-[10rem]">
+                <div className="grid justify-center items-center h-[10rem] mx-[2rem]">
                     <p className='mx-auto font-bold text-3xl text-[--text-extra]'>Find out more about <span className='text-[--button-color]'>what we do</span> </p>
                 </div>
             </div>
