@@ -1,4 +1,4 @@
-import image from '../../../assets/line.svg';
+import image from '../../../assets/line2.png';
 
 const Find = () => {
     return (
