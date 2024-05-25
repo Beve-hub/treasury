@@ -4,13 +4,14 @@ import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCaxdz4p436WrIEyTzsXRWecQSiPHlJ3sA",
-  authDomain: "unitedtreasury-bf323.firebaseapp.com",
-  projectId: "unitedtreasury-bf323",
-  storageBucket: "unitedtreasury-bf323.appspot.com",
-  messagingSenderId: "931883762486",
-  appId: "1:931883762486:web:a597717355c9a2cf1b2997",
-  databaseURL: "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/"
+  apiKey: "AIzaSyDMqWuZ-P2n-b1cRHTFQ_8WChr5RmhqfHU",
+  authDomain: "anthstone.firebaseapp.com",
+  databaseURL: "https://anthstone-default-rtdb.firebaseio.com",
+  projectId: "anthstone",
+  storageBucket: "anthstone.appspot.com",
+  messagingSenderId: "897319986652",
+  appId: "1:897319986652:web:4b81cbac193df59a009b19",
+  measurementId: "G-05Y1LP139Y",  
 };
 
 // Initialize Firebase

@@ -25,8 +25,8 @@ const RecentAdmin = () => {
   const [loader, setLoader] = useState(false);
   const [status, setStatus] = useState<{ [key: string]: string | null }>({});
 
-  const url1 = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/DepositData.json"
-  const url2 = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/WithdrawData.json"
+  const url1 = "https://anthstone-default-rtdb.firebaseio.com/DepositData.json"
+  const url2 = "https://anthstone-default-rtdb.firebaseio.com/WithdrawData.json"
   
   
   

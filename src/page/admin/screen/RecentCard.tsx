@@ -57,7 +57,7 @@ const RecentCard = () => {
         fetchWallets();        
     }, []);
 
-    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/AdminData.json"
+    const url = "https://anthstone-default-rtdb.firebaseio.com/AdminData.json"
    
     
    
@@ -97,7 +97,7 @@ const RecentCard = () => {
 
      const removeWallet = async (key: string) => {   
         console.log("wallet", key)
-        const url1 = `https://unitedtreasury-bf323-default-rtdb.firebaseio.com/AdminData/${key}.json` 
+        const url1 = `https://anthstone-default-rtdb.firebaseio.com/AdminData/${key}.json` 
         try {            
             const resp = await fetch(url1, {
                 method: 'DELETE',
@@ -159,9 +159,9 @@ const RecentCard = () => {
                         <td className="px-4 py-2 text-black">{item.walletAddress}</td>
                         <td className="px-4 py-2">
                             <div className="flex items-center justify-center">
-                                <button onClick={() => removeWallet(item.key)} className="px-4 py-2">
+                                <div onClick={() => removeWallet(item.key)} className="px-4 py-2">
                                     <img src={remove} alt="" className="w-[24px]" />
-                                </button>
+                                </div>
                             </div>
                         </td>
                     </tr>

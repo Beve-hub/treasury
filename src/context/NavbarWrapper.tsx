@@ -22,7 +22,9 @@ const NavbarWrapper = ({ children }: Props) => {
             '/amount',
             '/recover',
             '/withdraw',
-            '/action'            
+            '/action'  ,
+            '/loan' ,
+                     
         ];
 
         const showNavbarPaths = [

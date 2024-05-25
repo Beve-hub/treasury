@@ -73,7 +73,7 @@ const InputTransaction = () => {
     }, [userId]);
 
     
-    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/DepositData.json"
+    const url = "https://anthstone-default-rtdb.firebaseio.com/DepositData.json"
     
     useEffect(() => {
         const fetchData = async () => {

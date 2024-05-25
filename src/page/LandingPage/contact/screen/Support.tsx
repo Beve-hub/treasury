@@ -11,7 +11,7 @@ const Support = () => {
     subject: '',
 })
 
-const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/CustomerData.json"
+const url = "https://anthstone-default-rtdb.firebaseio.com/CustomerData.json"
 
     useEffect(() => {
         AOS.init({duration: 2000})

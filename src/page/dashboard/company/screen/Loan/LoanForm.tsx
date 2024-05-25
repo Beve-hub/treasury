@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Loaders from "../../../../../component/Loaders";
 import ReactFlagsSelect from "react-flags-select";
+import Modal from "./LoanModal";
+import { useNavigate } from "react-router-dom";
 
 interface Errors {
   amount?: string;
@@ -36,9 +38,12 @@ const LoanForm = () => {
   const [employer, setEmployer] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const url =
-    "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/LoanData.json";
+    "https://anthstone-default-rtdb.firebaseio.com/LoanData.json";
 
   useEffect(() => {
     setTimeout(() => {
@@ -81,7 +86,7 @@ const LoanForm = () => {
     }
 
     if (!city.trim()) {
-      errors.city = "city is required";
+      errors.city = "City is required";
       isValid = false;
     }
 
@@ -155,7 +160,6 @@ const LoanForm = () => {
         });
 
         if (resp.ok) {
-          alert("Successful");
           setAmount("");
           setIncome("");
           setUsed("");
@@ -170,6 +174,7 @@ const LoanForm = () => {
           setTitle("");
           setEmployer("");
           setCode("");
+          setIsModalOpen(true);
         } else {
           alert("Error storing details. Please try again.");
         }
@@ -194,7 +199,7 @@ const LoanForm = () => {
           className="w-screen justify-center items-center space-y-4"
         >
           <p className="font-bold text-2xl py-6">Loan Application Form</p>
-          <div className="max-w-[40rem] gap-2 grid md:grid-cols-2 items-center justify-center">            
+          <div className="max-w-[40rem] gap-2 grid md:grid-cols-2 items-center justify-center">
             <div className="grid">
               <label htmlFor="amount">Desired Loan Amount *</label>
               <input
@@ -367,8 +372,8 @@ const LoanForm = () => {
                 name="state"
                 type="text"
                 className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Enter City"
-                value={city}
+                placeholder="Enter State"
+                value={state}
                 onChange={(e) => setState(e.target.value)}
               />
               {errors.state && (
@@ -385,7 +390,6 @@ const LoanForm = () => {
                 placeholder="Select Country"
                 searchable
                 searchPlaceholder="Search countries"
-                
               />
               {errors.coun && (
                 <span className="text-[#f30000] text-sm">{errors.coun}</span>
@@ -397,14 +401,14 @@ const LoanForm = () => {
               <input
                 id="title"
                 name="title"
-                type="text"                
+                type="text"
                 placeholder="Enter job title"
-                value={city}
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
-              {errors.state && (
-                <span className="text-[#f30000] text-sm">{errors.state}</span>
+              {errors.title && (
+                <span className="text-[#f30000] text-sm">{errors.title}</span>
               )}
             </div>
 
@@ -415,7 +419,7 @@ const LoanForm = () => {
                 name="employer"
                 type="text"
                 className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Enter City"
+                placeholder="Enter Employer Name"
                 value={employer}
                 onChange={(e) => setEmployer(e.target.value)}
               />
@@ -434,10 +438,26 @@ const LoanForm = () => {
             >
               Apply For Loan
             </button>
+            <p>
+              Note: loan can only be considered if applicant is an account owner
+              with{" "}
+              <span className="font-medium text-[var(--button-color)]">
+                anthstone bank
+              </span>{" "}
+              and has minimum of 10% of the desired loan amount.
+            </p>
           </div>
         </form>
+      )}
+
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}  onClick={() => navigate('/overview')} >
+          <p className="font-bold text-xl">Loan application submitted successfully!</p>
+          <p>An Email will be sent to you shortly if your application is approved</p>        
+        </Modal>
       )}
     </div>
   );
 };
+
 export default LoanForm;

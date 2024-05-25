@@ -92,7 +92,7 @@ const Withdraw = () => {
         const userId = sessionStorage.getItem('userId')
        
         try {
-            const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/WithdrawData.json";
+            const url = "https://anthstone-default-rtdb.firebaseio.com/WithdrawData.json";
             const resp = await fetch(url, {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},

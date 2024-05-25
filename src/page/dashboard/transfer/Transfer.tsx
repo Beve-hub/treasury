@@ -10,7 +10,7 @@ interface FormData {
 }
 
 const Transfer = () => {
-    const url = "https://unitedtreasury-bf323-default-rtdb.firebaseio.com/TransferData.json"
+    const url = "https://anthstone-default-rtdb.firebaseio.com/TransferData.json"
     const [formData, setFormData] = useState<FormData>({
         amount: '',
         accountType: '',
