@@ -220,7 +220,7 @@ const InputTransaction = () => {
                                     id="amount"
                                     name="amount"
                                     type="number"
-                                    className="pl-20 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="border-l-4 border-l-[--bg-color]  pl-20 block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="0.00"
                                     value={formInput.amount}
                                     onChange={handleInputChange}
@@ -234,7 +234,7 @@ const InputTransaction = () => {
                                 <select
                                     id="account"
                                     name="accountType"
-                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="border-l-4 border-l-[--bg-color]  block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     onChange={handleInputChange}
                                 >
                                     <option>Choose Account Type</option>
@@ -252,7 +252,7 @@ const InputTransaction = () => {
                                 <select
                                     id="paymentMethod"
                                     name="paymentMethod"
-                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="border-l-4 border-l-[--bg-color] block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     onChange={handleInputChange}
                                 >
                                     <option>Choose payment method</option>
@@ -271,7 +271,7 @@ const InputTransaction = () => {
                                                     id="currencyWalle"
                                                     
                                                     name="currencyWallet"
-                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 mt-2 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    className="border-l-4 border-l-[--bg-color] block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 mt-2 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                                     onChange={(e) => handleCurrencySelection(e)}
                                                 >
                                                     <option>Choose currency wallet</option>
@@ -308,7 +308,7 @@ const InputTransaction = () => {
                                                 <select
                                                     id="currencyWallet"
                                                     name="currencyWallet"
-                                                    className="block w-[20rem] px-3 py-2 border border-gray-300 mt-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    className="border-l-4 border-l-[--bg-color] block w-[20rem] px-3 py-2 border border-gray-300 mt-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                                     onChange={(e) => handleCurrencySelection(e)}
                                                 >
                                                     <option>Choose currency wallet</option>
@@ -326,7 +326,7 @@ const InputTransaction = () => {
                                         type="text"
                                         id="cardNumber"
                                         name="cardNumber"
-                                        className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        className="border-l-4 border-l-[--bg-color]  block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         placeholder="Enter card number"
                                     />
                                 </div>
@@ -336,7 +336,7 @@ const InputTransaction = () => {
                                         type="text"
                                         id="expiryDate"
                                         name="expiryDate"
-                                        className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        className="border-l-4 border-l-[--bg-color] block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         placeholder="MM/YY"
                                     />
                                 </div>
@@ -346,7 +346,7 @@ const InputTransaction = () => {
                                         type="text"
                                         id="cvv"
                                         name="cvv"
-                                        className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        className="border-l-4 border-l-[--bg-color] block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         placeholder="123"
                                     />
                                 </div>
@@ -362,7 +362,7 @@ const InputTransaction = () => {
                                 <select
                                     id="cryptoWallet"
                                     name="cryptoWallet"
-                                    className="block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="border-l-4 border-l-[--bg-color] block w-[20rem] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     onChange={handleCryptoWalletSelection}
                                 >
                                     <option>Choose crypto wallet</option>

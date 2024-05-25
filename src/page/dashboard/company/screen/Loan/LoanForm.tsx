@@ -197,9 +197,9 @@ const LoanForm = () => {
         <form
           onSubmit={handleSubmit}
           className="w-screen justify-center items-center space-y-4"
-        >
-          <p className="font-bold text-2xl py-6">Loan Application Form</p>
-          <div className="max-w-[40rem] gap-2 grid md:grid-cols-2 items-center justify-center">
+        >   
+        <p className="font-bold text-2xl py-6">Loan Application Form</p>      
+          <div className="max-w-[40rem] gap-2 grid md:grid-cols-2 items-center justify-center">          
             <div className="grid">
               <label htmlFor="amount">Desired Loan Amount *</label>
               <input

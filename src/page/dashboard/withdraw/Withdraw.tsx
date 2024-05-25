@@ -133,7 +133,7 @@ const Withdraw = () => {
     return (
         <section   className='w-screen md:mt-20 bg-[--text-extra] min-h-[30rem] top-0  overflow-x-hidden overflow-y-auto '>
         {loading ? <Loaders/> : (
-        <div className='grid  h-[20rem] w-screen'>
+        <div className='grid   w-screen'>
             <div onClick={() => navigate('/overview')} className='p-6'>
                 <img src={Arrow} alt='' className='w-[3rem] bg-[--layer-color] p-3 rounded-3xl' />
             </div>

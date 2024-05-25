@@ -390,7 +390,7 @@ const Register  = () => {
                     id="firstName"
                     name="firstName"
                     type="text"
-                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="Full name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -403,7 +403,7 @@ const Register  = () => {
                     id="lastName"
                     name="lastName"
                     type="text"
-                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="Last name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
@@ -416,7 +416,7 @@ const Register  = () => {
                     id="maidenName"
                     name="maidenName"
                     type="text"
-                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="maiden name"
                     value={maidenName}
                     onChange={(e) => setMaidenName(e.target.value)}
@@ -431,7 +431,7 @@ const Register  = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -445,7 +445,7 @@ const Register  = () => {
                   id="phoneNum"
                   name="phoneNum"
                   type="text"
-                  className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Phone Number"
                   value={phoneNum}
                   onChange={(e) => setPhoneNum(e.target.value)}
@@ -459,7 +459,7 @@ const Register  = () => {
                 id="date"
                 name="date"
                 type="date"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="DD MM YY"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -471,7 +471,7 @@ const Register  = () => {
                    <select
                        id="maritalStatus"
                        name="maritalStatus"
-                       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        value={maritalStatus}
                       onChange={(e) => setMaritalStatus(e.target.value)}
                    >     
@@ -488,7 +488,7 @@ const Register  = () => {
                 id="occupation"
                 name="occupation"
                 type="text"               
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter occupation"
                 value={occupation}
                 onChange={(e) => setOccupation(e.target.value)}
@@ -501,7 +501,7 @@ const Register  = () => {
                 id="address"
                 name="address"
                 type="text"               
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter home address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -515,7 +515,7 @@ const Register  = () => {
                 id="state"
                 name="state"
                 type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="State"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
@@ -541,7 +541,7 @@ const Register  = () => {
     id="pin"
     name="pin"
     type="text"
-    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
     placeholder="Enter transaction pin"
     value={pin}
     onChange={(e) => setPin(e.target.value)}
@@ -555,7 +555,7 @@ const Register  = () => {
       id="password"
       name="password"
       type="password"
-      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       placeholder="Password"
       value={password}
       onChange={(e) => setPassword(e.target.value)}
@@ -568,7 +568,7 @@ const Register  = () => {
       id="confirm"
       name="confirm"
       type="password"
-      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       placeholder="Confirm Password"
       value={confirm}
       onChange={(e) => setConfirm(e.target.value)} 
@@ -584,7 +584,7 @@ const Register  = () => {
                 id="kinFirstName"
                 name="kinFirstName"
                 type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Kin First Name"
                 value={kinFirstName}
                 onChange={(e) => setKinFirstName(e.target.value)}
@@ -598,7 +598,7 @@ const Register  = () => {
                 id="kinLastName"
                 name="kinLastName"
                 type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Kin Last Name"
                 value={kinLastName}
                 onChange={(e) => setKinLastName(e.target.value)}
@@ -612,7 +612,7 @@ const Register  = () => {
                 id="kinEmail"
                 name="kinEmail"
                 type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Kin Email"
                 value={kinEmail}
                 onChange={(e) => setKinEmail(e.target.value)}
@@ -626,7 +626,7 @@ const Register  = () => {
                 id="kinPhoneNum"
                 name="kinPhoneNum"
                 type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Kin Phone Number"
                 value={kinPhoneNum}
                 onChange={(e) => setKinPhoneNum(e.target.value)}
@@ -639,7 +639,7 @@ const Register  = () => {
                    <select
                        id="kinMaritalStatus"
                        name="kinMaritalStatus"
-                       className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        value={kinMaritalStatus}
                       onChange={(e) => setKinMaritalStatus(e.target.value)}
                    >     
@@ -656,7 +656,7 @@ const Register  = () => {
                 id="kinAddress"
                 name="kinAddress"
                 type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Kin Address"
                 value={kinAddress}
                 onChange={(e) => setKinAddress(e.target.value)}
@@ -670,7 +670,7 @@ const Register  = () => {
                 id="kinState"
                 name="kinState"
                 type="text"
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border-l-4 border-l-[--bg-color] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Kin State"
                 value={kinState}
                 onChange={(e) => setKinState(e.target.value)}

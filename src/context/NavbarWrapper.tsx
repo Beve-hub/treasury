@@ -22,9 +22,10 @@ const NavbarWrapper = ({ children }: Props) => {
             '/amount',
             '/recover',
             '/withdraw',
-            '/action'  ,
-            '/loan' ,
-                     
+            '/action' ,          
+            '/deposit',   
+            '/investment',
+            
         ];
 
         const showNavbarPaths = [
@@ -35,12 +36,12 @@ const NavbarWrapper = ({ children }: Props) => {
             '/pin',
             '/transfer',           
             '/card',
-            '/address',
-            '/investment',
-            '/exchange',
+            '/address',            
             '/loan',
             '/deposit',
-            '/contactUs'
+            '/contactUs',
+            '/exchange',  
+            '/loan' ,
         ];
 
         if (restrictedPaths.includes(location.pathname)) {
