@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
+
 const QuickAction = () => {
     const navigate = useNavigate();
     return (
@@ -21,8 +22,8 @@ const QuickAction = () => {
             <h2 className='text-lg text-[--text-extra]'>Loan</h2> 
             </button>
 
-            <button onClick={() => navigate('/investment')} className='grid justify-center p-1 rounded-2xl  bg-[--tetra-color] w-[14rem]'>
-            <h2 className='text-lg text-[--text-extra]'>Investment</h2> 
+            <button onClick={() => navigate('/exchange')} className='grid justify-center p-1 rounded-2xl  bg-[--tetra-color] w-[14rem]'>
+            <h2 className='text-lg text-[--text-extra]'>Currency Chart</h2> 
             </button>
             </div>
            

@@ -1,4 +1,5 @@
 
+import AdminImages from './screen/AdminImages'
 import RecentAdmin from './screen/RecentAdmin'
 import RecentCard from './screen/RecentCard'
 
@@ -12,6 +13,7 @@ const AdminFood = () => {
                 <p className='font-bold text-2xl py-2'>Admin</p>
                 <RecentCard/>
                 <RecentAdmin/>
+                <AdminImages/>
                 </div>            
            </div>
         </section>        

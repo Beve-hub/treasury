@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, sendPasswordResetEmail, confirmPasswordReset} from "firebase/auth";
 import { getFirestore } from "firebase/firestore"; 
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMqWuZ-P2n-b1cRHTFQ_8WChr5RmhqfHU",
@@ -16,11 +17,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+const db = getFirestore(app);
 
 export const auth = getAuth(app);
+
 export const firestore = getFirestore(app);
  const database = getDatabase(app);
- export {database}
+ export {database, storage, db}
 
  export const passwordReset = async (email: string) => {
   return await sendPasswordResetEmail(auth, email)

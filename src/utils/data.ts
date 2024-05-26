@@ -18,7 +18,7 @@ export const sidebar: SidebarItem[] = [
         icon:  overIcon
     },
     {
-        name: 'Payment',
+        name: 'Transactions',
         path: '/payment',
         icon: paymentIcon
     },

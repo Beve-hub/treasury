@@ -10,6 +10,7 @@ import { doc, getDoc } from 'firebase/firestore';
 
 
 
+
 const Top = () => {
     const [icon, setIcon] = useState<boolean>(false);
     const [firstName, setFirstName] = useState<string>(() => {
@@ -24,6 +25,7 @@ const Top = () => {
 
     const { state } = useLocation();
     const userId = state?.userId || '';
+   
 
     useEffect(() => {
         const fetchData = async () => {

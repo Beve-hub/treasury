@@ -9,6 +9,7 @@ import IMG from '../../../assets/user_img.png'
 import edit from '../../../assets/edit.svg'
 import Loaders from '../../../component/Loaders';
 import ReactFlagsSelect from "react-flags-select";
+import useStorage from '../../../hooks/useStorage';
 
 
 
@@ -65,11 +66,11 @@ const Register  = () => {
   const [kinCoun, setKinCoun] = useState('');  
   const [pin, setPin] = useState(''); 
   const [profileImage, setProfileImage] = useState<string | null>(null);
-  const [validId, setValidId] = useState<string | null>(null);
+  const [validId, setValidId] = useState<File | null>(null);
 
   const profileInputRef = useRef<HTMLInputElement>(null);
   const validInputRef = useRef<HTMLInputElement>(null);
-    
+  const {startUpload} = useStorage();  
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
 
@@ -242,7 +243,7 @@ const Register  = () => {
     const files = event.target.files;
     if (files && files.length > 0) {
       const selectedImage = URL.createObjectURL(files[0]);
-      setProfileImage(selectedImage);     
+      setProfileImage(selectedImage);       
     }
     
   };
@@ -250,8 +251,7 @@ const Register  = () => {
    const handleFileValid = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {
-      const selectedImage = URL.createObjectURL(files[0]);
-      setValidId(selectedImage);  
+     setValidId(files[0]);  
     }
   };
 
@@ -293,6 +293,11 @@ const Register  = () => {
             accountNumber,
           });
         }
+
+        if (validId) {        
+          startUpload(validId); 
+        }
+        setValidId(null);
         navigate('/');
       } catch (error) {
         console.log(error);
@@ -708,7 +713,7 @@ const Register  = () => {
      {validId ? (
        <div className='flex'>
      <img
-     src={validId}
+     src={URL.createObjectURL(validId)}
      alt=""
      className="w-[20rem] h-[10rem]   border-dashed border-2 border-sky-900"     
      onClick={handleValid}
