@@ -5,6 +5,7 @@ import Copy from '../assets/copy.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner';
 import { doc, getDoc } from 'firebase/firestore';
+import LiveChat from '../page/LandingPage/chat/LiveChat';
 
 interface UserData {
     cryptoWallet: string;
@@ -407,6 +408,7 @@ const InputTransaction = () => {
                             </button>
             </div>
                 </form>
+                <LiveChat/>
             </div>
         </div>
     )

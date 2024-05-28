@@ -6,6 +6,7 @@ import { auth}  from "../../../firebase";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Loaders from '../../../component/Loaders';
+import LiveChat from '../../LandingPage/chat/LiveChat';
 
 
 interface Errors {
@@ -170,6 +171,7 @@ const Login = () => {
       </div>
     </div>
           </form>
+          <LiveChat/>
         </div> 
         </div>
         <div className='w-screen h-[3.4rem] bg-[--bg-color] flex justify-center items-center'>

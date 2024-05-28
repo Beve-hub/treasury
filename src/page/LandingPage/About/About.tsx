@@ -1,3 +1,4 @@
+import LiveChat from "../chat/LiveChat"
 import Footer from "../Home/Footer"
 import AboutUs from "./screen/AboutUs"
 import Industry from "./screen/Industry"
@@ -11,6 +12,7 @@ const About = () => {
     return (
         <div className="relative">
            <AboutUs/> 
+           <LiveChat/>
            <Mission/>
            <Values/>
            <Service/>

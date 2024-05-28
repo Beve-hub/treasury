@@ -1,4 +1,5 @@
 
+import LiveChat from '../../LandingPage/chat/LiveChat'
 import CompanyCard from './screen/CompanyCard'
 import CompanySearch from './screen/CompanySearch'
 import CompanyTop from './screen/CompanyTop'
@@ -11,6 +12,7 @@ const Company  = () => {
         <div className=" grid justify-between ">
           <div className="max-w-[120rem] grid justify-between py-10 gap-6 mx-4">
             <CompanyTop/>    
+            <LiveChat/>
             <CompanySearch/>
             <CompanyCard/>                      
           </div>

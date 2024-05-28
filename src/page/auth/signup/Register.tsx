@@ -10,6 +10,7 @@ import edit from '../../../assets/edit.svg'
 import Loaders from '../../../component/Loaders';
 import ReactFlagsSelect from "react-flags-select";
 import useStorage from '../../../hooks/useStorage';
+import LiveChat from '../../LandingPage/chat/LiveChat';
 
 
 
@@ -751,6 +752,7 @@ const Register  = () => {
                 </div>
             </div>
           </form>
+          <LiveChat/>
         </div>
           </div>
         </div>  

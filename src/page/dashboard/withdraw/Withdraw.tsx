@@ -135,7 +135,7 @@ const Withdraw = () => {
         {loading ? <Loaders/> : (
         <div className='grid   w-screen'>
             <div onClick={() => navigate('/overview')} className='p-6'>
-                <img src={Arrow} alt='' className='w-[3rem] bg-[--layer-color] p-3 rounded-3xl' />
+                <img src={Arrow} alt='' className='w-[3rem] bg-[--layers-colo] p-3 rounded-3xl' />
             </div>
              <div className="grid justify-center items-center h-[10rem]">
            <h2 className="mb-6 text-start text-2xl font-semibold text-gray-900">Withdraw</h2>

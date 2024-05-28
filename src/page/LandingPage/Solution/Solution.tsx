@@ -1,3 +1,4 @@
+import LiveChat from "../chat/LiveChat"
 import Footer from "../Home/Footer"
 import Sales from "./screen/Sales"
 import Scale from "./screen/Scale"
@@ -12,6 +13,7 @@ const Solution= () => {
             <Wealth/>
             <Scale/>
             <Sales/>
+            <LiveChat/>
             <Footer/>    
         </div>
     )
