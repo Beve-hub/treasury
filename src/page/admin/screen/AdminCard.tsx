@@ -47,11 +47,12 @@ const AdminCard = () => {
         };
         fetchWallets();        
     }, []);
+    
     return (
         <div>
-            <p className='font-bold text-2xl'>Client Card</p>
-            <div className='grid justify-center items-center gap-1'>
-               <div className='grid md:grid-cols-2 gap-3'>
+            <p className='font-bold text-xl py-4'>Client Card</p>
+            <div className='grid justify-center items-center gap-1 py-6'>
+               <div className='grid md:grid-cols-2 gap-3 '>
                                 {card.map((item, index) => (
                             <div key={index} className='w-[25rem] h-[15rem] bg-[#131679] rounded-lg grid justify-center items-center' >
                                 <div className='flex justify-end p-4 '>

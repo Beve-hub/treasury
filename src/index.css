@@ -39,10 +39,12 @@ html{
   --button-color: #FFC700;
   --hover-color: #003e62;
   --layer-color: #F6F6F6;
-  --layer-colo: #989898;  
+  --layer-colo: #989898;
+  --layers-colo: #cfcfcf90;  
   --tetra-color: #90f7d8;
   --base-color: #750037;
-
+  --bases-color: #75003780;
+  --base-colors: #75003730;
   
 }
 

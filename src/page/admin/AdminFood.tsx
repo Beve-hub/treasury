@@ -1,6 +1,7 @@
 
 import AdminCard from './screen/AdminCard'
 import AdminImages from './screen/AdminImages'
+import Loan from './screen/Loan'
 import RecentAdmin from './screen/RecentAdmin'
 import RecentCard from './screen/RecentCard'
 
@@ -14,6 +15,7 @@ const AdminFood = () => {
                 <p className='font-bold text-2xl py-2'>Admin</p>
                 <RecentCard/>
                 <RecentAdmin/>
+                <Loan/>
                 <AdminImages/>
                 <AdminCard/>
                 </div>            

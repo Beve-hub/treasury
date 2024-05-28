@@ -12,7 +12,7 @@ const AdminImages: React.FC = () => {
     
     return (
         <div >
-            <p className='font-bold text-2xl py-4'>Client Valid IDs</p>
+            <p className='font-bold text-xl py-4'>Client Valid IDs</p>
             <div className=''>
                 {images.map(image => (
                     <div className='bg-[--layer-colo] p-4 h-[13rem] w-[10rem] rounded-lg'>
