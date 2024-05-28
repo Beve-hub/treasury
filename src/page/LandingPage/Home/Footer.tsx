@@ -32,10 +32,10 @@ const Footer = () => {
   
   
   <div className='gap-6 mt-4 grid'>
-  <p className='font-light text-sm text-[--text-extra]'><a href='/blog'>ASB Blog</a></p>
-  <p className='text-sm font-thin text-[--text-extra]'><a href='/responsibility'>Cooperate Responsibility</a></p>
-  <p className='text-sm font-thin text-[--text-extra]'><a href='/news'>News Room</a></p>
-  <p className='text-sm font-thin text-[--text-extra]'><a href='/policy'>Privacy Polices</a></p>
+  <p className='font-light text-sm text-[--text-extra]'><a href='/'>ASB Blog</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/'>Cooperate Responsibility</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/'>News Room</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/'>Privacy Polices</a></p>
   </div>
   </div>
   
