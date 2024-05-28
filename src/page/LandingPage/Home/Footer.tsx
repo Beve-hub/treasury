@@ -15,27 +15,27 @@ const Footer = () => {
   <div className='grid gap-4 mt-4 '>
   <p className='font-bold text-md text-[--text-extra]'>Our Company</p>
   <p className='text-sm font-thin text-[--text-extra]'><a href='/about'>About us</a></p>
-  <p className='text-sm font-thin text-[--text-extra]'><a href=''>Our Portfolio</a></p>
-  <p className='text-sm font-thin text-[--text-extra]'><a href=''>Investor Relation</a></p>
-  <p className='text-sm font-thin text-[--text-extra]' ><a href=''>Career</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/about'>Our Portfolio</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/about'>Investor Relation</a></p>
+  <p className='text-sm font-thin text-[--text-extra]' ><a href='/about'>Career</a></p>
   </div>
   
   
   <div className='grid gap-4 mt-4 '>
   <p className='font-bold text-md  text-[--text-extra]'>OUR SERVICES</p>
-  <p className='text-sm font-thin text-[--text-extra]'>Sales & Marketing</p>
-  <p className='text-sm font-thin text-[--text-extra]'>Security & Scalability</p>
-  <p className='text-sm font-thin text-[--text-extra]'>Loan Service</p>
-  <p className='text-sm font-thin text-[--text-extra]'>Privacy Policy</p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/solution'>Sales & Marketing</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/solution'>Security & Scalability</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/'>Loan Service</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/contact'>Contact Us</a></p>
   </div>
   
   
   
   <div className='gap-6 mt-4 grid'>
-  <p className='font-light text-sm text-[--text-extra]'>UTB Blog</p>
-  <p className='text-sm font-thin text-[--text-extra]'>Coroperate Responsiblity</p>
-  <p className='text-sm font-thin text-[--text-extra]'>News Room</p>
-  <p className='text-sm font-thin text-[--text-extra]'>Contact Us</p>
+  <p className='font-light text-sm text-[--text-extra]'><a href='/blog'>ASB Blog</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/responsibility'>Cooperate Responsiblity</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/news'>News Room</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/policy'>Privacy Polices</a></p>
   </div>
   </div>
   
