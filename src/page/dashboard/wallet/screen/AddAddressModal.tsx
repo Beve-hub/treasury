@@ -5,6 +5,7 @@ interface AddAddressModalProps {
 }
 
 const AddAddressModal: React.FC<AddAddressModalProps> = ({ showAddAddressModal, onClose, children }) => {
+  if (!showAddAddressModal) return null;
   return (
     <div onClick={onClose} className={`fixed inset-0 flex justify-center items-center ${showAddAddressModal ? "visible bg-black/20" : "invisible"}`}>
       <div className={`bg-white p-4 rounded-md ${showAddAddressModal ? 'scale-100 opacity-100' : 'scale-110 opacity-0'}`} onClick={(e) => e.stopPropagation()}>

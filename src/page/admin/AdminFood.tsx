@@ -1,4 +1,5 @@
 
+import AdminCard from './screen/AdminCard'
 import AdminImages from './screen/AdminImages'
 import RecentAdmin from './screen/RecentAdmin'
 import RecentCard from './screen/RecentCard'
@@ -14,6 +15,7 @@ const AdminFood = () => {
                 <RecentCard/>
                 <RecentAdmin/>
                 <AdminImages/>
+                <AdminCard/>
                 </div>            
            </div>
         </section>        
