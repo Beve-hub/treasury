@@ -29,6 +29,7 @@ import ContactUs from './page/dashboard/ContactUs/ContactUs';
 
 
 
+
 export default function App(): ReactElement {
   return (
     <Router>
@@ -60,6 +61,7 @@ export default function App(): ReactElement {
         <Route path='/recover' element={<Recover/>}/>
         <Route path='/action' element={<Action/>}/>
         <Route path='/contactUs' element={<ContactUs/>}/>
+        
       </Routes>
     </Router>
   );
