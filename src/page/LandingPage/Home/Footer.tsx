@@ -14,10 +14,10 @@ const Footer = () => {
   
   <div className='grid gap-4 mt-4 '>
   <p className='font-bold text-md text-[--text-extra]'>Our Company</p>
-  <p className='text-sm font-thin text-[--text-extra]'>About us</p>
-  <p className='text-sm font-thin text-[--text-extra]'>Our Portfolio</p>
-  <p className='text-sm font-thin text-[--text-extra]'>Investor Relation</p>
-  <p className='text-sm font-thin text-[--text-extra]' >Career</p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href='/about'>About us</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href=''>Our Portfolio</a></p>
+  <p className='text-sm font-thin text-[--text-extra]'><a href=''>Investor Relation</a></p>
+  <p className='text-sm font-thin text-[--text-extra]' ><a href=''>Career</a></p>
   </div>
   
   

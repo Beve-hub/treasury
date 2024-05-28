@@ -21,7 +21,7 @@ const useFirestore = (collectionName: string) => {
                     querySnapshot.forEach((doc) => {
                         const data = doc.data();
                         const imageUrl = data.imageUrl;
-                        const createdAt = data.createdAt.toDate().toISOString(); // Convert to ISO string
+                        const createdAt = data.createdAt.toDate().toISOString(); 
                         images.push({ imageUrl, createdAt });
                     });
                     setDocs(images);
