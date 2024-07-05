@@ -44,7 +44,6 @@ const Action: React.FC = () => {
             
             try {
                 if (mode === "resetPassword") {
-
                     // Verify the password reset code is valid
                     await checkActionCode(auth, oobCode);
                            

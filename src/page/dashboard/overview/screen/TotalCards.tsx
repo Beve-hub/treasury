@@ -198,7 +198,7 @@ const TotalCards = () => {
 
 
   return (
-    <div className='grid items-center justify-between gap-6 md:grid-cols-4'>
+    <div className='grid mx-4 my-4  gap-6 md:grid-cols-4 justify-center items-center'>
       <div className='grid justify-start p-4 rounded-2xl gap-8 bg-[--bg-color] w-[15rem] border-b-[10px] border-[--tetra-color]'>
         <div className='grid gap-1'>
           <h2 className='text-lg font-semibold text-[--text-extra]'>Total Balance</h2>
