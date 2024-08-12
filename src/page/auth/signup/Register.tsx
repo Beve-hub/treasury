@@ -262,7 +262,7 @@ const Register  = () => {
     if (validate()) {
       try {
         const accountNumber = await generateAccountNumber();
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);       
         const user = userCredential.user;
         await sendEmailVerification(user);
         alert("Registration successful! A verification email has been sent to your email address.");
@@ -301,7 +301,8 @@ const Register  = () => {
         setValidId(null);
         navigate('/');
       } catch (error) {
-        console.log(error);
+        console.log('resolve error',error);
+
       }
       alert('Registration Completed verify your email for access');
     }
@@ -315,6 +316,8 @@ const Register  = () => {
       </div> : 
       (
       <div>
+
+        {/* top label*/}
      <div className=' bg-[#ffff] w-screen fixed grid justify-start'>
         <a href='/'>
           <img src={Logo} alt='' className='w-[10rem]' />
@@ -355,9 +358,13 @@ const Register  = () => {
               </div>
 
             <div className='grid justify-center items-center mx-auto'>
+
+              {/* Conditionally render uploaded image or default image */}
+
+
               <div className='grid justify-center items-center gap-4'>
               <label htmlFor="profileImage"  className='font-semibold'>Upload  Profile Image</label>
-               {/* Conditionally render uploaded image or default image */}
+               
               {profileImage ? (
                 <div className='flex'>
           <img
@@ -385,7 +392,7 @@ const Register  = () => {
             
               </div>
               
-              
+              {/* form information */}
               <div className="grid gap-2 mx-auto">
               <p className='font-semibold text-xl'>Personal Information</p>
               <div className='space-y-4 grid md:grid-cols-2 items-center gap-2'>
